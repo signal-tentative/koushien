@@ -2,39 +2,46 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
 import { showCreateLecture, showLectureDetail, showSettingModal } from "./atom";
-function CreateLecture() {
+function SettingStudent() {
   const navigate = useNavigate();
-  const [count, setCount] = useState(0);
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
     useAtom(showCreateLecture);
   const [isShowSettingModal_S, setIsShowSettingModal_S] =
     useAtom(showLectureDetail);
   const [isShowLectureDetailModal_S, setIsShowLectureDetailModal_S] =
     useAtom(showSettingModal);
-  const handleResistration = () => {
-    const judge = window.confirm("この講義で間違いないですか？");
+  const handleSettingResistration = () => {
+    const judge = window.confirm("この内容で間違いないですか？");
     if (!judge) return;
   };
-  const handleCloseCreateLectureModal_S = () => {
-    setIsShowCreateLectureModla_S(!isShowCreateLectureModal_S);
+  const handleCloseSettingModal_S = () => {
+    setIsShowSettingModal_S(!isShowSettingModal_S);
   };
 
   return (
     <div className="create_lecture-card">
-      <div onClick={handleCloseCreateLectureModal_S}>❌</div>
+      <div onClick={handleCloseSettingModal_S}>❌</div>
       <div>
-        <h1>講義登録</h1>
-        <h5>講義IDを登録し、講義を追加します。</h5>
+        <h1>ユーザー設定変更</h1>
+        <h5>設定項目</h5>
         <div>
-          講義ID
+          email:
           <input type="text" />
         </div>
         <div>
-          <button onClick={handleResistration}>登録</button>
+          name:
+          <input type="text" />
+        </div>
+        <div>
+          講師ON:
+          <input type="checkbox" />
+        </div>
+        <div>
+          <button onClick={handleSettingResistration}>登録</button>
         </div>
       </div>
     </div>
   );
 }
 
-export default CreateLecture;
+export default SettingStudent;
