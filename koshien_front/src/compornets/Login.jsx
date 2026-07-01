@@ -1,9 +1,39 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router";
 function Login() {
+  const navigate = useNavigate();
   const [count, setCount] = useState(0);
+  const handleLogin = () => {
+    navigate("/main");
+  };
+  const handleCreate = () => {
+    navigate("create");
+  };
 
-  return <>ログイン画面</>;
+  return (
+    <>
+      <div>
+        <h1>ログイン画面</h1>
+        <div>
+          <div style={{ display: "flex" }}></div>
+          <div>
+            アドレス:
+            <input type="text" />
+          </div>
+          <div>
+            Password:
+            <input type="password" />
+          </div>
+          <div>
+            <button onClick={handleLogin}>ログイン</button>
+          </div>
+          <div>
+            <button onClick={handleCreate}>アカウント作成</button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Login;
