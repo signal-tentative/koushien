@@ -3,8 +3,11 @@ import { useNavigate } from "react-router";
 function Login() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
-  const handleLogin = () => {
-    navigate("/main");
+  const handleLoginI = () => {
+    navigate("/dashboard");
+  };
+  const handleLoginS = () => {
+    navigate("/dashboard");
   };
   const handleCreate = () => {
     navigate("create");
@@ -25,7 +28,10 @@ function Login() {
             <input type="password" />
           </div>
           <div>
-            <button onClick={handleLogin}>ログイン</button>
+            <button onClick={handleLoginI}>講師ログイン</button>
+          </div>
+          <div>
+            <button onClick={handleLoginS}>受講生ログイン</button>
           </div>
           <div>
             <button onClick={handleCreate}>アカウント作成</button>
