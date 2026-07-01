@@ -2,9 +2,13 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
-
+import { useNavigate } from "react-router";
 function App() {
+  const navigate = useNavigate();
   const [count, setCount] = useState(0);
+  const handleLogout = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -16,6 +20,7 @@ function App() {
         </div>
         <div>
           <h1>Get started</h1>
+          <button onClick={handleLogout}>ログアウト</button>
           <p>
             Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
           </p>
