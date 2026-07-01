@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import App from "./App";
 import Login from "./compornets/Login";
 import SignUp from "./compornets/SignUp";
-import Dashboard from "./compornets/Dashboard";
+import Dashboard from "./compornets/instructer/Dashboard";
 import "./App.css";
 export function Roots() {
   return (
