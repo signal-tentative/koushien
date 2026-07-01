@@ -2,7 +2,11 @@ import { Routes, Route } from "react-router";
 import App from "./App";
 import Login from "./compornets/Login";
 import SignUp from "./compornets/SignUp";
-import Dashboard from "./compornets/student/Dashboard";
+
+import Dashboard_s from "./compornets/student/Dashboard_s";
+
+import Dashboard from "./compornets/instructer/Dashboard";
+
 import "./App.css";
 export function Roots() {
   return (

@@ -17,6 +17,10 @@
   }
 }
 
+.border {
+  border: solid;
+}
+
 .hero {
   position: relative;
 
