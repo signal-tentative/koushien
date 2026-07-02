@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
-import { showCreateLecture, showLectureDetail, showSettingModal } from "./atom";
-function LectureDetail() {
+import {
+  showCreateLecture,
+  showLectureDetail,
+  showSettingModal,
+} from "../atom";
+import FileSelectURL_s from "../FileSelectURL_s";
+import "./modal.css";
+function LectureDetail_s() {
   const navigate = useNavigate();
   const [lectureImplementation, setLectureImplementation] = useState("");
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
@@ -26,11 +32,15 @@ function LectureDetail() {
   };
 
   return (
-    <div className="create_lecture-card">
+    <div className="lecture_detail_card ">
       <div onClick={handleCloseLectureDetailModal_S}>❌</div>
-      <div>
+      {/* <FileSelectURL_s /> */}
+      <div className="lecture_detail_header">
         <h1>講義タイトル</h1>
-        <h5>講師名</h5>
+      </div>
+      <div className="lecture_detail_container">
+        <div className="lecture_detail_koumoku">講師名</div>
+        <div className="lecture_detail_syousai">太郎</div>
         <h5>講義ID</h5>
         <div>
           実施予定日付
@@ -40,13 +50,16 @@ function LectureDetail() {
           講義概要：
           <textarea />
         </div>
-        <div>
-          <a href="ここにteamsLink" />
-          <button>講義参加ボタン</button>
-        </div>
+      </div>
+      <div className="lecture_detail_syousai">
+        <h5>サンプル</h5>
+      </div>
+      <div>
+        <a href="ここにteamsLink" />
+        <button>講義参加ボタン</button>
       </div>
     </div>
   );
 }
 
-export default LectureDetail;
+export default LectureDetail_s;
