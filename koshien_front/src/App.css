@@ -186,3 +186,15 @@
     border-right-color: var(--border);
   }
 }
+
+.create_lecture-card {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 40px 32px;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
