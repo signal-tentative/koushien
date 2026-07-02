@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
-import { showCreateLecture, showLectureDetail, showSettingModal } from "./atom";
-function SettingStudent() {
+import {
+  showCreateLecture,
+  showLectureDetail,
+  showSettingModal,
+} from "../atom";
+function SettingStudent_s() {
   const navigate = useNavigate();
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
     useAtom(showCreateLecture);
@@ -44,4 +48,4 @@ function SettingStudent() {
   );
 }
 
-export default SettingStudent;
+export default SettingStudent_s;

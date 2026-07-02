@@ -1,14 +1,20 @@
 import { useState } from "react";
-import Lecturelist from "./Lecturelist";
-import EndLecturelist from "./EndLecturelist";
 import { useNavigate } from "react-router";
-import CreateLecture from "./CreateLecture";
-import SettingStudent from "./SettingStudent";
-import LectureDetail from "./LectureDetail";
 import { useAtom } from "jotai";
-import { showCreateLecture, showLectureDetail, showSettingModal } from "./atom";
+import {
+  showCreateLecture,
+  showLectureDetail,
+  showSettingModal,
+  showAfterLectureDetail,
+} from "./atom";
+import Lecturelist_s from "./Lecturelist_s";
+import EndLecturelist_s from "./EndLecturelist_s";
+import CreateLecture_s from "./modal_s/CreateLecture_s";
+import SettingStudent_s from "./modal_s/SettingStudent_s";
+import LectureDetail_s from "./modal_s/LectureDetail_s";
+import AfterLectureDetail_s from "./modal_s/AfterLectureDetail_s";
 
-function Dashboard() {
+function Dashboard_s() {
   const navigate = useNavigate();
 
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
@@ -17,6 +23,8 @@ function Dashboard() {
     useAtom(showLectureDetail);
   const [isShowLectureDetailModal_S, setIsShowLectureDetailModal_S] =
     useAtom(showSettingModal);
+  const [isShowAfterLectureDetailModal_S, setIsShowAfterLectureDetail_S] =
+    useAtom(showAfterLectureDetail);
 
   const handleOpenCreateLectureModal_S = () => {
     setIsShowCreateLectureModla_S(!isShowCreateLectureModal_S);
@@ -43,20 +51,22 @@ function Dashboard() {
         >
           講義の新規登録
         </button>
-        {isShowCreateLectureModal_S && <CreateLecture />}
-        {isShowSettingModal_S && <SettingStudent />}
-        {isShowLectureDetailModal_S && <LectureDetail />}
+        {isShowCreateLectureModal_S && <CreateLecture_s />}
+        {isShowSettingModal_S && <SettingStudent_s />}
+        {isShowLectureDetailModal_S && <LectureDetail_s />}
+        {isShowAfterLectureDetailModal_S && <AfterLectureDetail_s />}
         {isShowCreateLectureModal_S === false &&
           isShowSettingModal_S === false &&
-          isShowLectureDetailModal_S === false && (
+          isShowLectureDetailModal_S === false &&
+          isShowAfterLectureDetailModal_S === false && (
             <div>
               <div>
                 <h2>講義リスト(予定)</h2>
-                <Lecturelist />
+                <Lecturelist_s />
               </div>
               <div>
                 <h2>実装済講義リスト</h2>
-                <EndLecturelist />
+                <EndLecturelist_s />
               </div>
             </div>
           )}
@@ -65,4 +75,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Dashboard_s;

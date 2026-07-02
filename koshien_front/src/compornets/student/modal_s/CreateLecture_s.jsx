@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
-import { showCreateLecture, showLectureDetail, showSettingModal } from "./atom";
-function CreateLecture() {
+import {
+  showCreateLecture,
+  showLectureDetail,
+  showSettingModal,
+} from "../atom";
+function CreateLecture_s() {
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
@@ -37,4 +41,4 @@ function CreateLecture() {
   );
 }
 
-export default CreateLecture;
+export default CreateLecture_s;

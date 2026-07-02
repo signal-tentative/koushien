@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { showCreateLecture, showLectureDetail, showSettingModal } from "./atom";
-function Lecturelist() {
+function Lecturelist_s() {
   const [count, setCount] = useState(0);
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
     useAtom(showCreateLecture);
@@ -25,4 +25,4 @@ function Lecturelist() {
   );
 }
 
-export default Lecturelist;
+export default Lecturelist_s;
