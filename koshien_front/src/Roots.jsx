@@ -3,6 +3,7 @@ import App from "./App";
 import Login from "./compornets/Login";
 import SignUp from "./compornets/SignUp";
 import Dashboard from "./compornets/instructer/Dashboard";
+import Live from "./compornets/instructer/Live";
 import "./App.css";
 export function Roots() {
   return (
@@ -12,6 +13,7 @@ export function Roots() {
         <Route path="/main" element={<App />} />
         <Route path="/create" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/live" element={<Live />} />
       </Routes>
     </>
   );

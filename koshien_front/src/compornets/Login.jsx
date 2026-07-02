@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 function Login() {
   const navigate = useNavigate();
-  const [count, setCount] = useState(0);
   const handleLoginI = () => {
     navigate("/dashboard");
   };
