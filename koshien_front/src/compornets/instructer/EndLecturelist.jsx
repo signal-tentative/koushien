@@ -1,8 +1,10 @@
-import Matome from "./Matome";
+import Matome from "./modal/MatomeModal";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { showMatomeM } from "./atom";
 
 function EndLecturelist() {
-  const [MatomeM, MatomeModalSetState] = useState(false);
+  const [MatomeM, MatomeModalSetState] = useAtom(showMatomeM);
   const [PushData, setPushData] = useState(null);
 
   const data = [
@@ -13,8 +15,7 @@ function EndLecturelist() {
 
   function handleMatome(ele) {
     setPushData(ele);
-    console.log("PushData", PushData); //eleをとってその情報のまとめを表示できるようにしたい
-    console.log("click");
+    // console.log("eleData", PushData); //eleをとってその情報のまとめを表示できるようにしたい
     MatomeModalSetState(true);
   }
 
@@ -38,7 +39,6 @@ function EndLecturelist() {
         {MatomeM && (
           <Matome
             MatomeModalSetState={MatomeModalSetState}
-            MatomeM={MatomeM}
             PushData={PushData}
           />
         )}

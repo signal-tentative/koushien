@@ -1,13 +1,18 @@
 import { useState } from "react";
 import Lecturelist from "./Lecturelist";
 import EndLecturelist from "./EndLecturelist";
-import SettingModal from "./SettingModal";
-import CreateLectureModal from "./CreateLectureModal";
+import SettingModal from "./modal/SettingModal";
+import CreateLectureModal from "./modal/CreateLectureModal";
+import qtaImage from "/public/Signal.png";
+import { useAtom } from "jotai";
+import { showSettingM, showCreateLectureM } from "./atom";
+
+import Recording from "../Recording";
 
 function Dashboard() {
-  const [count, setCount] = useState(0);
-  const [SettingM, SettingModalSetState] = useState(false);
-  const [CreateLectureM, CreateLectureModalSetState] = useState(false);
+  const [SettingM, SettingModalSetState] = useAtom(showSettingM);
+  const [CreateLectureM, CreateLectureModalSetState] =
+    useAtom(showCreateLectureM);
 
   const handleCreateLectureModal = () => {
     console.log("hanle");
@@ -21,6 +26,7 @@ function Dashboard() {
   return (
     <>
       <div>
+        <Recording />
         <button>🔔</button>
         <button>⚙️</button>
         <button onClick={handleSettingModal}>🙍‍♂️</button>
@@ -30,7 +36,10 @@ function Dashboard() {
             SettingM={SettingM}
           />
         )}
-        <h1>講義ダッシュボード</h1>
+        <div>
+          <h1 className="left">講義ダッシュボード</h1>{" "}
+          <img id="qta" src={qtaImage} alt="qta" />
+        </div>
         <button onClick={handleCreateLectureModal}>講義の新規登録</button>
         {CreateLectureM && (
           <CreateLectureModal
@@ -38,12 +47,12 @@ function Dashboard() {
             CreateLectureM={CreateLectureM}
           />
         )}
-        <div>
-          <div>
+        <div className="yoko">
+          <div className="left">
             <h2>講義リスト(予定)</h2>
             <Lecturelist />
           </div>
-          <div>
+          <div className="left">
             <h2>実装済講義リスト</h2>
             <EndLecturelist />
           </div>

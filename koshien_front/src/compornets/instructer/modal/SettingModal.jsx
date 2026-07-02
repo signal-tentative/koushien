@@ -12,8 +12,8 @@ function SettingModal({ SettingModalSetState, SettingM }) {
   return (
     <>
       <div className="border">
-        <h1>ユーザー設定画面</h1>
         <button onClick={handleClose}>X</button>
+        <h1>ユーザー設定画面</h1>
         <div onClick={handleSave}>・メールアドレス変更</div>
         <div onClick={handleCreate}>・表示名変更</div>
         <div onClick={handleCreate}>・ロール切り替え</div>

@@ -1,6 +1,8 @@
-function CreateLectureModal({ CreateLectureModalSetState, CreateLectureM }) {
+import { showCreateLectureM } from "../atom";
+
+function CreateLectureModal({ CreateLectureModalSetState }) {
   function handleClose() {
-    CreateLectureModalSetState(!CreateLectureModal);
+    CreateLectureModalSetState(!showCreateLectureM);
   }
   function handleSave() {
     console.log("save");
@@ -12,8 +14,8 @@ function CreateLectureModal({ CreateLectureModalSetState, CreateLectureM }) {
   return (
     <>
       <div className="border">
-        <h1>新規作成</h1>
         <button onClick={handleClose}>X</button>
+        <h1>新規作成</h1>
         <input placeholder="講義タイトルを入力"></input>
         <textarea placeholder="講義概要を入力"></textarea>
         <input type="file"></input>
