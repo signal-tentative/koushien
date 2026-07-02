@@ -1,15 +1,17 @@
-function Matome({ MatomeModalSetState, MatomeM, PushData }) {
-  console.log(PushData);
+import { showMatomeM } from "../atom";
+
+function Matome({ MatomeModalSetState, PushData }) {
   function handleClose() {
-    MatomeModalSetState(!MatomeM);
+    MatomeModalSetState(!showMatomeM);
   }
 
   return (
     <>
       <div className="border">
-        <h2>講義の詳細</h2>
-        <div>{PushData.lectureId}</div>
-        <div>講義ID:{PushData.date}</div>
+        <button onClick={handleClose}>X</button>
+        <h2>講義の詳細({PushData.name})</h2>
+        <div>講義ID:{PushData.lectureId}</div>
+        <div>{PushData.date}</div>
         <div>ダウンロード</div>
         <div>資料リンク</div>
         <div>主なわからないポイントまとめ</div>
