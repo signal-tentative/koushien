@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { showBeforeStarting } from "../atom";
 
 function BeforeStartingModal({ BeforeStartingModalSetState, SPushData }) {
   const navigate = useNavigate();
   console.log(SPushData);
   function handleClose() {
-    BeforeStartingModalSetState(!BeforeStarting);
+    BeforeStartingModalSetState(!showBeforeStarting);
   }
   function handleDelete() {
     console.log("delete");

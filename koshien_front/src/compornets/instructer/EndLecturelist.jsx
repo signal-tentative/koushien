@@ -21,7 +21,7 @@ function EndLecturelist() {
 
   return (
     <>
-      <list>
+      <div>
         {data.map((ele) => {
           return (
             <>
@@ -42,7 +42,7 @@ function EndLecturelist() {
             PushData={PushData}
           />
         )}
-      </list>
+      </div>
     </>
   );
 }

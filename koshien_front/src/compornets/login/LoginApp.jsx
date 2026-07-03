@@ -10,7 +10,7 @@ import { NewAuthBt } from "./NewAuthBt";
 import { SignInBt } from "./SignInBt";
 import { SignUpBt } from "./SignUpBt";
 
-export function LoginApp() {
+function LoginApp() {
   const newForm = useAtomValue(atomNewForm);
   const nav = useNavigate();
   useEffect(() => {
@@ -49,3 +49,5 @@ export function LoginApp() {
     </>
   );
 }
+
+export default LoginApp;

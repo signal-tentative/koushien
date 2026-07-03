@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import LoginApp from "./login/LoginApp";
+
 function Login() {
   const navigate = useNavigate();
   const handleLoginI = () => {
     navigate("/dashboard");
   };
   const handleLoginS = () => {
-    navigate("/dashboard");
+    navigate("/dashboard_s");
   };
   const handleCreate = () => {
     navigate("create");
@@ -35,6 +37,7 @@ function Login() {
           <div>
             <button onClick={handleCreate}>アカウント作成</button>
           </div>
+          <LoginApp />
         </div>
       </div>
     </>
