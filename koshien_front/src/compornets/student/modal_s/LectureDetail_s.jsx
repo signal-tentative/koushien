@@ -34,7 +34,7 @@ function LectureDetail_s() {
   return (
     <div className="lecture_detail_card ">
       <div onClick={handleCloseLectureDetailModal_S}>❌</div>
-      {/* <FileSelectURL_s /> */}
+      <FileSelectURL_s />
       <div className="lecture_detail_header">
         <h1>講義タイトル</h1>
       </div>

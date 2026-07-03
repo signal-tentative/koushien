@@ -28,7 +28,7 @@ const FileSelectURL_s = () => {
       </div>
       {selectedPdf ? (
         <div style={{ border: "1px solid #ccc", background: "#fff" }}>
-          <Pdf url={selectedPdf} />
+          <Pdf_s url={selectedPdf} />
         </div>
       ) : (
         <p>PDFファイル表示場所</p>

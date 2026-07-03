@@ -9,6 +9,7 @@ import Dashboard from "./compornets/instructer/Dashboard";
 
 import Live from "./compornets/instructer/Live";
 import "./App.css";
+import { LectureUpload } from "./compornets/FileUpload";
 export function Roots() {
   return (
     <>
@@ -22,7 +23,7 @@ export function Roots() {
 
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/live" element={<Live />} />
-
+        <Route path="/pdf" element={<LectureUpload />} />
       </Routes>
     </>
   );

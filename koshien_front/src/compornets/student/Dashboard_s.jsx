@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAtom } from "jotai";
 import {
@@ -16,7 +16,7 @@ import AfterLectureDetail_s from "./modal_s/AfterLectureDetail_s";
 
 function Dashboard_s() {
   const navigate = useNavigate();
-
+  const [users, setUsers] = useState();
   const [isShowCreateLectureModal_S, setIsShowCreateLectureModla_S] =
     useAtom(showCreateLecture);
   const [isShowSettingModal_S, setIsShowSettingModal_S] =
@@ -33,6 +33,30 @@ function Dashboard_s() {
     setIsShowSettingModal_S(!isShowSettingModal_S);
   };
   console.log(isShowCreateLectureModal_S);
+
+  useEffect(() => {
+    console.log("テスト");
+    const res = fetch("http://localhost:8080/users", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正しくありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error("データ取得エラー:", error);
+      });
+  }, []);
+  console.log(users);
+
   return (
     <>
       <div>
