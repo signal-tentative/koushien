@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Pdf } from "./Pdf";
 
-const FileSelectURL = () => {
+function FileSelectURL() {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -14,18 +14,8 @@ const FileSelectURL = () => {
   };
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        background: "#f0f2f5",
-        minHeight: "100vh",
-        width: "700px",
-      }}
-    >
-      <h1>PDF送り見</h1>
-      <div style={{ marginBottom: "20px" }}>
-        <input type="file" accept=".pdf" onChange={handleFileChange} />
-      </div>
+    <div>
+      <input type="file" accept=".pdf" onChange={handleFileChange} />
       {selectedPdf ? (
         <div style={{ border: "1px solid #ccc", background: "#fff" }}>
           <Pdf url={selectedPdf} />
@@ -35,6 +25,6 @@ const FileSelectURL = () => {
       )}
     </div>
   );
-};
+}
 
 export default FileSelectURL;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import LoginApp from "./login/LoginApp";
+import qtaImage from "/public/Signal-2.png";
 
 function Login() {
   const navigate = useNavigate();
@@ -16,10 +17,11 @@ function Login() {
 
   return (
     <>
-      <div>
-        <h1>ログイン画面</h1>
-        <div>
+      <div id="display">
+        <img id="qta-maru" src={qtaImage} alt="qta" />
+        <div className="boad">
           <div style={{ display: "flex" }}></div>
+          <h1>Login</h1>
           <div>
             アドレス:
             <input type="text" />
@@ -29,17 +31,23 @@ function Login() {
             <input type="password" />
           </div>
           <div>
-            <button onClick={handleLoginI}>講師ログイン</button>
+            <button className="loginBtn" onClick={handleLoginI}>
+              講師ログイン
+            </button>
           </div>
           <div>
-            <button onClick={handleLoginS}>受講生ログイン</button>
+            <button className="loginBtn" onClick={handleLoginS}>
+              受講生ログイン
+            </button>
           </div>
           <div>
-            <button onClick={handleCreate}>アカウント作成</button>
+            <button className="whiteBtn" onClick={handleCreate}>
+              アカウント新規作成
+            </button>
           </div>
-          <LoginApp />
         </div>
       </div>
+      {/* <LoginApp /> */}
     </>
   );
 }
