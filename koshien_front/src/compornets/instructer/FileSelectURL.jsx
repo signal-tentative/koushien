@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Pdf_s } from "./Pdf_s";
+import { Pdf } from "./Pdf";
 
-const FileSelectURL_s = () => {
+const FileSelectURL = () => {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -28,7 +28,7 @@ const FileSelectURL_s = () => {
       </div>
       {selectedPdf ? (
         <div style={{ border: "1px solid #ccc", background: "#fff" }}>
-          <Pdf_s url={selectedPdf} />
+          <Pdf url={selectedPdf} />
         </div>
       ) : (
         <p>PDFファイル表示場所</p>
@@ -37,4 +37,4 @@ const FileSelectURL_s = () => {
   );
 };
 
-export default FileSelectURL_s;
+export default FileSelectURL;
