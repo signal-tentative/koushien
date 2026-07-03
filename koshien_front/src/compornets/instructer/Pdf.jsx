@@ -16,8 +16,8 @@ export const Pdf = ({ url }) => {
     setPageNumber((prev) => Math.min(prev + 1, numPages));
 
   return (
-    <div style={{ padding: "20px" }}>
-      <div style={{ marginBottom: "10px", display: "flex", gap: "10px" }}>
+    <div>
+      <div style={{ gap: "10px" }}>
         <button onClick={goToPrevPage} disabled={pageNumber <= 1}>
           前
         </button>
@@ -28,7 +28,6 @@ export const Pdf = ({ url }) => {
           次
         </button>
       </div>
-
       <Document
         file={url}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}

@@ -3,7 +3,7 @@ import Lecturelist from "./Lecturelist";
 import EndLecturelist from "./EndLecturelist";
 import SettingModal from "./modal/SettingModal";
 import CreateLectureModal from "./modal/CreateLectureModal";
-import qtaImage from "/public/Signal.png";
+
 import { useAtom } from "jotai";
 import { showSettingM, showCreateLectureM } from "./atom";
 
@@ -25,7 +25,7 @@ function Dashboard() {
   };
   return (
     <>
-      <div>
+      <div className="dashbord">
         <Recording />
         <button>🔔</button>
         <button>⚙️</button>
@@ -36,11 +36,11 @@ function Dashboard() {
             SettingM={SettingM}
           />
         )}
-        <div>
-          <h1 className="left">講義ダッシュボード</h1>{" "}
-          <img id="qta" src={qtaImage} alt="qta" />
+        <div className="greeting">
+          <h1>こんにちは、田中さん👋</h1>
+          <h2>今日も素晴らしい講義を！受講生が待っています。</h2>
         </div>
-        <button onClick={handleCreateLectureModal}>講義の新規登録</button>
+
         {CreateLectureM && (
           <CreateLectureModal
             CreateLectureModalSetState={CreateLectureModalSetState}
@@ -49,11 +49,20 @@ function Dashboard() {
         )}
         <div className="yoko">
           <div className="left">
-            <h2>講義リスト(予定)</h2>
+            <h2>
+              実施前
+              <div className="count">3</div>
+              <button id="orangeBtn" onClick={handleCreateLectureModal}>
+                + 講義の新規登録
+              </button>
+            </h2>
             <Lecturelist />
           </div>
           <div className="left">
-            <h2>実装済講義リスト</h2>
+            <h2>
+              実施済み
+              <div className="count">3</div>
+            </h2>
             <EndLecturelist />
           </div>
         </div>
