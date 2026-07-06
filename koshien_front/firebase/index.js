@@ -9,7 +9,7 @@ const {
 } = require("firebase/auth");
 const firebaseConfig =
   process.env.FIREBASE_CONFIG === undefined
-    ? require("./firebase.config")
+    ? require("./firebase.config.js")
     : require(process.env.FIREBASE_CONFIG);
 
 const firebaseApp = initializeApp(firebaseConfig);
