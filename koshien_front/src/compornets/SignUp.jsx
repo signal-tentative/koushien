@@ -4,13 +4,17 @@ import { app } from "../../firebase/firebase.config";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+    if (String(password) !== String(password2)) {
+      return alert("再入力パスワードと一致しません");
+    }
     const auth = getAuth(app);
 
     try {
@@ -33,7 +37,7 @@ const SignUp = () => {
         body: JSON.stringify({
           uid: user.uid,
           email: user.email,
-          name: "FrontTestUser1",
+          name: userName,
           permission: true,
         }),
       });
@@ -52,34 +56,105 @@ const SignUp = () => {
   };
 
   return (
-    <form
-      onSubmit={handleRegister}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        maxWidth: "300px",
-      }}
-    >
-      <h2>ユーザー登録</h2>
-      <input
-        type="email"
-        placeholder="メールアドレス"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="パスワード"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit" disabled={loading}>
-        {loading ? "登録中..." : "アカウント作成"}
-      </button>
-    </form>
+    <>
+      <div style={{ flex: "column" }}>
+        <form
+          onSubmit={handleRegister}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            maxWidth: "300px",
+          }}
+        >
+          <div id="loginTitle">
+            {/* <img id="qta-maru" src={qtaImage} alt="qta" /> */}
+            <div id="loginTitleText">まなびのシグナル</div>
+          </div>
+          <div className="createboad">
+            <div style={{ display: "flex" }}></div>
+            <div>
+              <div>
+                <h2>新規作成</h2>
+                <h4>アカウントを作成しましょう。</h4>
+              </div>
+              <div>名前</div>
+              <input
+                type="text"
+                placeholder="名前"
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div>
+            <div>メールアドレス</div>
+            <input
+              type="email"
+              placeholder="example@toyota.co.jp"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <div>
+              <div>パスワード</div>
+              <input
+                type="password"
+                placeholder="8文字以上"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <div>
+                <div>パスワード(確認用)</div>
+                <input
+                  type="password"
+                  placeholder="確認用"
+                  value={password2}
+                  onChange={(e) => setPassword2(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <button type="submit" disabled={loading}>
+                  {loading ? "登録中..." : "アカウント作成"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </>
   );
+  {
+    /* 
+       
+      <form
+        onSubmit={handleRegister}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          maxWidth: "300px",
+        }}
+      >
+        <h2>ユーザー登録</h2>
+        <input
+          type="email"
+          placeholder="メールアドレス"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="パスワード"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? "登録中..." : "アカウント作成"}
+        </button> */
+  }
 };
 export default SignUp;
