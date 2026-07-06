@@ -16,6 +16,7 @@ function BeforeStartingModal({ BeforeStartingModalSetState, SPushData }) {
   }
   function handleStart() {
     console.log("start");
+    window.open("http://localhost:5173/slide", "_blank");
     navigate("/live");
   }
 

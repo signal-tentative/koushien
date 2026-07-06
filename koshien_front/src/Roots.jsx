@@ -8,6 +8,7 @@ import Dashboard_s from "./compornets/student/Dashboard_s";
 import Dashboard from "./compornets/instructer/Dashboard";
 
 import Live from "./compornets/instructer/Live";
+import Slide from "./compornets/instructer/Slide";
 import "./App.css";
 import { LectureUpload } from "./compornets/FileUpload";
 export function Roots() {
@@ -23,7 +24,11 @@ export function Roots() {
 
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/live" element={<Live />} />
+
+        <Route path="/slide" element={<Slide />} />
+
         <Route path="/pdf" element={<LectureUpload />} />
+
       </Routes>
     </>
   );

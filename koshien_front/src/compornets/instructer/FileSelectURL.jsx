@@ -1,13 +1,18 @@
-import React, { useState } from "react";
-import { Pdf } from "./Pdf";
+import React, { useState, useEffect } from "react";
+import Pdf from "./Pdf";
+import { useAtom } from "jotai";
+import { showTestPdfURL } from "./atom";
 
 function FileSelectURL() {
   const [selectedPdf, setSelectedPdf] = useState(null);
+  const [testPdfURL, setSelectTestPdfURL] = useAtom(showTestPdfURL);
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && file.type === "application/pdf") {
       const fileUrl = URL.createObjectURL(file);
       setSelectedPdf(fileUrl);
+      setSelectTestPdfURL(fileUrl);
     } else {
       alert("PDFファイルを選択してください。");
     }

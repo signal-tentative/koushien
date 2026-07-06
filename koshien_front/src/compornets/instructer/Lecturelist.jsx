@@ -50,7 +50,7 @@ function Lecturelist() {
             <div className="autoBoard">
               <div className="haji">
                 <div>
-                  <div className="beforetag">実施前</div>
+                  <div className="bluetag">実施前</div>
                   <div className="title">{ele.title} </div>
                   <div className="gaiyo">{ele.text} </div>
                   <div className="elseInfo">

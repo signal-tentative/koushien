@@ -4,7 +4,7 @@ function WhatGraph() {
   return (
     <>
       <div>わからないボタン押下数</div>
-      <div>グラフ</div>
+      <div>グラフ📈</div>
     </>
   );
 }

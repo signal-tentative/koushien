@@ -303,7 +303,7 @@ code {
     0 1px 3px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
-.beforetag {
+.bluetag {
   display: flex;
   padding: 2px 10px;
   width: 56px;
@@ -436,7 +436,7 @@ code {
   padding: 16px;
   gap: 12px;
 
-  width: 70%;
+  width: 60%;
   height: 100%;
 
   background: #f8fbfd;
@@ -454,12 +454,12 @@ code {
   padding: 0px;
 
   width: 100%;
-  height: 723px;
+  height: 600px;
 
   flex: none;
   order: 1;
   align-self: stretch;
-  flex-grow: 723;
+  flex-grow: 1;
 }
 #liveright {
   box-sizing: border-box;
@@ -469,7 +469,7 @@ code {
   align-items: flex-start;
   padding: 0px;
 
-  width: 100%;
+  width: 30%;
   height: 100%;
 
   background: #ffffff;
@@ -548,6 +548,133 @@ code {
 
   width: 50%;
   height: 100%;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.FBContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 20px 20px;
+
+  width: 333px;
+  height: 121.5px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.FBContener {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 12px;
+
+  width: 430px;
+  height: 100%;
+
+  background: #f8fbfd;
+  border: 1px solid rgba(0, 119, 168, 0.15);
+  border-radius: 20px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.FBheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+
+  width: auto;
+  height: 19px;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.FBtext {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0px 0px;
+
+  width: 261px;
+  height: 36.5px;
+
+  /* オートレイアウト内部
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0; */
+}
+.header {
+  background-color: white;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+.headerTitle {
+  /* Container */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  gap: 12px;
+
+  width: 100%;
+  height: 60px;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#bookIcon {
+  width: 50px;
+}
+
+#loginTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  position: absolute;
+  width: 360px;
+  height: 48px;
+  left: 576px;
+  top: 154px;
+}
+
+#loginTitleText {
+  width: 288px;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic New";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 20px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #0077a8;
 
   flex: none;
   order: 0;
