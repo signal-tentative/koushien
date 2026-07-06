@@ -25,8 +25,6 @@ function Live() {
           <RealTimeFB />
           <div
             style={{
-              backgroundColor: "white",
-              width: "26%",
               padding: "24px",
               border: "2px solid #a9a9a9",
             }}

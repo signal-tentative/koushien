@@ -17,18 +17,24 @@ function Login() {
 
   return (
     <>
-      <div id="display">
-        <img id="qta-maru" src={qtaImage} alt="qta" />
+      <div style={{ flex: "column" }}>
+        <div id="loginTitle">
+          <img id="qta-maru" src={qtaImage} alt="qta" />
+          <div id="loginTitleText">まなびのシグナル</div>
+        </div>
         <div className="boad">
           <div style={{ display: "flex" }}></div>
-          <h1>Login</h1>
           <div>
-            アドレス:
-            <input type="text" />
+            <h2 style={{ color: "black" }}>ログイン</h2>
           </div>
           <div>
-            Password:
-            <input type="password" />
+            アドレス
+            <input type="text" placeholder="example@toyota.co.jp" />
+          </div>
+          <div>
+            <div>Password</div>
+
+            <input type="password" placeholder="password" />
           </div>
           <div>
             <button className="loginBtn" onClick={handleLoginI}>

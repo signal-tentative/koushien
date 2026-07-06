@@ -17,17 +17,6 @@ const Pdf = ({ url }) => {
 
   return (
     <div>
-      <div style={{ gap: "10px" }}>
-        <button onClick={goToPrevPage} disabled={pageNumber <= 1}>
-          前
-        </button>
-        <span>
-          {pageNumber} / {numPages || "-"}
-        </span>
-        <button onClick={goToNextPage} disabled={pageNumber >= numPages}>
-          次
-        </button>
-      </div>
       <Document
         file={url}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}

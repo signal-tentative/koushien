@@ -3,6 +3,7 @@ import Lecturelist from "./Lecturelist";
 import EndLecturelist from "./EndLecturelist";
 import SettingModal from "./modal/SettingModal";
 import CreateLectureModal from "./modal/CreateLectureModal";
+import SignalHeader from "./SignalHeader";
 
 import { useAtom } from "jotai";
 import { showSettingM, showCreateLectureM } from "./atom";
@@ -25,6 +26,7 @@ function Dashboard() {
   };
   return (
     <>
+      <SignalHeader />
       <div className="dashbord">
         <Recording />
         <button>🔔</button>

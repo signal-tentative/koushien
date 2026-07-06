@@ -1,4 +1,7 @@
+import { showSettingM } from "../atom";
+
 function SettingModal({ SettingModalSetState, SettingM }) {
+  if (!showSettingM) return null;
   function handleClose() {
     SettingModalSetState(!SettingModal);
   }
