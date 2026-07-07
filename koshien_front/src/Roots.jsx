@@ -6,6 +6,7 @@ import AIques_s from "./compornets/student/AIques_s";
 import Dashboard_s from "./compornets/student/Dashboard_s";
 
 import Dashboard from "./compornets/instructer/Dashboard";
+import DashBoard from "./compornets/dashboard/DashBoard";
 
 import Live from "./compornets/instructer/Live";
 import Slide from "./compornets/instructer/Slide";
@@ -28,7 +29,7 @@ export function Roots() {
         <Route path="/slide" element={<Slide />} />
 
         <Route path="/pdf" element={<LectureUpload />} />
-
+        <Route path="/dashman" element={<DashBoard />} />
       </Routes>
     </>
   );
