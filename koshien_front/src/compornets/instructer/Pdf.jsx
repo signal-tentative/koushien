@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -11,10 +11,19 @@ const Pdf = ({ url }) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [scale, setScale] = useState(1.0);
 
-  const goToPrevPage = () => setPageNumber((prev) => Math.max(prev - 1, 1));
-  const goToNextPage = () =>
+  const goToPrevPage = () => {
+    setPageNumber((prev) => Math.max(prev - 1, 1));
+  };
+  useEffect(() => {
+    localStorage.setItem("pageNumber", pageNumber);
+  }, [goToPrevPage]);
+  const goToNextPage = () => {
     setPageNumber((prev) => Math.min(prev + 1, numPages));
-
+    localStorage.setItem("pageNumber", pageNumber);
+  };
+  useEffect(() => {
+    localStorage.setItem("pageNumber", pageNumber);
+  }, [goToNextPage]);
   return (
     <div>
       <div style={{ gap: "10px" }}>
@@ -30,7 +39,10 @@ const Pdf = ({ url }) => {
       </div>
       <Document
         file={url}
-        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+        onLoadSuccess={({ numPages }) => {
+          setNumPages(numPages);
+          localStorage.setItem("numPages", numPages);
+        }}
       >
         <Page
           key={`${pageNumber}_${scale}`}
