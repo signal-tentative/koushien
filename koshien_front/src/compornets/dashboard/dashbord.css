@@ -1,0 +1,57 @@
+.left {
+  /* Container */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  position: absolute;
+  width: 373px;
+  height: 64px;
+  left: 68px;
+  top: 124px;
+}
+
+#greet {
+  /* こんにちは、佐藤 健太さん */
+
+  width: 369px;
+  height: 36px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  /* ボックスの高さと同一、または120% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#fight {
+  /* 今日も学びを楽しみましょう！ */
+
+  width: 250px;
+  height: 24px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* ボックスの高さと同一、または150% */
+
+  color: #2a5568;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
