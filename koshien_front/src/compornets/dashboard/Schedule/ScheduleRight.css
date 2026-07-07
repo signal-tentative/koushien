@@ -1,11 +1,11 @@
-.container {
+.containerr {
   /* Frame 66 */
 
   position: absolute;
   width: 665px;
-  height: 629px;
+  height: 600px;
   left: 783px;
-  top: 300px;
+  top: 250px;
 
   background: #ffffff;
   border-radius: 10px;
@@ -117,4 +117,46 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+#info {
+  /* Frame 72 */
+
+  position: absolute;
+  width: 108px;
+  height: 24px;
+  left: 407px;
+  top: 26.5px;
+
+  background: #ffffff;
+  border-radius: 10px 10px 0px 10px;
+}
+
+#Q_ta_wao {
+  /* image 641 */
+
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  left: 520px;
+  top: 17px;
+}
+
+#infoText {
+  /* お疲れさま！ */
+
+  position: absolute;
+  width: 72px;
+  height: 25px;
+  left: 15.5px;
+  top: -0.5px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 25px;
+  /* ボックスの高さと同一、または208% */
+
+  color: #000000;
 }

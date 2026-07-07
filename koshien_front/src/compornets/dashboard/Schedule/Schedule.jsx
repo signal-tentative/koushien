@@ -1,8 +1,8 @@
 import "./Schedule.css";
 import { useState } from "react";
 //whichには右側か左側かが入ってくる
-function Schedule(data, which) {
-  const [side, setSide] = useState("受講予定の講義一覧");
+function Schedule(data, user) {
+  const [userSide, setUserSide] = useState("受講予定の講義一覧");
   async function list() {
     const classList = data.map(({ img, title, date, start_time, end_time }) => {
       <li className="class">
@@ -16,8 +16,8 @@ function Schedule(data, which) {
         </div>
       </li>;
     });
-    if (which === right) {
-      setSide("受講済みの講義一覧");
+    if (user === jukousha) {
+      setSide("受講予定の講義一覧");
     }
   }
 

@@ -1,0 +1,64 @@
+.message_container {
+  /* Mask group */
+
+  position: absolute;
+  width: 56px;
+  height: 57.33px;
+  left: 0px;
+  top: 28px;
+}
+
+#icon {
+  /* Ellipse 1 */
+
+  position: absolute;
+  width: 56px;
+  height: 57.33px;
+  left: 517px;
+  top: 100px;
+  border-radius: 50%;
+  scale: (-1, 1);
+
+  background: #ffffff;
+}
+
+.message {
+  /* Frame 65 */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 25px 24px;
+  gap: 10px;
+
+  position: absolute;
+  width: 661px;
+  height: 25px;
+  left: 587px;
+  top: 100px;
+
+  background: #ffffff;
+  box-shadow: 0px 0px 6px rgba(0, 119, 168, 0.2);
+  border-radius: 0px 10px 10px 10px;
+}
+#message_text {
+  /* まずは、今日の通知を確認しましょう。講義が多くちょっと忙しい一日ですね。頑張りましょう！ ・講義○件 */
+
+  width: 704px;
+  height: 50px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+  /* または156% */
+
+  color: #000000;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}

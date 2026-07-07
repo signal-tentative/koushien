@@ -6,6 +6,7 @@ import Greeting from "./Greeting";
 import Schedule from "./Schedule/Schedule";
 import Recording from "../Recording";
 import ScheduleRight from "./Schedule/ScheduleRight";
+import Message from "./message/Message";
 
 import "./dashbord.css";
 
@@ -24,6 +25,7 @@ function DashBoard() {
     <>
       <Header />
       <Greeting />
+      <Message />
       <Schedule title="受講中〜" data />
       <ScheduleRight />
     </>
