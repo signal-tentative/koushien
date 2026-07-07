@@ -13,10 +13,12 @@ function FileSelectURL() {
       const fileUrl = URL.createObjectURL(file);
       setSelectedPdf(fileUrl);
       setSelectTestPdfURL(fileUrl);
+      localStorage.setItem("pdfurl", fileUrl);
     } else {
       alert("PDFファイルを選択してください。");
     }
   };
+  console.log(testPdfURL);
 
   return (
     <div>

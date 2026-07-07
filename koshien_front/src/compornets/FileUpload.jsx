@@ -64,7 +64,6 @@ export const LectureUpload = () => {
       }}
     >
       <h2>講義登録 (S3アップロード)</h2>
-
       <label>
         講義名:
         <input
@@ -74,7 +73,6 @@ export const LectureUpload = () => {
           required
         />
       </label>
-
       <label>
         レクチャーボイス
         <input
@@ -84,7 +82,6 @@ export const LectureUpload = () => {
           required
         />
       </label>
-
       <label>
         PDF:
         <input
@@ -94,10 +91,11 @@ export const LectureUpload = () => {
           required
         />
       </label>
-
       <button type="submit" disabled={loading}>
         {loading ? "アップロード中..." : "登録する"}
       </button>
+      https://koushiens33.s3.$://amazonaws.com/materials/4988b619-0676-4ffe-a43f-51ee9bae1048.pdf
+      <a href="https://koushiens33.s3.us-east-1.amazonaws.com/materials/4988b619-0676-4ffe-a43f-51ee9bae1048.pdf" />
     </form>
   );
 };

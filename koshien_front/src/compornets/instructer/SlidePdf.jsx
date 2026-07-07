@@ -1,29 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useAtom, useAtomValue } from "jotai";
+import { showTestPdfURL } from "./atom";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url,
-).toString();
-
-const Pdf = ({ url }) => {
-  const [numPages, setNumPages] = useState(0);
-  const [pageNumber, setPageNumber] = useState(1);
+const SlidePdf = () => {
+  const [numPages, setNumPages] = useState(
+    () => localStorage.getItem("numPages") || "",
+  );
   const [scale, setScale] = useState(1.0);
+  const [url, setUrl] = useState(() => localStorage.getItem("pdfurl") || "");
+  const [page, setPage] = useState(
+    () => localStorage.getItem("pageNumber") || "",
+  );
 
-  const goToPrevPage = () => setPageNumber((prev) => Math.max(prev - 1, 1));
-  const goToNextPage = () =>
-    setPageNumber((prev) => Math.min(prev + 1, numPages));
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "pdfurl") {
+        setUrl(event.newValue || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+  useEffect(() => {
+    const handleStorageChange_page = (event) => {
+      if (event.key === "pageNumber") {
+        setPage(event.newValue || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_page);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_page);
+    };
+  }, [page]);
+  useEffect(() => {
+    const handleStorageChange_numPage = (event) => {
+      if (event.key === "numPages") {
+        setNumPages((numPages) => (numPages = event.newValue || ""));
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_numPage);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_numPage);
+    };
+    console.log(numPages);
+  }, [numPages, setNumPages]);
+  console.log(url, page, numPages);
 
   return (
     <div>
-      <Document
-        file={url}
-        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-      >
+      <Document file={url}>
         <Page
-          key={`${pageNumber}_${scale}`}
-          pageNumber={pageNumber}
+          key={`${page}_${scale}`}
+          pageNumber={Number(page)}
           scale={scale}
           renderTextLayer={false}
           renderAnnotationLayer={false}
@@ -33,4 +64,4 @@ const Pdf = ({ url }) => {
   );
 };
 
-export default Pdf;
+export default SlidePdf;
