@@ -67,26 +67,104 @@ body {
   );
 }
 
-.loginBtn {
+.defaultloginBtn {
+  /* Button */
+
+  /* オートレイアウト */
   display: flex;
-  width: 308px;
-  height: 44px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: none;
+  padding: 12px 0px;
 
-  color: #fff;
-  text-align: center;
+  width: 300px;
+  height: 50px;
+
+  background: #cecece;
+  border-radius: 10px;
+
+  border: 0;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.readyloginBtn {
+  /* Button */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+
+  width: 300px;
+  height: 50px;
+
+  background: #0077a8;
+  border-radius: 10px;
+
+  border: 0;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.whiteText {
+  /* ログイン */
+
+  width: 56px;
+  height: 20px;
+
   font-family: "Zen Kaku Gothic Antique";
-  font-size: 14px;
   font-style: normal;
   font-weight: 700;
+  font-size: 14px;
   line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+  text-align: center;
 
-  border-radius: 20px;
-  background: linear-gradient(171deg, #0095cc 5.76%, #0077a8 94.24%);
-  box-shadow: 0 4px 7px 0 rgba(0, 119, 168, 0.3);
+  color: #ffffff;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.inputTitle {
+  width: 300px;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-size: 14px;
+  padding-bottom: 6px;
+  font-weight: 600;
+  text-align: left;
+
+  color: #0d2d3a;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.erroinputTitle {
+  width: 300px;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-size: 14px;
+  padding-bottom: 6px;
+  font-weight: 600;
+  text-align: left;
+
+  color: #0d2d3a;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .blueStartBtn {
@@ -170,7 +248,7 @@ input {
   border: 1px solid rgba(0, 119, 168, 0.25);
   background: #f5fbfe;
 }
-.boad {
+.board {
   display: flex;
   width: 360px;
   padding: 32px;
@@ -285,8 +363,8 @@ code {
   height: auto;
 }
 #qta-maru {
-  width: 120px;
-  height: 120px;
+  width: 60px;
+
   margin: 0;
 }
 .autoBoard {
@@ -649,15 +727,12 @@ code {
 #loginTitle {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 8px;
+  justify-self: center;
+  align-items: center;
+  margin-right: 50px;
 
-  position: absolute;
-  width: 360px;
-  height: 48px;
-  left: 576px;
-  top: 154px;
+  padding-top: 125px;
+  padding-bottom: 40px;
 }
 
 #loginTitleText {
@@ -667,11 +742,12 @@ code {
   font-family: "Zen Kaku Gothic New";
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 20px;
 
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
 
   color: #0077a8;
@@ -699,4 +775,143 @@ createboad {
   box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.inputBox {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 16px;
+  width: 300px;
+  height: 50px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.25);
+  border-radius: 10px;
+}
+.createAcountBtn {
+  /* アカウント新規作成ボタン */
+
+  box-sizing: border-box;
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+  width: 300px;
+  height: 50px;
+
+  background: #ffffff;
+  border: 2px solid #0077a8;
+  border-radius: 10px;
+}
+.blueText {
+  /* アカウント新規作成 */
+
+  width: 126px;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+  text-align: center;
+
+  color: #0077a8;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.errorloginBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 4px;
+}
+.errorloginBtn {
+  /* Button */
+
+  box-sizing: border-box;
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+
+  width: 300px;
+  height: 50px;
+
+  background: #fef5f5;
+  border: 1px solid #e9b8b8;
+  border-radius: 10px;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.redText {
+  /* ログイン */
+
+  width: 300px;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+  text-align: center;
+
+  color: #f01515;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.errorinput {
+  width: 300px;
+  height: 50px;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 16px;
+
+  background: #fef5f5;
+  border: 1px solid rgba(168, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.errorinput::placeholder {
+  color: red;
+}
+.errorMark {
+  flex: none;
+  margin-left: 100px;
+  position: relative;
+  width: 50px;
+  bottom: 50px;
+  left: 70px;
+}
+.inputContener {
+  width: 300px;
+  height: 76px;
 }

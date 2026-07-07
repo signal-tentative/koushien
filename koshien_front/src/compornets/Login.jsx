@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import LoginApp from "./login/LoginApp";
 import qtaImage from "/public/Signal-2.png";
+import errorMark from "/public/Signal-2.png";
 import { app, auth } from "../../firebase/firebase.config";
 
 import {
@@ -9,6 +10,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { width } from "@mui/system";
 
 function Login() {
   const navigate = useNavigate();
@@ -17,12 +19,45 @@ function Login() {
   // 認証するパスワード利用者IDの入力の値を管理するstate
   const [certPw, setCertPw] = useState("");
   // これで 'auth' オブジェクトを使って認証機能を利用できます
+  const [emailjotai, setemailjotai] = useState("default");
+  const [pwjotai, setpwjotai] = useState("default");
+  const [loginjotai, setloginjotai] = useState("default");
+  const [beforeEmailPw, setbeforeEmailPw] = useState("");
 
+  if (loginjotai == "default") {
+    if (certId && certPw) {
+      console.log("揃った");
+      setloginjotai("ready");
+      console.log(loginjotai);
+    }
+  }
+
+  if (loginjotai == "ready") {
+    if (!certId || !certPw) {
+      console.log("どっちかなし");
+      setloginjotai("default");
+      console.log(loginjotai);
+    }
+  }
+  if (loginjotai == "error") {
+    if (certId + certPw !== beforeEmailPw) {
+      console.log(certId + certPw);
+      console.log(beforeEmailPw);
+      console.log("前と違うね");
+      setloginjotai("ready");
+    }
+  }
+
+  console.log(loginjotai);
   console.log("Firebase Authサービスが取得されました:", auth);
   const handleSetupSubmit = (e) => {
     e.preventDefault();
     if (certId === null || certId === "") {
       alert("入力要件が合致していません。");
+      setemailjotai(false);
+      setpwjotai(false);
+      setloginjotai(false);
+      setbeforeEmailPw(certId + certPw);
     } else {
       console.log(" id=" + certId + " pw=" + certPw);
       console.log("ここにFirebaseへの利用者認証を行うロジックを入れる");
@@ -56,14 +91,17 @@ function Login() {
         })
         .catch((error) => {
           // エラーが発生した場合
+          setemailjotai("error");
+          setpwjotai("error");
+          setloginjotai("error");
           const errorCode = error.code;
           const errorMessage = error.message;
+          setbeforeEmailPw(certId + certPw);
           console.error("ログインエラー:", errorCode, errorMessage);
           // エラーコードに基づいてエラーハンドリングを行う
         });
     }
   };
-
   const handleCreate = () => {
     navigate("create");
   };
@@ -75,37 +113,92 @@ function Login() {
           <img id="qta-maru" src={qtaImage} alt="qta" />
           <div id="loginTitleText">まなびのシグナル</div>
         </div>
-        <div className="boad">
+        <div className="board">
           <div style={{ display: "flex" }}></div>
           <div>
-            <h2 style={{ color: "black" }}>ログイン</h2>
+            <b style={{ color: "black", fontSize: 23 }}>ログイン</b>
           </div>
-          <div>
-            アドレス
-            <input
-              type="text"
-              placeholder="example@toyota.co.jp"
-              onChange={(e) => setCertId(e.target.value)}
-            />
-          </div>
-          <div>
-            <div>Password</div>
 
-            <input
-              type="password"
-              required
-              placeholder="password"
-              onChange={(e) => setCertPw(e.target.value)}
-            />
-          </div>
+          {emailjotai == "default" ? (
+            <div className="inputAdress">
+              <div className="inputTitle">メールアドレス</div>
+              <input
+                className="inputBox"
+                type="text"
+                placeholder="example@toyota.co.jp"
+                onChange={(e) => setCertId(e.target.value)}
+              />
+            </div>
+          ) : (
+            <div className="inputContener">
+              <div className="inputTitle" style={{ color: "red" }}>
+                メールアドレス
+              </div>
+              <input
+                className="errorinput"
+                type="text"
+                placeholder="example@toyota.co.jp"
+                onChange={(e) => setCertId(e.target.value)}
+              />
+              <img className="errorMark" src={errorMark} alt="qta" />
+            </div>
+          )}
+
+          {pwjotai == "default" ? (
+            <div>
+              <div className="inputTitle">パスワード</div>
+
+              <input
+                className="inputBox"
+                type="password"
+                required
+                placeholder="password"
+                onChange={(e) => setCertPw(e.target.value)}
+              />
+            </div>
+          ) : (
+            <div className="inputContener">
+              <div className="inputTitle" style={{ color: "red" }}>
+                パスワード
+              </div>
+
+              <input
+                className="errorinput"
+                type="password"
+                required
+                placeholder="password"
+                onChange={(e) => setCertPw(e.target.value)}
+              />
+              <img className="errorMark" src={errorMark} alt="qta" />
+            </div>
+          )}
+
+          {loginjotai == "ready" ? (
+            <div>
+              <button className="readyloginBtn" onClick={handleSetupSubmit}>
+                <div className="whiteText">ログイン</div>
+              </button>
+            </div>
+          ) : loginjotai == "default" ? (
+            <div>
+              <button className="defaultloginBtn" onClick={handleSetupSubmit}>
+                <div className="whiteText">ログイン</div>
+              </button>
+            </div>
+          ) : (
+            <div className="errorloginBox">
+              <button className="errorloginBtn" onClick={handleSetupSubmit}>
+                <div className="redText">ログイン</div>
+              </button>
+              <div className="redText" style={{ fontWeight: 300 }}>
+                アドレスまたはパスワードが間違っています
+              </div>
+            </div>
+          )}
+
           <div>
-            <button className="loginBtn" onClick={handleSetupSubmit}>
-              講師ログイン
-            </button>
-          </div>
-          <div>
-            <button className="whiteBtn" onClick={handleCreate}>
-              アカウント新規作成
+            <button className="createAcountBtn" onClick={handleCreate}>
+              <div className="blueText">アカウント新規作成</div>
             </button>
           </div>
         </div>
