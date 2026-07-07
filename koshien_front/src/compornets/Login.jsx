@@ -14,11 +14,8 @@ import { width } from "@mui/system";
 
 function Login() {
   const navigate = useNavigate();
-  // 認証する利用者IDの入力の値を管理するstate
   const [certId, setCertId] = useState("");
-  // 認証するパスワード利用者IDの入力の値を管理するstate
   const [certPw, setCertPw] = useState("");
-  // これで 'auth' オブジェクトを使って認証機能を利用できます
   const [emailjotai, setemailjotai] = useState("default");
   const [pwjotai, setpwjotai] = useState("default");
   const [loginjotai, setloginjotai] = useState("default");
@@ -26,37 +23,30 @@ function Login() {
 
   if (loginjotai == "default") {
     if (certId && certPw) {
-      console.log("揃った");
       setloginjotai("ready");
-      console.log(loginjotai);
     }
   }
 
   if (loginjotai == "ready") {
     if (!certId || !certPw) {
-      console.log("どっちかなし");
       setloginjotai("default");
-      console.log(loginjotai);
     }
   }
   if (loginjotai == "error") {
+    console.log(beforeEmailPw);
     if (certId + certPw !== beforeEmailPw) {
-      console.log(certId + certPw);
-      console.log(beforeEmailPw);
-      console.log("前と違うね");
       setloginjotai("ready");
     }
   }
 
-  console.log(loginjotai);
   console.log("Firebase Authサービスが取得されました:", auth);
   const handleSetupSubmit = (e) => {
     e.preventDefault();
     if (certId === null || certId === "") {
       alert("入力要件が合致していません。");
-      setemailjotai(false);
-      setpwjotai(false);
-      setloginjotai(false);
+      setemailjotai("error");
+      setpwjotai("error");
+      setloginjotai("error");
       setbeforeEmailPw(certId + certPw);
     } else {
       console.log(" id=" + certId + " pw=" + certPw);
