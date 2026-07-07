@@ -1,0 +1,120 @@
+.container {
+  /* Frame 66 */
+
+  position: absolute;
+  width: 665px;
+  height: 629px;
+  left: 783px;
+  top: 300px;
+
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+#title {
+  /* Frame 71 */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 227px;
+  gap: 10px;
+
+  position: absolute;
+  width: 133px;
+  height: 45px;
+  left: 16px;
+  top: -80px;
+
+  background: #006a98;
+  border-radius: 10px;
+}
+
+#text {
+  /* 受講予定の講義一覧 */
+
+  width: 200px;
+  height: 25px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  /* ボックスの高さと同一、または125% */
+
+  color: #ffffff;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.name {
+  /* Frame 115 */
+
+  box-sizing: border-box;
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 0px 0px 157px;
+  gap: 88px;
+
+  position: absolute;
+  width: 617px;
+  height: 50px;
+  left: 24px;
+  top: 69px;
+
+  border-bottom: 1px solid #0077a8;
+}
+
+#classTitle {
+  /* 講義タイトル */
+
+  width: 105px;
+  height: 25px;
+  padding-top: 10px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+  /* ボックスの高さと同一、または156% */
+  text-align: right;
+
+  color: #000000;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+#classDate {
+  /* 実施日時 */
+
+  width: 74px;
+  height: 25px;
+  padding-top: 10px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+  /* ボックスの高さと同一、または156% */
+  text-align: right;
+
+  color: #000000;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
