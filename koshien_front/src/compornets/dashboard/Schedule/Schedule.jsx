@@ -1,10 +1,12 @@
 import "./Schedule.css";
-import { useState } from "react";
 import SettingModal from "../modal/SettingModal";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { useState, useEffect } from "react";
+import { atomUserMode } from "../atoms";
+import { useAtom } from "jotai";
 
 import CreateLectureModal from "../modal/CreateLectureModal";
 //whichには右側か左側かが入ってくる
@@ -17,7 +19,9 @@ function Schedule(data, user) {
     handleOpenC();
   };
 
-  const [userSide, setUserSide] = useState("受講予定の講義一覧");
+  const [userSide, setSide] = useState("受講予定の講義一覧");
+  const [userMode, setUserMode] = useAtom(atomUserMode);
+
   async function list() {
     const classList = data.map(({ img, title, date, start_time, end_time }) => {
       <li className="class">
@@ -44,7 +48,7 @@ function Schedule(data, user) {
     <>
       <div className="container">
         <div id="title">
-          <p id="text">{side}</p>
+          <p id="text">{userSide}</p>
         </div>
         <div className="name">
           <p id="classTitle">講義タイトル</p>
