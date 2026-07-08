@@ -1,11 +1,12 @@
 import "./ScheduleRight.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { atomUserMode } from "../atoms";
 import { useAtom } from "jotai";
 //userには講師かユーザかどっちかが入る
 function ScheduleRight(data) {
-  const [side, setSide] = useState("受講済みの講義一覧");
-  const [info, setInfo] = useState("お疲れ様！");
+  const [side, setSide] = useState("");
+  const [info, setInfo] = useState("");
+  const [userMode, setUserMode] = useAtom(atomUserMode);
 
   async function list() {
     const classList = data.map(({ img, title, date, start_time, end_time }) => {
@@ -20,16 +21,22 @@ function ScheduleRight(data) {
         </div>
       </li>;
     });
-    if (atomUserMode === false) {
+
+    //trueが受講生falseが講師
+  }
+  useEffect(() => {
+    if (userMode === false) {
       setSide("実施済みの講義一覧");
       setInfo("黄色はまとめができている講義だよ");
+      console.log("講師");
     } else {
       setSide("受講済みの講義一覧");
       setInfo("お疲れ様！");
+      console.log("受講生");
     }
-    //trueが受講生falseが講師
-  }
+  }, [userMode]);
 
+  console.log(userMode);
   return (
     <>
       <div className="containerr">
