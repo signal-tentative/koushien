@@ -1,7 +1,22 @@
 import "./Schedule.css";
 import { useState } from "react";
+import SettingModal from "../modal/SettingModal";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+
+import CreateLectureModal from "../modal/CreateLectureModal";
 //whichには右側か左側かが入ってくる
 function Schedule(data, user) {
+  const [openC, setOpenC] = React.useState(false);
+  const handleOpenC = () => setOpenC(true);
+  const handleCloseC = () => setOpenC(false);
+
+  const handleCreateLectureModal = () => {
+    handleOpenC();
+  };
+
   const [userSide, setUserSide] = useState("受講予定の講義一覧");
   async function list() {
     const classList = data.map(({ img, title, date, start_time, end_time }) => {
@@ -32,6 +47,22 @@ function Schedule(data, user) {
           <p id="classDate">実施日時</p>
         </div>
         <ul className="classList">classList</ul>
+        <button
+          id="CreateLectureBtn"
+          onClick={() => {
+            handleCreateLectureModal();
+          }}
+        >
+          <p>open</p>
+        </button>
+        <Modal
+          open={openC}
+          onClose={handleCloseC}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <CreateLectureModal handleClose={handleCloseC} setOpen={setOpenC} />
+        </Modal>
       </div>
     </>
   );

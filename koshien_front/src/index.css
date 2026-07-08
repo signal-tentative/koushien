@@ -206,26 +206,7 @@ body {
   border: 2px solid #0077a8;
   background: #fff;
 }
-.endBtn {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 0px;
-  gap: 8px;
-  color: white;
-  border: none;
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 20px;
 
-  width: 287px;
-  height: 48px;
-
-  border-radius: 20px;
-  background: #fb2c36;
-}
 .gap {
   gap: 12px;
 
@@ -581,28 +562,6 @@ code {
   width: 20px;
 }
 
-.liveheader {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px;
-
-  width: 100%;
-  height: 60px;
-
-  background: #fff;
-
-  border-bottom: 1px solid #c9c9c9;
-
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
-}
-
 .liveheaderright {
   display: flex;
   flex-direction: row;
@@ -633,18 +592,7 @@ code {
   order: 0;
   flex-grow: 0;
 }
-.FBContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px 20px 20px;
 
-  width: 333px;
-  height: 121.5px;
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-}
 .FBContener {
   box-sizing: border-box;
 
@@ -658,7 +606,8 @@ code {
 
   background: #f8fbfd;
   border: 1px solid rgba(0, 119, 168, 0.15);
-  border-radius: 20px;
+  border-radius: 15px;
+  margin-left: 10%;
 
   flex: none;
   order: 0;
@@ -679,21 +628,7 @@ code {
   align-self: stretch;
   flex-grow: 0;
 }
-.FBtext {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 4px 0px 0px;
 
-  width: 261px;
-  height: 36.5px;
-
-  /* オートレイアウト内部
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0; */
-}
 .header {
   background-color: white;
   width: 100%;
