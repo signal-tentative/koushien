@@ -8,7 +8,7 @@ import Dashboard_s from "./compornets/student/Dashboard_s";
 import Dashboard from "./compornets/instructer/Dashboard";
 import DashBoard from "./compornets/dashboard/DashBoard";
 
-import Live from "./compornets/instructer/Live";
+import Live from "./compornets/live/Live";
 import Slide from "./compornets/instructer/Slide";
 import "./App.css";
 import { LectureUpload } from "./compornets/FileUpload";

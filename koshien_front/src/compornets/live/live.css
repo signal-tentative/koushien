@@ -1,0 +1,331 @@
+.Screen {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 100%;
+  height: 60%;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 1;
+}
+#ScreenLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 12px;
+
+  width: 60%;
+  height: 97%;
+
+  background: #f8fbfd;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 815;
+}
+#ScreenRight {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  padding-top: 30px;
+  gap: 50px;
+
+  width: 30%;
+  height: 100%;
+
+  background: #ffffff;
+  border-left: 1px solid #e5e7eb;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#ScriptBoard {
+  display: flex;
+  width: 93%;
+  height: 170px;
+
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+
+  border-radius: 24px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background: #fff;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+.text {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 20px;
+  line-height: 25px;
+  /* ボックスの高さと同一、または125% */
+
+  color: #000000;
+}
+#ScriptTitle {
+  margin-left: 10px;
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 20px;
+  line-height: 25px;
+  gap: 6px;
+
+  color: #0d2d3a;
+}
+#FBFrame {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 0px;
+  gap: 16px;
+}
+.FBcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+
+  width: 350px;
+  height: 200px;
+
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.FBboard {
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 8px;
+
+  width: 359px;
+  height: 141px;
+
+  background: #f8fbfd;
+  border: 1px solid #c4e1ed;
+  border-radius: 10px;
+
+  /* オートレイアウト内部 */
+
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.FBtext {
+  /* 「わからない」ボタンを３割以上の人に押された場合、該当箇所の文字起こしがここに表示される */
+
+  width: 343px;
+  height: 100px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  /* または30px */
+
+  color: #2a5568;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.FBtime {
+  /* Text */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1px 10px 3px;
+
+  width: 48px;
+  height: 17px;
+
+  text-align: center;
+
+  background: #0077a8;
+  border-radius: 1.67772e7px;
+}
+.FBTimeText {
+  position: relative;
+  bottom: 2px;
+
+  color: #f8fbfd;
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 15px;
+}
+#siritaiText {
+  /* 受講生のもっと知りたいポイント */
+
+  width: 500px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 23px;
+
+  /* ボックスの高さと同一、または80% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#PointTitle {
+  margin-left: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.liveheader {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 24px;
+
+  width: 100%;
+  height: 90px;
+
+  background: #006a98;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#LiveQ_ta {
+  width: 90px;
+}
+#headerTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  color: #f8fbfd;
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 530;
+  font-size: 28px;
+}
+#headertag {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-items: center;
+
+  padding: 8px 16px;
+  gap: 4px;
+
+  position: absolute;
+  width: auto;
+  height: 33px;
+  left: 400px;
+  top: 20px;
+
+  background: #f5fbfe;
+  border-radius: 999px;
+}
+.endBtn {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+  gap: 8px;
+  color: white;
+  border: none;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+
+  width: 287px;
+  height: 48px;
+
+  border-radius: 20px;
+  background: #fb2c36;
+}
+#livetimer {
+  /* 00:00 */
+
+  width: 50px;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#livetitle {
+  /* — マルチパスウェイ戦略入門 */
+
+  width: auto;
+  height: 20px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+
+  margin-left: 0px;
+  margin-bottom: 3px;
+
+  color: #2a5568;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#livenow {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 20px;
+  color: #4ade80;
+}
+
+#PDFmain {
+  width: 800px;
+  height: 1000px;
+}

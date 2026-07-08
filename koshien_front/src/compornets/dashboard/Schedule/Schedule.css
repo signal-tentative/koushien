@@ -43,6 +43,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
+
   /* ボックスの高さと同一、または125% */
 
   color: #ffffff;
@@ -117,4 +118,32 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+#CreateLectureBtn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 6px;
+
+  position: absolute;
+  left: 470px;
+  top: 530px;
+
+  width: 172px;
+  height: 50px;
+
+  border: 0px;
+
+  align-items: center;
+  text-align: center;
+
+  background: #ffc765;
+  box-shadow: 0px 0px 8px #dbbc85;
+  border-radius: 10px;
+
+  /* position: relative;
+  width: 100px;
+  left: 540px;
+  top: 465px; */
 }

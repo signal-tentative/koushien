@@ -7,10 +7,25 @@ import ThreeDRotation from "@mui/icons-material/ThreeDRotation";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { atomSettingModal } from "../atoms";
+
+import SettingModal from "../modal/SettingModal";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 export function Header() {
+  const [openS, setOpenS] = React.useState(false);
+  const handleOpenS = () => setOpenS(true);
+  const handleCloseS = () => setOpenS(false);
+
   const [userMode, setUserMode] = useAtom(atomUserMode);
   // userMode如何でCSSの適応を変更する
+
+  const handleSettingModal = () => {
+    handleOpenS();
+  };
 
   return (
     <div className={`dashmanheader ${!userMode ? "instructer" : "student"}`}>
@@ -38,7 +53,7 @@ export function Header() {
           id="settingBtn"
           className={`${!userMode ? "instructer" : "student"}`}
           onClick={() => {
-            // モーダルを表示する必要があ
+            handleSettingModal();
           }}
         ></SettingsIcon>
         <LogoutIcon
@@ -49,6 +64,14 @@ export function Header() {
           }}
         ></LogoutIcon>
       </div>
+      <Modal
+        open={openS}
+        onClose={handleCloseS}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <SettingModal handleClose={handleCloseS} setOpen={setOpenS} />
+      </Modal>
     </div>
   );
 }

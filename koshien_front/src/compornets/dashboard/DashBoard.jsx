@@ -20,7 +20,6 @@ function DashBoard() {
   //   .then(res=>res.json())
   //   .then(json=>setLeftData(json))
   //   ,[])
-
   return (
     <>
       <Header />
