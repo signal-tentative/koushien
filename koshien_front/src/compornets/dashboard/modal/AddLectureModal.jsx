@@ -77,7 +77,7 @@ function SettingModal({ handleClose }) {
           </div>
         </div>
       ) : (
-        <div className="board CreateLectureModal">
+        <div className="board AddLectureModal">
           <div id="AddTitleHeader">
             <div id="AddTitle">講義を追加</div>
           </div>

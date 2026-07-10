@@ -12,9 +12,34 @@
   display: flex;
   position: absolute;
 
-  bottom: 350px;
-  left: 38%;
-  width: 400px;
+  bottom: 15%;
+  left: 10%;
+  width: 1300px;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.AddLectureModal {
+  display: flex;
+  position: absolute;
+
+  bottom: 33%;
+  left: 35%;
+  width: 500px;
+
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.JoinModal {
+  display: flex;
+  position: absolute;
+
+  bottom: 33%;
+  left: 35%;
+  width: 500px;
+
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -383,4 +408,166 @@
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+}
+.CLyoko {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+#CLLeft {
+  width: 500px;
+}
+#CLRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+
+  width: 500px;
+  gap: 10px;
+}
+#CLscriptframe {
+  width: 500px;
+  height: 390px;
+
+  overflow: scroll;
+  scrollbar-color: #a8c4e0 #f0f0f0;
+  scrollbar-width: thin;
+}
+.CLscriptContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  padding-left: 13px;
+  width: 90%;
+  height: 70px;
+}
+.CLRdelete {
+  color: #006693;
+}
+#inputTitle {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#inputTitleName {
+  float: left;
+  /* 講義資料１.pdf */
+
+  width: 95px;
+  height: 28px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+  /* ボックスの高さと同一、または200% */
+  text-decoration-line: underline;
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#NameAndDelete {
+}
+#CLRTitle {
+  /* 講義資料 */
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.scriptinputBox {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  width: 90%;
+  height: 70px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.25);
+  border-radius: 10px;
+}
+.scriptinputBox::placeholder {
+  color: #d9ebf2;
+}
+.inputBox::placeholder {
+  color: #d9ebf2;
+}
+#scriptTitle {
+  /* スクリプト */
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#CLTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  padding-bottom: 3px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  width: 185px;
+
+  color: #0d2d3a;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#CLbatten {
+  width: 0px;
+  flex: none;
+  margin-left: 100px;
+  position: relative;
+
+  bottom: 0px;
+  left: 235%;
 }
