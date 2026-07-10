@@ -1,0 +1,54 @@
+.List {
+  width: 600px;
+  height: 390px;
+  margin-top: 10px;
+  margin-left: 32.5px;
+
+  overflow: scroll;
+  scrollbar-color: #a8c4e0 #f0f0f0;
+  scrollbar-width: thin;
+}
+.ListContainer:hover {
+  background-color: #ffc7654d;
+  padding: 5px;
+  border-radius: 12px;
+}
+.ListContainer {
+  width: 96%;
+  height: 70px;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.thumbnail {
+  width: 100px;
+  color: #0d2d3a;
+}
+.ListTitle {
+  color: #0d2d3a;
+}
+.ListDateAndTime {
+  width: 155px;
+  height: 50px;
+  padding-left: 50px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 25px;
+
+  color: #0d2d3a;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.ListDate {
+  float: left;
+}
+.ListTime {
+  float: left;
+}

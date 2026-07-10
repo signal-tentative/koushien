@@ -41,8 +41,9 @@ function SettingModal({ handleClose }) {
       <div className="board CreateLectureModal">
         <div className="">
           <p>講義作成</p>
-          <p onClick={handleCloseBtn}>🙅</p>
+          <p onClick={handleCloseBtn}>×</p>
         </div>
+        <div id="borderline"></div>
         {titlejotai == "default" ? (
           <div className="inputAdress">
             <div className="inputTitle">講義タイトル</div>
@@ -105,7 +106,7 @@ function SettingModal({ handleClose }) {
             />
           </div>
         )}
-
+        <div id="borderline"></div>
         {uploadjotai == "default" ? (
           <div>
             <button className="saveBtn" onClick={handleSave}>
