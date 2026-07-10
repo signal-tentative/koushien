@@ -60,6 +60,62 @@ function SettingModal({ handleClose }) {
     setserchjotai(true);
     console.log("create");
   }
+const handleSubmit = async (e) => {
+   e.preventDefault();
+    if (!pdfFile) {
+      alert("PDFファイルを選択してください");
+      return;
+    }
+
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("title", lectureName);
+    formData.append("code", lectureVoice);
+    formData.append("description", "test");
+    formData.append("execute", true);
+    formData.append("uid", "oXDcNmenukbGqh9jOrApoBwTWYF2");
+
+    try {
+      const response = await fetch("http://localhost:8080/lectures", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("講義の登録に失敗しました");
+      }
+
+      const lectureData = await response.json();
+      console.log("保存された講義データ:", lectureData);
+
+      const lectureId = lectureData.id;
+
+      const formFile = new FormData();
+      formFile.append("file", pdfFile);
+      formFile.append("lecture_id", lectureId); // 正しいIDをセット
+
+      const res = await fetch("http://localhost:8080/documents", {
+        method: "POST",
+        body: formFile,
+      });
+
+      if (!res.ok) {
+        throw new Error("ファイルのアップロードに失敗しました");
+      }
+
+      alert("講義の登録とS3へのアップロードが完了しました！");
+      setLectureName("");
+      setLectureVoice("");
+      setPdfFile(null);
+    } catch (error) {
+      console.error("エラー:", error);
+      alert(error.message || "通信エラーが発生しました");
+    } finally {
+      setLoading(false);
+    }
+  };
+UEYOSHI,Daisuke(TY)/上良大輔 へのメッセージ
 
   return (
     <>
