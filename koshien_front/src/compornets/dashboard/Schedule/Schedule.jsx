@@ -7,14 +7,24 @@ import Modal from "@mui/material/Modal";
 import { useState, useEffect } from "react";
 import { atomUserMode } from "../atoms";
 import { useAtom } from "jotai";
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import ListLeft from "../list/ListLeft";
 
 import CreateLectureModal from "../modal/CreateLectureModal";
+import AddLectureModal from "../modal/AddLectureModal";
 //whichには右側か左側かが入ってくる
 function Schedule(data, user) {
+  const [openA, setOpenA] = React.useState(false);
+  const handleOpenA = () => setOpenA(true);
+  const handleCloseA = () => setOpenA(false);
+
   const [openC, setOpenC] = React.useState(false);
   const handleOpenC = () => setOpenC(true);
   const handleCloseC = () => setOpenC(false);
 
+  const handleAddLectureModal = () => {
+    handleOpenA();
+  };
   const handleCreateLectureModal = () => {
     handleOpenC();
   };
@@ -47,22 +57,46 @@ function Schedule(data, user) {
   return (
     <>
       <div className="container">
-        <div id="title">
+        <div id="titleS">
           <p id="text">{userSide}</p>
         </div>
-        <div className="name">
-          <p id="classTitle">講義タイトル</p>
-          <p id="classDate">実施日時</p>
+        <div className="nameS">
+          <div className="classTitleS">講義タイトル</div>
+          <div id="flexsase">
+            <div className="classDateS">実施日時</div>
+            <SyncAltIcon id="SyncAltIcon"></SyncAltIcon>
+          </div>
         </div>
-        <ul className="classList">classList</ul>
-        <button
-          id="CreateLectureBtn"
-          onClick={() => {
-            handleCreateLectureModal();
-          }}
+        <ListLeft />
+        {userMode ? (
+          <button
+            id="CreateLectureBtn"
+            onClick={() => {
+              handleAddLectureModal();
+            }}
+          >
+            <p>講義を追加</p>
+          </button>
+        ) : (
+          <button
+            id="CreateLectureBtn"
+            onClick={() => {
+              handleCreateLectureModal();
+            }}
+          >
+            <p>講義を作成</p>
+          </button>
+        )}
+
+        <Modal
+          open={openA}
+          onClose={handleCloseA}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
-          <p>open</p>
-        </button>
+          <AddLectureModal handleClose={handleCloseA} setOpen={setOpenA} />
+        </Modal>
+
         <Modal
           open={openC}
           onClose={handleCloseC}

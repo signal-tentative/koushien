@@ -11,22 +11,19 @@
   border-radius: 10px;
 }
 
-#title {
+#titleS {
   /* Frame 71 */
 
   /* オートレイアウト */
+  width: 600px;
+  height: 60px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 10px 227px;
+  margin-top: 17px;
+  margin-left: 32.5px;
   gap: 10px;
-
-  position: absolute;
-  width: 133px;
-  height: 45px;
-  left: 16px;
-  top: -80px;
 
   background: #006a98;
   border-radius: 10px;
@@ -43,50 +40,37 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 25px;
-
-  /* ボックスの高さと同一、または125% */
-
   color: #ffffff;
 
-  /* オートレイアウト内部 */
   flex: none;
   order: 0;
   flex-grow: 0;
 }
-.name {
-  /* Frame 115 */
-
+.nameS {
   box-sizing: border-box;
 
-  /* オートレイアウト */
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0px 0px 0px 157px;
-  gap: 88px;
-
-  position: absolute;
-  width: 617px;
-  height: 50px;
-  left: 24px;
-  top: 69px;
+  padding-left: 130px;
+  width: 600px;
+  gap: 130px;
+  margin-left: 32.5px;
 
   border-bottom: 1px solid #0077a8;
 }
 
-#classTitle {
+.classTitleS {
   /* 講義タイトル */
 
-  width: 105px;
-  height: 25px;
-  padding-top: 10px;
+  margin-left: 32.5px;
 
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 25px;
-  /* ボックスの高さと同一、または156% */
+
   text-align: right;
 
   color: #000000;
@@ -97,18 +81,18 @@
   flex-grow: 0;
 }
 
-#classDate {
-  /* 実施日時 */
+.classDateS {
+  display: flex;
 
-  width: 74px;
-  height: 25px;
   padding-top: 10px;
+  flex-direction: row;
 
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 25px;
+  margin-left: 32.5px;
   /* ボックスの高さと同一、または156% */
   text-align: right;
 
@@ -146,4 +130,13 @@
   width: 100px;
   left: 540px;
   top: 465px; */
+}
+#SyncAltIcon {
+  transform: rotate(90deg);
+  float: left;
+  padding: 10px;
+}
+#flexsase {
+  display: flex;
+  flex-direction: row;
 }

@@ -232,7 +232,8 @@ input {
 .board {
   display: flex;
   width: 360px;
-  padding: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
