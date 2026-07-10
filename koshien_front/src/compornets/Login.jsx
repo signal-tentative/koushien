@@ -63,7 +63,7 @@ function Login() {
           token = user.getIdToken();
         })
         .then(() => {
-          const response = fetch("http://localhost:8080/login", {
+          const response = fetch(`${import.meta.env.VITE_API_URL}/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
