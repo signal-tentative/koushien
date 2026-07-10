@@ -10,7 +10,10 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
-function SettingModal({ handleClose }) {
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+function CreateLectureModal({ handleClose }) {
   const [titlejotai, settitlejotai] = useState("default");
   const [explanationjotai, setexplanationjotai] = useState("default");
   const [uploadjotai, setuploadjotai] = useState("default");
@@ -39,84 +42,160 @@ function SettingModal({ handleClose }) {
   return (
     <>
       <div className="board CreateLectureModal">
-        <div className="">
+        <div id="CLTitle">
           <p>講義作成</p>
-          <p onClick={handleCloseBtn}>×</p>
+          <p id="CLbatten" onClick={handleCloseBtn}>
+            ×
+          </p>
         </div>
         <div id="borderline"></div>
-        {titlejotai == "default" ? (
-          <div className="inputAdress">
-            <div className="inputTitle">講義タイトル</div>
-            <input
-              className="inputBox"
-              type="text"
-              placeholder="例：マルチパスウェイ戦略入門"
-              onChange={(e) => setCertTitle(e.target.value)}
-            />
-          </div>
-        ) : (
-          <div className="inputContener">
-            <div className="inputTitle" style={{ color: "red" }}>
-              講義タイトル
-            </div>
-            <input
-              className="errorinput"
-              type="text"
-              placeholder="例:マルチパスウェイ戦略入門"
-              onChange={(e) => setCertTitle(e.target.value)}
-            />
-          </div>
-        )}
-        <div className="inputDateContainer">
-          <LocalizationProvider
-            className="inputDateContainer"
-            dateAdapter={AdapterDayjs}
-          >
-            <DesktopDatePicker
-              className="DatePicker"
-              defaultValue={dayjs("2026-07-08")}
-              style={{ width: "100px" }}
-            />
+        <div className="CLyoko">
+          <div id="LCLeft">
+            {titlejotai == "default" ? (
+              <div className="inputAdress">
+                <div className="inputTitle">講義タイトル</div>
+                <input
+                  className="inputBox"
+                  type="text"
+                  placeholder="例：マルチパスウェイ戦略入門"
+                  onChange={(e) => setCertTitle(e.target.value)}
+                />
+              </div>
+            ) : (
+              <div className="inputContener">
+                <div className="inputTitle" style={{ color: "red" }}>
+                  講義タイトル
+                </div>
+                <input
+                  className="errorinput"
+                  type="text"
+                  placeholder="例:マルチパスウェイ戦略入門"
+                  onChange={(e) => setCertTitle(e.target.value)}
+                />
+              </div>
+            )}
+            <div className="inputDateContainer">
+              <LocalizationProvider
+                className="inputDateContainer"
+                dateAdapter={AdapterDayjs}
+              >
+                <DesktopDatePicker
+                  className="DatePicker"
+                  defaultValue={dayjs("2026-07-08")}
+                  style={{ width: "100px" }}
+                />
 
-            <TimePicker className="TimePicker" label="16:30" />
-            <TimePicker className="TimePicker" label="17:30" />
-          </LocalizationProvider>
+                <TimePicker className="TimePicker" label="16:30" />
+                <TimePicker className="TimePicker" label="17:30" />
+              </LocalizationProvider>
+            </div>
+
+            {explanationjotai == "default" ? (
+              <div className="inputAdress">
+                <div className="inputTitle">説明</div>
+                <input
+                  className="inputBox"
+                  type="text"
+                  placeholder="この講義についての説明"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </div>
+            ) : (
+              <div className="inputContener">
+                <div className="inputTitle" style={{ color: "red" }}>
+                  説明
+                </div>
+                <input
+                  className="errorinput"
+                  type="text"
+                  placeholder="この講義についての説明"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </div>
+            )}
+            {explanationjotai == "default" ? (
+              <div className="inputAdress">
+                <DriveFolderUploadIcon />
+                <div className="inputTitle">講義資料をアップロード</div>
+                <input
+                  className="inputBox"
+                  type="file"
+                  placeholder="この講義についての説明"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </div>
+            ) : (
+              <div className="inputContener">
+                <div className="inputTitle" style={{ color: "red" }}>
+                  講義資料をアップロード
+                </div>
+                <input
+                  className="errorinput"
+                  type="file"
+                  placeholder="この講義についての説明"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </div>
+            )}
+          </div>
+          <div id="CLRight">
+            <div id="inputTitle">講義資料</div>
+            <div id="NameAndDelete">
+              <div id="inputTitleName">講義.name</div>
+              <DeleteIcon className="CLRdelete" />
+            </div>
+            <p id="scriptTitle">スクリプト</p>
+            <div id="CLscriptframe">
+              <ul className="CLscriptContainer">
+                <div>1</div>
+                <input
+                  className="scriptinputBox"
+                  type="text"
+                  placeholder="このスライドについての説明を入力"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </ul>
+              <ul className="CLscriptContainer">
+                <p>2</p>
+                <input
+                  className="scriptinputBox"
+                  type="text"
+                  placeholder="このスライドについての説明を入力"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </ul>
+              <ul className="CLscriptContainer">
+                <p>3</p>
+                <input
+                  className="scriptinputBox"
+                  type="text"
+                  placeholder="このスライドについての説明を入力"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </ul>
+              <ul className="CLscriptContainer">
+                <p>4</p>
+                <input
+                  className="scriptinputBox"
+                  type="text"
+                  placeholder="このスライドについての説明を入力"
+                  onChange={(e) => setCertExplanation(e.target.value)}
+                />
+              </ul>
+            </div>
+          </div>
         </div>
-
-        {explanationjotai == "default" ? (
-          <div className="inputAdress">
-            <div className="inputTitle">説明</div>
-            <input
-              className="inputBox"
-              type="text"
-              placeholder="この講義についての説明"
-              onChange={(e) => setCertExplanation(e.target.value)}
-            />
-          </div>
-        ) : (
-          <div className="inputContener">
-            <div className="inputTitle" style={{ color: "red" }}>
-              説明fal
-            </div>
-            <input
-              className="errorinput"
-              type="text"
-              placeholder="この講義についての説明"
-              onChange={(e) => setCertExplanation(e.target.value)}
-            />
-          </div>
-        )}
         <div id="borderline"></div>
         {uploadjotai == "default" ? (
           <div>
             <button className="saveBtn" onClick={handleSave}>
-              変更を保存
+              作成する
             </button>
           </div>
         ) : (
           <div className="errorloginBox">
             <button className="saveBtn" onClick={handleSave}>
-              変更を保存
+              作成する
             </button>
             <div className="redText" style={{ fontWeight: 300 }}>
               未入力項目があります。確認してください。
@@ -127,4 +206,4 @@ function SettingModal({ handleClose }) {
     </>
   );
 }
-export default SettingModal;
+export default CreateLectureModal;
