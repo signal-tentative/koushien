@@ -4,6 +4,22 @@ import { showRecording } from "./instructer/atom";
 import { divide } from "firebase/firestore/pipelines";
 function Recording() {
   const [recordingStatus, setRecordingStatus] = useAtom(showRecording);
+  const [page, setPage] = useState(
+    () => localStorage.getItem("pageNumber") || "",
+  );
+
+  useEffect(() => {
+    const handleStorageChange_page = (event) => {
+      if (event.key === "pageNumber") {
+        setPage(event.newValue || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_page);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_page);
+    };
+  }, [page]);
+
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {

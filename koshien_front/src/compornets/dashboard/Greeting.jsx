@@ -9,7 +9,7 @@ function Greeting() {
   const uid = localStorage.getItem("user_uid");
 
   useEffect(() => {
-    const user = fetch(`http://localhost:8080/users/${uid}`)
+    const user = fetch(`${import.meta.env.VITE_API_URL}/users/${uid}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

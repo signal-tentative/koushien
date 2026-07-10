@@ -14,7 +14,7 @@ function FileSelectURL() {
   const uid = localStorage.getItem("user_uid");
 
   useEffect(() => {
-    const res = fetch(`http://localhost:8080/lectures/uid/${uid}`)
+    const res = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
       .then((response) => response.json())
       .then((data) => {
         setLecture(data);
@@ -25,7 +25,7 @@ function FileSelectURL() {
     console.log(lecture);
     try {
       const res = await fetch(
-        `http://localhost:8080/documents/${lecture[0].id}`,
+        `${import.meta.env.VITE_API_URL}/documents/${lecture[0].id}`,
       );
       if (!res.ok) throw new Error("バックエンドの通信に失敗しました");
 

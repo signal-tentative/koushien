@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { showRecording } from "./instructer/atom";
+import { showRecording } from "../../instructer/atom";
 import { divide } from "firebase/firestore/pipelines";
 function Recording() {
   let timer = null;
@@ -49,18 +49,12 @@ function Recording() {
       }
     };
 
-    saveData = (SpeakingResult) => {
-      fetch(`${import.meta.env.VITE_API_URL}/transcriptions`).then(
-        (response) => {},
-      );
-    };
-
     recognition.onresult = (event) => {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         const transcript = event.results[i][0].transcript.trim();
         if (transcript !== "") {
           if (timer) {
-            clearTimeout(timer);
+            clearT(timer);
           }
           if (event.results[i].isFinal) {
             let date = new Date();
@@ -76,10 +70,6 @@ function Recording() {
               time: timeData,
             });
             console.log(SpeakingResult);
-
-            timer = setTimeout(() => {
-              saveData(SpeakingResult);
-            }, silence_duration);
           }
         }
       }

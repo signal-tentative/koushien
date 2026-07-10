@@ -55,7 +55,7 @@ function CreateLectureModal({ handleClose }) {
     formData.append("uid", "oXDcNmenukbGqh9jOrApoBwTWYF2");
 
     try {
-      const response = await fetch("http://localhost:8080/lectures", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/lectures`, {
         method: "POST",
         body: formData,
       });
@@ -73,7 +73,7 @@ function CreateLectureModal({ handleClose }) {
       formFile.append("file", pdfFile);
       formFile.append("lecture_id", lectureId); // 正しいIDをセット
 
-      const res = await fetch("http://localhost:8080/documents", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/documents`, {
         method: "POST",
         body: formFile,
       });

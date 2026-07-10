@@ -9,7 +9,7 @@ function FileSelectURL() {
   const [lectures, setLectures] = useState();
 
   const handleDocument = () => {
-    const lecture = fetch(`http://localhost:8080/documents/1`)
+    const lecture = fetch(`${import.meta.env.VITE_API_URL}/documents/1`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -29,7 +29,7 @@ export const LectureUpload = () => {
     formData.append("file", pdfFile);
 
     try {
-      const response = await fetch("http://localhost:8080/lectures", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/lectures`, {
         method: "POST",
         body: formData,
       });

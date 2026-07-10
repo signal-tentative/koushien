@@ -6,6 +6,7 @@ import RealTimeFB from "./RealTimeFB";
 import Script from "./Script";
 import sikaku from "/public/sikaku.png";
 import LiveHeader from "./LiveHeader";
+import Recording from "../live/recording/Recording";
 
 function Live() {
   function handleEnd() {
@@ -35,6 +36,7 @@ function Live() {
             </button>
           </div>
         </div>
+        <Recording />
       </div>
     </>
   );
