@@ -59,7 +59,7 @@ function Login() {
           // ログインが成功した場合
           user = userCredential.user;
           console.log("firebaseログイン成功:", user);
-          localStorage.setItem("user_id", user.uid);
+          localStorage.setItem("user_uid", user.uid);
           token = user.getIdToken();
         })
         .then(() => {
@@ -77,7 +77,7 @@ function Login() {
             }),
           });
           console.log("アプリログイン成功:", user);
-          navigate("/dashboard");
+          navigate("/dashman");
         })
         .catch((error) => {
           // エラーが発生した場合

@@ -6,6 +6,16 @@ import { showTestPdfURL } from "./atom";
 function FileSelectURL() {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [testPdfURL, setSelectTestPdfURL] = useAtom(showTestPdfURL);
+  const [lectures, setLectures] = useState();
+
+  const handleDocument = () => {
+    const lecture = fetch(`http://localhost:8080/documents/1`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setLectures(data);
+      });
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -18,11 +28,13 @@ function FileSelectURL() {
       alert("PDFファイルを選択してください。");
     }
   };
-  console.log(testPdfURL);
+  const uid = localStorage.getItem("user_uid");
+  console.log(selectedPdf);
 
   return (
     <div>
-      <input type="file" accept=".pdf" onChange={handleFileChange} />
+      <button onClick={handleDocument}>布団</button>
+      <input type="file" accept=".pdf" onChange={handleDocument} />
       {selectedPdf ? (
         <div style={{ border: "1px solid #ccc", background: "#fff" }}>
           <Pdf url={selectedPdf} />

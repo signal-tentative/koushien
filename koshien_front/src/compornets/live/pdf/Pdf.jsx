@@ -24,6 +24,7 @@ const Pdf = ({ url }) => {
   useEffect(() => {
     localStorage.setItem("pageNumber", pageNumber);
   }, [goToNextPage]);
+  console.log(url);
   return (
     <div>
       <Document
