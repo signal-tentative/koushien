@@ -19,7 +19,7 @@ function CreateLectureModal({ handleClose }) {
   const [uploadjotai, setuploadjotai] = useState("default");
 
   const [certTitle, setCertTitle] = useState("");
-  const [certExplanation, setCertExplanation] = useState(""); //元の名前を入れておくべき
+  const [certExplanation, setCertExplanation] = useState("");
 
   function handleCloseBtn() {
     handleClose();
