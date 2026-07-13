@@ -23,8 +23,10 @@ function DashBoard() {
   return (
     <>
       <Header />
-      <Greeting />
-      <Message />
+      <div className="between">
+        <Greeting />
+        <Message />
+      </div>
       <Schedule title="受講中〜" data />
       <ScheduleRight />
     </>

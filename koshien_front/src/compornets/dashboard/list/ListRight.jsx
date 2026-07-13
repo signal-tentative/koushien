@@ -116,15 +116,6 @@ function ListRight() {
             </div>
           );
         })}
-
-        <ul>s</ul>
-        <button
-          onClick={() => {
-            handleListModal();
-          }}
-        >
-          <p>講義を作成</p>
-        </button>
       </div>
 
       <Modal
