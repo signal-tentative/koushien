@@ -1,17 +1,12 @@
-.left {
+.greetFrame {
   /* Container */
 
   /* オートレイアウト */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
-
-  position: absolute;
-  width: 373px;
-  height: 64px;
-  left: 68px;
-  top: 124px;
+  padding: 30px;
+  width: 370px;
 }
 
 #greet {
@@ -54,4 +49,10 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+.between {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }

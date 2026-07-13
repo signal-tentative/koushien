@@ -571,3 +571,94 @@
   bottom: 0px;
   left: 235%;
 }
+.StartmodalFrame {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#coppy {
+  float: left;
+
+  width: 95px;
+  height: 28px;
+}
+.between {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 30px;
+}
+#materialsFrame {
+}
+#explanationFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px 0px;
+
+  width: 100%;
+  height: 100%;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+.SMTitle {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.SMtext {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  /* ボックスの高さと同一、または162% */
+
+  color: #2a5568;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#SMCode {
+  /* Code */
+
+  box-sizing: border-box;
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 12px;
+
+  width: auto;
+  height: 40px;
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 119, 168, 0.2);
+  border-radius: 20px;
+  color: #006693;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
