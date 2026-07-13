@@ -8,6 +8,13 @@
   scrollbar-color: #a8c4e0 #f0f0f0;
   scrollbar-width: thin;
 }
+.ScriptList {
+  width: 100%;
+  height: 130px;
+  overflow: scroll;
+  scrollbar-color: #a8c4e0 #f0f0f0;
+  scrollbar-width: thin;
+}
 .ListContainer:hover {
   background-color: #ffc7654d;
   padding: 5px;
@@ -17,6 +24,15 @@
   width: 96%;
   height: 70px;
   padding: 5px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ScriptListContainer {
+  width: 98%;
+  height: auto;
+  gap: 10px;
 
   display: flex;
   flex-direction: row;
@@ -51,4 +67,27 @@
 }
 .ListTime {
   float: left;
+}
+.ScriptNumber {
+  /* Text */
+
+  /* オートレイアウト */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  font-size: 13px;
+
+  width: 20px;
+  height: 20px;
+
+  background: #e8f6fb;
+  border-radius: 16px;
+  color: #0077a8;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
