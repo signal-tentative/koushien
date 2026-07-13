@@ -5,6 +5,7 @@ import PointTitle from "./liveheader/PointTitle";
 import RealTimeFB from "./fb/RealTimeFB";
 import Script from "./script/Script";
 import LiveHeader from "./LiveHeader";
+import Recording from "./recording/Recording";
 import "./live.css";
 
 function Live() {
@@ -19,6 +20,7 @@ function Live() {
         <div id="ScreenLeft">
           <FileSelectURL />
           <Script />
+          <Recording />
         </div>
         <div id="ScreenRight">
           <button className="endBtn" onClick={handleEnd}>

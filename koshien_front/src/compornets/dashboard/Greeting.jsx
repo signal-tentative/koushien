@@ -26,7 +26,7 @@ function Greeting() {
   return (
     <>
       <div className="greetFrame">
-        <div id="greet">こんにちは 前田 健太さん</div>
+        <div id="greet">こんにちは {name}さん</div>
         <button onClick={() => handleStart()}>START</button>
         <div id="fight">今日も学びを楽しみましょう！</div>
       </div>

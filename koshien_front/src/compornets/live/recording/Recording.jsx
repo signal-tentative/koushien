@@ -7,6 +7,21 @@ function Recording() {
   const silence_duration = 3000;
 
   const [recordingStatus, setRecordingStatus] = useAtom(showRecording);
+  const [page, setPage] = useState(
+    () => localStorage.getItem("pageNumber") || "",
+  );
+
+  useEffect(() => {
+    const handleStorageChange_page = (event) => {
+      if (event.key === "pageNumber") {
+        setPage(event.newValue || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_page);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_page);
+    };
+  }, [page]);
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
@@ -54,7 +69,7 @@ function Recording() {
         const transcript = event.results[i][0].transcript.trim();
         if (transcript !== "") {
           if (timer) {
-            clearT(timer);
+            clearTimeout(timer);
           }
           if (event.results[i].isFinal) {
             let date = new Date();
@@ -70,6 +85,15 @@ function Recording() {
               time: timeData,
             });
             console.log(SpeakingResult);
+            const formData = new FormData();
+            formData.append("page", page);
+            formData.append("transcript", transcript);
+            formData.append("time", timeData);
+            formData.append("page", page);
+            const response = fetch(`${import.meta.env.VITE_API_URL}/lectures`, {
+              method: "POST",
+              body: formData,
+            });
           }
         }
       }
