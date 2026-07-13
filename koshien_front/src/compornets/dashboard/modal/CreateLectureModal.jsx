@@ -17,6 +17,7 @@ function CreateLectureModal({ handleClose }) {
   const [titlejotai, settitlejotai] = useState("default");
   const [explanationjotai, setexplanationjotai] = useState("default");
   const [uploadjotai, setuploadjotai] = useState("default");
+  const [loading, setLoading] = useState("");
 
   const [certTitle, setCertTitle] = useState("");
   const [certExplanation, setCertExplanation] = useState("");
@@ -40,7 +41,7 @@ function CreateLectureModal({ handleClose }) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!pdfFile) {
+    if (!certExplanation) {
       alert("PDFファイルを選択してください");
       return;
     }
@@ -48,8 +49,8 @@ function CreateLectureModal({ handleClose }) {
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("title", lectureName);
-    formData.append("code", lectureVoice);
+    formData.append("title", certTitle);
+    // formData.append("code", lectureVoice);
     formData.append("description", "test");
     formData.append("execute", true);
     formData.append("uid", "oXDcNmenukbGqh9jOrApoBwTWYF2");

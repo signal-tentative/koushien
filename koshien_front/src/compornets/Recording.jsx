@@ -3,6 +3,9 @@ import { useAtom } from "jotai";
 import { showRecording } from "./instructer/atom";
 import { divide } from "firebase/firestore/pipelines";
 function Recording() {
+  let timer = null;
+  const silence_duration = 3000;
+
   const [recordingStatus, setRecordingStatus] = useAtom(showRecording);
   const [page, setPage] = useState(
     () => localStorage.getItem("pageNumber") || "",
@@ -67,6 +70,9 @@ function Recording() {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         const transcript = event.results[i][0].transcript.trim();
         if (transcript !== "") {
+          if (timer) {
+            clearTimeout(timer);
+          }
           if (event.results[i].isFinal) {
             let date = new Date();
             let year = date.getFullYear();

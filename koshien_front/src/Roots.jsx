@@ -32,6 +32,7 @@ export function Roots() {
         <Route path="/pdf" element={<LectureUpload />} />
         <Route path="/dashman" element={<DashBoard />} />
         <Route path="/reco" element={<Recording />} />
+        <Route path="/what" element={<Recording />} />
       </Routes>
     </>
   );
