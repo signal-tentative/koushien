@@ -1,4 +1,5 @@
 import { showMatomeM } from "../atom";
+import Recording from "../../Recording";
 
 function Matome({ MatomeModalSetState, PushData }) {
   function handleClose() {
@@ -17,6 +18,7 @@ function Matome({ MatomeModalSetState, PushData }) {
         <div>主なわからないポイントまとめ</div>
         <div>壁打ち結果から見える理解度サマリー</div>
         <div>次回に向けたAIからの修正案</div>
+        <Recording />
       </div>
     </>
   );

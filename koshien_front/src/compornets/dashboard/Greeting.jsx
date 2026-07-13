@@ -1,8 +1,22 @@
+import { useEffect, useState } from "react";
 import Live from "../live/Live";
-import { useNavigate } from "react-router";
+import { data, useNavigate } from "react-router";
+import { join } from "firebase/firestore/pipelines";
 
 function Greeting() {
   const navigate = useNavigate();
+  const [name, setName] = useState("マエケン");
+  const uid = localStorage.getItem("user_uid");
+
+  useEffect(() => {
+    const user = fetch(`${import.meta.env.VITE_API_URL}/users/${uid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setName(data.name);
+      });
+  }, []);
+
   function handleStart() {
     console.log("start");
     window.open("http://localhost:5173/slide", "_blank");

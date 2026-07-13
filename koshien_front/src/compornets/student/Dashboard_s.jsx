@@ -36,7 +36,7 @@ function Dashboard_s() {
 
   useEffect(() => {
     console.log("テスト");
-    const res = fetch("http://localhost:8080/users", {
+    const res = fetch(`${import.meta.env.VITE_API_URL}/users`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
