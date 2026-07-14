@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { app } from "../../firebase/firebase.config";
+import "./sign-up.css";
+import qtaImage from "/public/Signal-2.png";
+import { useNavigate } from "react-router";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -8,6 +15,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [loading, setLoading] = useState(false);
+  const nav = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -40,13 +48,15 @@ const SignUp = () => {
           name: userName,
           permission: true,
         }),
-      });
+      })
+        .then((resolve) => {
+          return resolve.json();
+        })
+        .then((json) => {
+          localStorage.setItem("user_uid", json.uid);
+        });
 
-      if (response.ok) {
-        alert("ユーザー登録とDB保存が完了しました！");
-      } else {
-        alert("Firebase登録はできましたが、サーバー側の保存に失敗しました");
-      }
+      nav("/dashman");
     } catch (error) {
       console.error("登録エラー:", error.message);
       alert(`登録失敗: ${error.message}`);
@@ -57,35 +67,39 @@ const SignUp = () => {
 
   return (
     <>
+      <div id="up-title">
+        <img id="qta-maru-u" src={qtaImage} alt="qta" />
+        <div id="login-title-text-u">まなびのシグナル</div>
+      </div>
       <div style={{ flex: "column" }}>
-        <form
-          onSubmit={handleRegister}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-            maxWidth: "300px",
-          }}
-        >
-          <div id="loginTitle">
-            {/* <img id="qta-maru" src={qtaImage} alt="qta" /> */}
-            <div id="loginTitleText">まなびのシグナル</div>
-          </div>
+        <form className="board-signup" onSubmit={handleRegister}>
           <div className="createboad">
-            <div style={{ display: "flex" }}></div>
+            <b style={{ color: "black", fontSize: 23 }}>新規作成</b>
+            <br />
+            <b
+              style={{
+                color: "black",
+                fontSize: 14,
+                fontWeight: 400,
+                fontFamily: "Zen Kaku Gothic Antique",
+                fontStyle: "normal",
+                fontSize: "14px",
+                lineHeight: "20px",
+
+                color: "#2A5568",
+              }}
+            >
+              アカウントを作成しましょう。
+            </b>
             <div>
-              <div>
-                <h2>新規作成</h2>
-                <h4>アカウントを作成しましょう。</h4>
-              </div>
-              <div>名前</div>
+              <p className="input-title-u">名前</p>
               <input
                 type="text"
                 placeholder="名前"
                 onChange={(e) => setUserName(e.target.value)}
               />
             </div>
-            <div>メールアドレス</div>
+            <p className="input-title-u">メールアドレス</p>
             <input
               type="email"
               placeholder="example@toyota.co.jp"
@@ -94,7 +108,7 @@ const SignUp = () => {
               required
             />
             <div>
-              <div>パスワード</div>
+              <p className="input-title-u">パスワード</p>
               <input
                 type="password"
                 placeholder="8文字以上"
@@ -105,7 +119,7 @@ const SignUp = () => {
             </div>
             <div>
               <div>
-                <div>パスワード(確認用)</div>
+                <p className="input-title-u">パスワード(確認用)</p>
                 <input
                   type="password"
                   placeholder="確認用"
@@ -115,7 +129,11 @@ const SignUp = () => {
                 />
               </div>
               <div>
-                <button type="submit" disabled={loading}>
+                <button
+                  className="create-acount-btn-u"
+                  type="submit"
+                  disabled={loading}
+                >
                   {loading ? "登録中..." : "アカウント作成"}
                 </button>
               </div>
@@ -125,36 +143,5 @@ const SignUp = () => {
       </div>
     </>
   );
-  {
-    /* 
-       
-      <form
-        onSubmit={handleRegister}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          maxWidth: "300px",
-        }}
-      >
-        <h2>ユーザー登録</h2>
-        <input
-          type="email"
-          placeholder="メールアドレス"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="パスワード"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? "登録中..." : "アカウント作成"}
-        </button> */
-  }
 };
 export default SignUp;
