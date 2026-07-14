@@ -14,7 +14,7 @@ import Slide from "./compornets/instructer/Slide";
 import "./App.css";
 import { LectureUpload } from "./compornets/FileUpload";
 import Recording from "./compornets/live/recording/Recording";
-import Phone from "./compornets/phone/phone";
+import Phone from "./compornets/phone/Phone";
 import What from "./compornets/what_button/what";
 
 export function Roots() {
