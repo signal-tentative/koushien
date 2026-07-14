@@ -8,7 +8,7 @@ import { atomUserMode } from "../atoms";
 import { useAtom } from "jotai";
 
 import CreateLectureModal from "../modal/CreateLectureModal";
-import AddLectureModal from "../modal/AddLectureModal";
+import SummaryModal from "../modal/SummaryModal";
 import { data } from "react-router";
 //whichには右側か左側かが入ってくる
 function ListRight() {
@@ -22,9 +22,9 @@ function ListRight() {
 
   let studentData = [];
 
-  const handleListModal = () => {
+  function handleListModal(data) {
     handleOpenLL();
-  };
+  }
 
   useEffect(() => {
     if (!UserMode) {
@@ -59,24 +59,22 @@ function ListRight() {
             return;
           }
           // //日付
+
           const datePart = mapData.startDate.split("T")[0];
-
           const parts = datePart.split("-");
-
           const result = `${parts[1]}/${parts[2]}`;
 
           //開始時刻
+
           const startTimes = mapData.startDate.split("T")[1];
-
           const startparts = startTimes.split(":");
-
           const startTime = `${startparts[0]}:${startparts[1]}`;
 
           //終了時刻
+
           const timePart = mapData.endDate.split("T")[1];
 
           const endparts = timePart.split(":");
-
           const endTime = `${endparts[0]}:${endparts[1]}`;
           return (
             // <div
@@ -94,7 +92,10 @@ function ListRight() {
             //     </p>
             //   </div>
             // </div>
-            <div className="ListContainer">
+            <div className="ListContainer"
+            onClick={() => {
+                UserMode ? handleListModal(data) : handleListModal(data);
+              }}>
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
 
               <p className="ListTitle">{mapData.title}</p>
@@ -115,7 +116,7 @@ function ListRight() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddLectureModal handleClose={handleCloseLL} setOpen={setOpenLL} />
+        <SummaryModal handleClose={handleCloseLL} setOpen={setOpenLL} />
       </Modal>
     </>
   );
