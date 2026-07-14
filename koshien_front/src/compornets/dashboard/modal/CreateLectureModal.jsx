@@ -25,12 +25,12 @@ function CreateLectureModal({ handleClose }) {
   const uid = localStorage.getItem("user_uid");
   const [titlejotai, settitlejotai] = useState("default");
   const [explanationjotai, setexplanationjotai] = useState("default");
-  const [uploadJotai, setUploadJotai] = useAtom(atomUploadJotai);
+  const [uploadjotai, setuploadjotai] = useState("default");
+  const [loading, setLoading] = useState("");
 
   // 講義タイトル
   const [certTitle, setCertTitle] = useState("");
-  // 講義説明
-  const [certExplanation, setCertExplanation] = useState(""); //元の名前を入れておくべき
+  const [certExplanation, setCertExplanation] = useState("");
 
   //資料実体
   const [files, setFiles] = useState([]);
@@ -57,21 +57,11 @@ function CreateLectureModal({ handleClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (files.length === 0) {
-      if (!certTitle || !certExplanation) {
-        if (!certTitle) {
-          settitlejotai("error");
-        }
-        if (!certExplanation) {
-          setexplanationjotai("error");
-        }
-        setUploadJotai("error");
-        return;
-      }
+    if (!certExplanation) {
+      alert("PDFファイルを選択してください");
       return;
     }
-
-    // setLoading(true);
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("title", certTitle);

@@ -11,17 +11,36 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import ScriptList from "../list/ScriptList";
+import Button from "@mui/material/Button";
 
-function StartModal({ handleClose }) {
+function StartModal({ handleClose, SelectLecture }) {
   const [titlejotai, settitlejotai] = useState("default");
   const [explanationjotai, setexplanationjotai] = useState("default");
   const [uploadjotai, setuploadjotai] = useState("default");
+  const [DeleteScreen, setDeleteScreen] = useState(false);
+  const [CopyState, setCopyScreen] = useState(false);
 
   const [certTitle, setCertTitle] = useState("");
   const [certExplanation, setCertExplanation] = useState(""); //元の名前を入れておくべき
 
   function handleCloseBtn() {
     handleClose();
+  }
+  function handleCopyBtn() {
+    console.log("Copy完了");
+  }
+  function handleEditBtn() {
+    console.log("edit");
+  }
+  function handleDeleteIconBtn() {
+    setDeleteScreen(true);
+  }
+  function handleDeleteBtn() {
+    console.log("delete");
+  }
+  function handleDeleteCloseBtn() {
+    setDeleteScreen(false);
   }
 
   function handleStart() {
@@ -41,52 +60,111 @@ function StartModal({ handleClose }) {
 
   return (
     <>
-      <div className="board JoinModal">
-        <div className="">
+      <div className="board StartModal">
+        <div>
           <div className="JoinTitle">
-            <p>講義名:START</p>
-            <EditIcon style={{ paddingLeft: "10px", color: "#006693" }} />
-            <DeleteIcon style={{ paddingLeft: "10px", color: "#006693" }} />
-            <p onClick={handleCloseBtn}>×</p>
+            <p>講義名:{SelectLecture.title}</p>
+            <EditIcon
+              style={{
+                paddingLeft: "30%",
+                paddingRight: "10%",
+                color: "#006693",
+              }}
+              onClick={handleEditBtn}
+            />
+            {DeleteScreen ? (
+              <div id="deleteFrame">
+                <DeleteIcon
+                  style={{ color: "#006693" }}
+                  onClick={handleDeleteIconBtn}
+                />
+                <div className="board deleteScreen">
+                  <p id="deleteText">講義を削除します。よろしいですか？</p>
+                  <div id="deleteScreenBtn">
+                    <button
+                      id="grayNotDeleteBtn"
+                      onClick={handleDeleteCloseBtn}
+                    >
+                      削除しない
+                    </button>
+                    <button id="redDeleteBtn" onClick={handleDeleteBtn}>
+                      削除する
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div id="deleteFrame">
+                <DeleteIcon
+                  style={{ color: "#006693" }}
+                  onClick={handleDeleteIconBtn}
+                />
+              </div>
+            )}
+
+            <p id="StartBatten" onClick={handleCloseBtn}>
+              ×
+            </p>
           </div>
         </div>
 
         <div id="borderline"></div>
 
         <div className="StartmodalFrame">
-          <div className="between">
+          <div className="InfoAndCode">
             <div id="between-left">
               <div id="between-left-left">
-                <p lassName="SMtext">講師</p>
-                <p lassName="SMtext">実施時間</p>
+                <p className="SMTitle"> 講義情報</p>
+                <p className="SMtext">講師</p>
+                <p className="SMtext">実施時間</p>
               </div>
               <div id="between-left-right">
-                <p lassName="SMtext">田中 誠一</p>
-                <p lassName="SMtext">2026年7月10日（金）11:00~12:00</p>
+                <p></p>
+                <p className="SMtext" style={{ paddingTop: "20px" }}>
+                  {SelectLecture.name}
+                </p>
+                {/* </p>これは講師名だからuidから再度取得する必要がある？ */}
+                <p className="SMtext ">2026年7月10日（金）11:00~12:00</p>
               </div>
-              <div className="SMTitle">講義情報</div>
             </div>
             <div id="between-right">
-              <p className="SMTitle">講義コード</p>
-              <p id="SMCode">TYT</p>
-              <p id="coppy">📁floatしよ</p>
+              <p className="SMTitle" style={{ marginRight: "20px" }}>
+                講義コード
+              </p>
+              <p id="SMCode">{SelectLecture.code}</p>
+              <p id="coppy" onClick={handleCopyBtn}>
+                📁
+              </p>
             </div>
           </div>
+
           <div id="explanationFrame">
             <p className="SMTitle">説明</p>
-            <p className="SMtext">
-              トヨタのマルチパスウェイ戦略の基礎概念と実践的な取り組みについて学びます。
+            <p className="SMtext" style={{ textAlign: "left" }}>
+              {SelectLecture.description}
             </p>
           </div>
+
           <div id="materialsFrame">
             <p className="SMTitle">資料</p>
-            <p>資料</p>
+            <p className="SMtext" style={{ textDecorationLine: "underline" }}>
+              資料
+            </p>
+          </div>
+
+          <div id="scriptFrame">
+            <p className="SMTitle">スクリプト</p>
+            <ScriptList />
           </div>
         </div>
         <div id="borderline"></div>
 
         <div>
-          <button className="saveBtn" onClick={handleStart}>
+          <button
+            className="StartBtn"
+            // sx={{ background: " #ffca75", color: "black" }}
+            onClick={handleStart}
+          >
             講義を開始する
           </button>
         </div>

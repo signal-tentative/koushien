@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
+import Recording from "../recording/Recording";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -48,6 +49,7 @@ const Pdf = ({ url }) => {
         />
       </Document>
       <div>
+        {/* <Recording /> */}
         <button onClick={goToPrevPage} disabled={pageNumber <= 1}>
           前
         </button>

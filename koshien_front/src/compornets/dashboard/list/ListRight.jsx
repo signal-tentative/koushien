@@ -15,11 +15,24 @@ function ListRight() {
   const [openLL, setOpenLL] = React.useState(false);
   const handleOpenLL = () => setOpenLL(true);
   const handleCloseLL = () => setOpenLL(false);
+  const uid = localStorage.getItem("user_uid");
+
+  const [data, setData] = useState([]);
 
   const handleListModal = () => {
     handleOpenLL();
   };
-  const data = [
+
+  useEffect(() => {
+    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
+      .then((response) => response.json())
+      .then((datas) => {
+        console.log(datas);
+        setData(datas);
+      });
+  }, []);
+
+  const dataf = [
     {
       img: "img",
       title: "xxxxxxxxx",
@@ -98,19 +111,58 @@ function ListRight() {
     <>
       <div className="List">
         {data.map((data) => {
+          if (data.execute === false) {
+            return;
+          }
+          // //日付
+          const datePart = data.startDate.split("T")[0];
+
+          const parts = datePart.split("-");
+
+          const result = `${parts[1]}/${parts[2]}`;
+
+          //開始時刻
+          const startTimes = data.startDate.split("T")[1];
+
+          const startparts = startTimes.split(":");
+
+          const startTime = `${startparts[0]}:${startparts[1]}`;
+
+          //終了時刻
+          const timePart = data.endDate.split("T")[1];
+
+          const endparts = timePart.split(":");
+
+          const endTime = `${endparts[0]}:${endparts[1]}`;
           return (
+            // <div
+            //   className="ListContainer"
+            //   onClick={() => {
+            //     handleListModal();
+            //   }}
+            // >
+            //   <img className="thumbnail" src={data.img} alt="サムネ"></img>
+            //   <p className="ListTitle">{data.title}</p>
+            //   <div className="ListDateAndTime">
+            //     <p className="ListDate">{data.date}</p>
+            //     <p className="ListTime">
+            //       {data.start_time} - {data.end_time}
+            //     </p>
+            //   </div>
+            // </div>
             <div
               className="ListContainer"
               onClick={() => {
-                handleListModal();
+                UserMode ? handleListModal() : handleListModalSM();
               }}
             >
-              <img className="thumbnail" src={data.img} alt="サムネ"></img>
+              {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
+
               <p className="ListTitle">{data.title}</p>
               <div className="ListDateAndTime">
-                <p className="ListDate">{data.date}</p>
+                <p className="ListDate">{result}</p>
                 <p className="ListTime">
-                  {data.start_time} - {data.end_time}
+                  {startTime} - {endTime}
                 </p>
               </div>
             </div>

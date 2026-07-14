@@ -1,12 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { showRecording } from "../../instructer/atom";
 import { divide } from "firebase/firestore/pipelines";
 function Recording() {
-  let timer = null;
   const silence_duration = 3000;
-
+  const [count, setCount] = useState(0);
   const [recordingStatus, setRecordingStatus] = useAtom(showRecording);
+  useEffect(() => {
+    let timer;
+    if (recordingStatus) {
+      timer = setInterval(() => {
+        setCount((prevCount) => prevCount + 1);
+      }, 1000);
+    }
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [recordingStatus]);
+
+  const [page, setPage] = useState(
+    () => localStorage.getItem("pageNumber") || "",
+  );
+
+  useEffect(() => {
+    const handleStorageChange_page = (event) => {
+      if (event.key === "pageNumber") {
+        setPage(event.newValue || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_page);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_page);
+    };
+  }, [page]);
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRecognition) {
@@ -54,7 +82,7 @@ function Recording() {
         const transcript = event.results[i][0].transcript.trim();
         if (transcript !== "") {
           if (timer) {
-            clearT(timer);
+            clearTimeout(timer);
           }
           if (event.results[i].isFinal) {
             let date = new Date();
@@ -70,6 +98,15 @@ function Recording() {
               time: timeData,
             });
             console.log(SpeakingResult);
+            const formData = new FormData();
+            formData.append("page", page);
+            formData.append("transcript", transcript);
+            formData.append("time", timeData);
+            formData.append("page", page);
+            const response = fetch(`${import.meta.env.VITE_API_URL}/lectures`, {
+              method: "POST",
+              body: formData,
+            });
           }
         }
       }
@@ -98,6 +135,7 @@ function Recording() {
             録音ストップ
           </button>
         )}
+        <div>{count}</div>
       </>
     );
   }
