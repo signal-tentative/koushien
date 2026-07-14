@@ -53,7 +53,7 @@ function ListLeft() {
           return Promise.all(
             jsonData.map((firstData) =>
               fetch(
-                `${import.meta.env.VITE_API_URL}/lectures/${firstData.id}`,
+                `${import.meta.env.VITE_API_URL}/lectures/${firstData.lecture.id}`,
               ).then((response) => response.json()),
             ),
           );

@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { atomSettingModal } from "../atoms";
-import { useState } from "react";
+import { use, useState, useEffect } from "react";
 import "./modal.css";
 
 import dayjs from "dayjs";
@@ -15,14 +15,22 @@ function AddLectureModal({ handleClose }) {
   const [addjotai, setaddjotai] = useState("default"); //
   const [serchjotai, setserchjotai] = useState(false); //
   const [data, setData] = useState(null); //
+  const uid = localStorage.getItem("user_uid");
 
   const [certLectureCode, setLectureCode] = useState("");
+  const [discribeLec, setDiscribeLec] = useState("");
+  const [lecResult, setLecResult] = useState("");
+  const [lecId, setLecId] = useState("");
+  const [afterLec, setAfterLec] = useState([]);
+  let date;
+  let startTime;
+  let endTime;
 
   function handleCloseBtn() {
     handleClose();
   }
 
-  function handleAdd() {
+  async function handleAdd() {
     if (!certLectureCode) {
       setaddjotai("empty");
       console.log("codeがからです");
@@ -33,54 +41,104 @@ function AddLectureModal({ handleClose }) {
       return;
     }
     setaddjotai("ok");
+    const formData = new FormData();
+    const lecCode = formData.append("user_uid", uid);
+    const lecNum = Number(lecId);
+    console.log(lecNum);
+    formData.append("lecture_id", lecNum);
+    const result = await fetch(`${import.meta.env.VITE_API_URL}/students`, {
+      method: "POST",
+      body: formData,
+    });
     //post
     console.log("create");
   }
+  useEffect(() => {
+    const user = fetch(`${import.meta.env.VITE_API_URL}/students/uid/${uid}`)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        return Promise.all(
+          jsonData.map((firstData) =>
+            fetch(
+              `${import.meta.env.VITE_API_URL}/lectures/${firstData.lecture.id}`,
+            ).then((response) => response.json()),
+          ),
+        );
+      })
+      .then((setData) => {
+        setAfterLec(setData);
+      });
+  }, []);
 
-  // const uid = localStorage.getItem("user_uid");
-
-  function handleSerch() {
+  console.log(afterLec);
+  async function handleSerch() {
     if (!certLectureCode) {
       //インプットがからなら
       setaddjotai("error");
       console.log("codeがからです");
       return;
-    } //students
-
-    const addLecture = async () => {
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/students`,
-        );
-        const json = await response.json();
-        console.log(json); //[{},{},{}]で返ってくる？
-
-        if (json == "") {
+    } else {
+      console.log(typeof certLectureCode);
+      const result = await fetch(
+        `${import.meta.env.VITE_API_URL}/lectures/code/${certLectureCode}`,
+      );
+      console.log(result);
+      const text = await result.text();
+      if (text !== "") {
+        console.log("oioi");
+        const jsonData = await JSON.parse(text);
+        console.log(jsonData);
+        if (jsonData.execute === true) {
           setaddjotai("error");
           setserchjotai(false);
-          console.log("見つかりませんでした");
+          console.log("もう実施しました");
+          return;
+        } else if (afterLec.some((data) => data.id === jsonData.id)) {
+          setaddjotai("error");
+          setserchjotai(false);
+          console.log("もう追加しています");
           return;
         }
-        setaddjotai("active"); //addBtnの活性化
-        setserchjotai(true);
-        //コード
-        console.log("見つかった");
-      } catch {
-        console.error("error");
-      }
-    };
-    addLecture();
+        //日付
 
-    // const get = async () => {
-    //   try {
-    //     const response = await fetch("/api/users");
-    //     const json = await response.json();
-    //     setData(json);
-    //   } catch {
-    //     console.error("error");
-    //   }
-    // };
-    // get();
+        const datePart = jsonData.startDate.split("T")[0];
+
+        const parts = datePart.split("-");
+
+        date = `${parts[1]}/${parts[2]}`;
+
+        //開始時刻
+        const startTimes = jsonData.startDate.split("T")[1];
+
+        const startparts = startTimes.split(":");
+
+        startTime = `${startparts[0]}:${startparts[1]}`;
+
+        //終了時刻
+        const timePart = jsonData.endDate.split("T")[1];
+
+        const endparts = timePart.split(":");
+
+        endTime = `${endparts[0]}:${endparts[1]}`;
+        setaddjotai("active");
+        setserchjotai(true);
+        console.log(jsonData.id);
+        setLecId(jsonData.id);
+        setLecResult(
+          <div>
+            <p>{jsonData.title}</p>
+            <p>日時 {date}</p>
+            <p>開始時刻 {startTime}</p>
+            <p>終了時刻 {endTime}</p>
+          </div>,
+        );
+      } else {
+        setaddjotai("error");
+        setserchjotai(false);
+        console.log("もう実施しました");
+        return;
+      }
+    }
   }
 
   return (
@@ -162,16 +220,22 @@ function AddLectureModal({ handleClose }) {
               </button>
             </div>
           ) : addjotai == "active" ? (
-            <button className="saveBtn" onClick={handleAdd}>
-              追加する
-            </button>
+            <div>
+              <div id="result">
+                <div>{lecResult}</div>
+              </div>
+              <button className="saveBtn" onClick={handleAdd}>
+                追加する
+              </button>
+            </div>
           ) : (
             <div className="errorloginBox">
               <button className="saveBtn" onClick={handleAdd}>
                 追加する
               </button>
               <div className="redText" style={{ fontWeight: 300 }}>
-                講義が見つかりません。講義コードを再確認してください。
+                追加可能な講義が見つかりません。<br></br>
+                講義コードを再確認してください。
               </div>
             </div>
           )}
