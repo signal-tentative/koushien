@@ -13,105 +13,45 @@ import { data } from "react-router";
 //whichには右側か左側かが入ってくる
 function ListRight() {
   const [openLL, setOpenLL] = React.useState(false);
+  const [UserMode, setUserMode] = useAtom(atomUserMode);
   const handleOpenLL = () => setOpenLL(true);
   const handleCloseLL = () => setOpenLL(false);
   const uid = localStorage.getItem("user_uid");
 
-  const [data, setData] = useState([
-    {
-      title: "ゴラア",
-      startDate: "2026-02-12T12:22:22",
-      endDate: "2026-02-12T14:22:22",
-    },
-  ]);
+  const [data, setData] = useState([]);
+
+  let studentData = [];
 
   const handleListModal = () => {
     handleOpenLL();
   };
 
   useEffect(() => {
-    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
-      .then((response) => response.json())
-      .then((datas) => {
-        console.log(datas);
-        setData(datas);
-      });
-  }, []);
-
-  const dataf = [
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-    {
-      img: "img",
-      title: "xxxxxxxxx",
-      date: "06/11",
-      start_time: "16:00",
-      end_time: "18:00",
-    },
-  ];
-  function list() {
-    data.map(({ img, title, date, start_time, end_time }) => {
-      <>
-        <li className="class">
-          <img src={img} alt="イメージ"></img>
-          <p>{title}</p>
-          <div className="date">
-            <p>{date}</p>
-            <p>
-              {start_time} - {end_time}
-            </p>
-          </div>
-        </li>
-      </>;
-    });
-  }
+    if (!UserMode) {
+      const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
+        .then((response) => response.json())
+        .then((datas) => {
+          console.log(datas);
+          setData(datas);
+        });
+    } else {
+      const user = fetch(`${import.meta.env.VITE_API_URL}/students/uid/${uid}`)
+        .then((response) => response.json())
+        .then((datas) =>
+          datas.map((data) => {
+            fetch(`${import.meta.env.VITE_API_URL}/lectures/${data.id}`)
+              .then((response) => response.json())
+              .then((stuData) => {
+                console.log(stuData);
+                studentData.push(stuData);
+              });
+          }, setData(studentData)),
+        )
+        .then(() => {
+          setData(studentData);
+        });
+    }
+  }, [UserMode]);
 
   return (
     <>
@@ -156,12 +96,7 @@ function ListRight() {
             //     </p>
             //   </div>
             // </div>
-            <div
-              className="ListContainer"
-              onClick={() => {
-                UserMode ? handleListModal() : handleListModalSM();
-              }}
-            >
+            <div className="ListContainer">
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
 
               <p className="ListTitle">{data.title}</p>
