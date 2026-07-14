@@ -13,6 +13,7 @@ import Slide from "./compornets/instructer/Slide";
 import "./App.css";
 import { LectureUpload } from "./compornets/FileUpload";
 import Recording from "./compornets/live/recording/Recording";
+import Phone from "./compornets/phone/phone";
 export function Roots() {
   return (
     <>
@@ -33,6 +34,7 @@ export function Roots() {
         <Route path="/dashman" element={<DashBoard />} />
         <Route path="/reco" element={<Recording />} />
         <Route path="/what" element={<Recording />} />
+        <Route path="/phone" element={<Phone />} />
       </Routes>
     </>
   );
