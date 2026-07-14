@@ -30,6 +30,7 @@ function ListLeft() {
   const handleCloseSM = () => setOpenSM(false);
 
   function handleListModal(ele) {
+    console.log(ele);
     setSelectData(ele);
     handleOpenLL();
   }
@@ -68,6 +69,7 @@ function ListLeft() {
     <>
       <div className="List">
         {lecData.map((mapData, ind) => {
+          console.log("マップデータ", mapData);
           if (mapData.execute === true) {
             return;
           }
@@ -115,9 +117,14 @@ function ListLeft() {
             //   </div>
             // </div>
             <div
+              key={mapData.id}
               className="ListContainer"
               onClick={() => {
-                UserMode ? handleListModal(data) : handleListModalSM(data);
+                console.log(lecData);
+                console.log;
+                UserMode
+                  ? handleListModal(mapData)
+                  : handleListModalSM(mapData);
               }}
             >
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
@@ -139,7 +146,7 @@ function ListLeft() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <JoinModal handleClose={handleCloseLL} SelectData={SelectData} />
+        <JoinModal handleClose={handleCloseLL} SelectLecture={SelectData} />
       </Modal>
 
       <Modal
@@ -148,7 +155,7 @@ function ListLeft() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <StartModal handleClose={handleCloseSM} SelectData={SelectData} />
+        <StartModal handleClose={handleCloseSM} SelectLecture={SelectData} />
       </Modal>
     </>
   );

@@ -94,7 +94,7 @@ function ListRight() {
             //     </p>
             //   </div>
             // </div>
-            <div className="ListContainer">
+            <div className="ListContainer" key={mapData.id}>
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
 
               <p className="ListTitle">{mapData.title}</p>
