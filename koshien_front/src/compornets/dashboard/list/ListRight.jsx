@@ -18,7 +18,7 @@ function ListRight() {
   const handleCloseLL = () => setOpenLL(false);
   const uid = localStorage.getItem("user_uid");
 
-  const [data, setData] = useState([]);
+  const [lecData, setLecData] = useState([]);
 
   let studentData = [];
 
@@ -30,25 +30,23 @@ function ListRight() {
     if (!UserMode) {
       const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
         .then((response) => response.json())
-        .then((datas) => {
-          console.log(datas);
-          setData(datas);
+        .then((instructerData) => {
+          setLecData(instructerData);
         });
     } else {
       const user = fetch(`${import.meta.env.VITE_API_URL}/students/uid/${uid}`)
         .then((response) => response.json())
-        .then((datas) =>
-          datas.map((data) => {
-            fetch(`${import.meta.env.VITE_API_URL}/lectures/${data.id}`)
-              .then((response) => response.json())
-              .then((stuData) => {
-                console.log(stuData);
-                studentData.push(stuData);
-              });
-          }, setData(studentData)),
-        )
-        .then(() => {
-          setData(studentData);
+        .then((jsonData) => {
+          return Promise.all(
+            jsonData.map((firstData) =>
+              fetch(
+                `${import.meta.env.VITE_API_URL}/lectures/${firstData.id}`,
+              ).then((response) => response.json()),
+            ),
+          );
+        })
+        .then((studentData) => {
+          setLecData(studentData);
         });
     }
   }, [UserMode]);
@@ -56,26 +54,26 @@ function ListRight() {
   return (
     <>
       <div className="List">
-        {data.map((data) => {
-          if (data.execute === false) {
+        {lecData.map((mapData) => {
+          if (mapData.execute === false) {
             return;
           }
           // //日付
-          const datePart = data.startDate.split("T")[0];
+          const datePart = mapData.startDate.split("T")[0];
 
           const parts = datePart.split("-");
 
           const result = `${parts[1]}/${parts[2]}`;
 
           //開始時刻
-          const startTimes = data.startDate.split("T")[1];
+          const startTimes = mapData.startDate.split("T")[1];
 
           const startparts = startTimes.split(":");
 
           const startTime = `${startparts[0]}:${startparts[1]}`;
 
           //終了時刻
-          const timePart = data.endDate.split("T")[1];
+          const timePart = mapData.endDate.split("T")[1];
 
           const endparts = timePart.split(":");
 
@@ -99,7 +97,7 @@ function ListRight() {
             <div className="ListContainer">
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
 
-              <p className="ListTitle">{data.title}</p>
+              <p className="ListTitle">{mapData.title}</p>
               <div className="ListDateAndTime">
                 <p className="ListDate">{result}</p>
                 <p className="ListTime">

@@ -42,33 +42,23 @@ function ListLeft() {
     if (!UserMode) {
       const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
         .then((response) => response.json())
-        .then((datas) => {
-          console.log(datas);
-          console.log("講師側");
-          setLecData(datas);
+        .then((instructerData) => {
+          setLecData(instructerData);
         });
     } else {
       const user = fetch(`${import.meta.env.VITE_API_URL}/students/uid/${uid}`)
         .then((response) => response.json())
-        .then((datas) => {
-          const studentData = [];
-          console.log(datas);
-          datas.map((data1) => {
-            fetch(`${import.meta.env.VITE_API_URL}/lectures/${data1.id}`)
-              .then((response) => response.json())
-              .then((stuData) => {
-                console.log(UserMode);
-                console.log(stuData);
-                console.log("受講生側");
-                studentData.push(stuData);
-                console.log("studentData", studentData);
-              });
-          });
-          return studentData;
+        .then((jsonData) => {
+          return Promise.all(
+            jsonData.map((firstData) =>
+              fetch(
+                `${import.meta.env.VITE_API_URL}/lectures/${firstData.id}`,
+              ).then((response) => response.json()),
+            ),
+          );
         })
-        .then((sData) => {
-          console.log("studentData2", sData);
-          setLecData([...sData]);
+        .then((setData) => {
+          setLecData(setData);
         });
     }
   }, [UserMode]);
@@ -77,13 +67,10 @@ function ListLeft() {
   return (
     <>
       <div className="List">
-        {console.log("マップ前", lecData)}
         {lecData.map((mapData, ind) => {
           if (mapData.execute === true) {
             return;
           }
-
-          console.log("これはデータです", mapData);
 
           // data3.then((resolve) => {
           //   console.log("res", resolve);
@@ -128,10 +115,10 @@ function ListLeft() {
             //   </div>
             // </div>
             <div
-            // className="ListContainer"
-            // onClick={() => {
-            //   UserMode ? handleListModal(data) : handleListModalSM(data);
-            // }}
+              className="ListContainer"
+              onClick={() => {
+                UserMode ? handleListModal(data) : handleListModalSM(data);
+              }}
             >
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
               <p className="ListTitle">{mapData.title}</p>
