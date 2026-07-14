@@ -11,7 +11,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function JoinModal({ handleClose }) {
+function JoinModal({ handleClose, SelectLecture }) {
   const [titlejotai, settitlejotai] = useState("default");
   const [explanationjotai, setexplanationjotai] = useState("default");
   const [uploadjotai, setuploadjotai] = useState("default");
@@ -43,10 +43,10 @@ function JoinModal({ handleClose }) {
       <div className="board JoinModal">
         <div className="">
           <div className="JoinTitle">
-            <p>講義名:XXXXXX</p>{" "}
+            <p>講義名:{SelectLecture.title}</p>{" "}
             <DeleteIcon style={{ paddingLeft: "10px", color: "#006693" }} />
           </div>
-          <p className="JoinCode">講義コード:TYT-178258</p>
+          <p className="JoinCode">講義コード:{SelectLecture.code}</p>
           <p onClick={handleCloseBtn}>×</p>
         </div>
 

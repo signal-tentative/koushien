@@ -45,12 +45,11 @@ function CreateLectureModal({ handleClose }) {
       alert("PDFファイルを選択してください");
       return;
     }
-
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("title", certTitle);
-    // formData.append("code", lectureVoice);
+    formData.append("title", lectureName);
+    formData.append("code", lectureVoice);
     formData.append("description", "test");
     formData.append("execute", true);
     formData.append("uid", "oXDcNmenukbGqh9jOrApoBwTWYF2");
@@ -250,7 +249,7 @@ function CreateLectureModal({ handleClose }) {
           </div>
         ) : (
           <div className="errorloginBox">
-            <button className="saveBtn" onClick={handleSave}>
+            <button className="saveBtn" onClick={handleSubmit}>
               作成する
             </button>
             <div className="redText" style={{ fontWeight: 300 }}>

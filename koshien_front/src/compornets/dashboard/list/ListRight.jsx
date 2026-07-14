@@ -17,13 +17,7 @@ function ListRight() {
   const handleCloseLL = () => setOpenLL(false);
   const uid = localStorage.getItem("user_uid");
 
-  const [data, setData] = useState([
-    {
-      title: "ゴラア",
-      startDate: "2026-02-12T12:22:22",
-      endDate: "2026-02-12T14:22:22",
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const handleListModal = () => {
     handleOpenLL();

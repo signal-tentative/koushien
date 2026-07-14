@@ -14,7 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ScriptList from "../list/ScriptList";
 import Button from "@mui/material/Button";
 
-function StartModal({ handleClose }) {
+function StartModal({ handleClose, SelectLecture }) {
   const [titlejotai, settitlejotai] = useState("default");
   const [explanationjotai, setexplanationjotai] = useState("default");
   const [uploadjotai, setuploadjotai] = useState("default");
@@ -63,7 +63,7 @@ function StartModal({ handleClose }) {
       <div className="board StartModal">
         <div>
           <div className="JoinTitle">
-            <p>講義名:START</p>
+            <p>講義名:{SelectLecture.title}</p>
             <EditIcon
               style={{
                 paddingLeft: "30%",
@@ -121,8 +121,9 @@ function StartModal({ handleClose }) {
               <div id="between-left-right">
                 <p></p>
                 <p className="SMtext" style={{ paddingTop: "20px" }}>
-                  田中 誠一
+                  {SelectLecture.name}
                 </p>
+                {/* </p>これは講師名だからuidから再度取得する必要がある？ */}
                 <p className="SMtext ">2026年7月10日（金）11:00~12:00</p>
               </div>
             </div>
@@ -130,7 +131,7 @@ function StartModal({ handleClose }) {
               <p className="SMTitle" style={{ marginRight: "20px" }}>
                 講義コード
               </p>
-              <p id="SMCode">TYT-011</p>
+              <p id="SMCode">{SelectLecture.code}</p>
               <p id="coppy" onClick={handleCopyBtn}>
                 📁
               </p>
@@ -140,7 +141,7 @@ function StartModal({ handleClose }) {
           <div id="explanationFrame">
             <p className="SMTitle">説明</p>
             <p className="SMtext" style={{ textAlign: "left" }}>
-              トヨタのマルチパスウェイ戦略の基礎概念と実践的な取り組みについて学びます。
+              {SelectLecture.description}
             </p>
           </div>
 
