@@ -32,7 +32,7 @@ function SettingModal({ handleClose }) {
       return;
     }
     //patch?
-
+    handleClose();
     console.log("save");
   }
 
@@ -41,7 +41,7 @@ function SettingModal({ handleClose }) {
       <div className="board settingModal">
         <div className="">
           <p>アカウント設定</p>
-          <p onClick={handleCloseBtn}>🙅</p>
+          {/* <p onClick={handleCloseBtn}>🙅</p> */}
         </div>
         {emailjotai == "default" ? (
           <div className="inputAdress">
