@@ -216,7 +216,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-input {
+/* input {
   display: flex;
   width: 250px;
   height: 14px;
@@ -228,7 +228,7 @@ input {
   border-radius: 20px;
   border: 1px solid rgba(0, 119, 168, 0.25);
   background: #f5fbfe;
-}
+} */
 .board {
   display: flex;
   width: 360px;
@@ -696,7 +696,7 @@ code {
   order: 0;
   flex-grow: 0;
 }
-createboad {
+#createboad {
   display: flex;
   width: 360px;
   height: 1000px;

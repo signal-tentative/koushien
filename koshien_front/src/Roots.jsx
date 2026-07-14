@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router";
+import { HashRouter } from "react-router";
 import App from "./App";
 import Login from "./compornets/Login";
 import SignUp from "./compornets/SignUp";
@@ -18,28 +19,25 @@ import What from "./compornets/what_button/what";
 
 export function Roots() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/main" element={<App />} />
-        <Route path="/create" element={<SignUp />} />
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/main" element={<App />} />
+      <Route path="/create" element={<SignUp />} />
 
-        <Route path="/dashboard_s" element={<Dashboard_s />} />
-        <Route path="/aiques_s" element={<AIques_s />} />
+      <Route path="/dashboard_s" element={<Dashboard_s />} />
+      <Route path="/aiques_s" element={<AIques_s />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/live" element={<Live />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/live" element={<Live />} />
 
-        <Route path="/slide" element={<Slide />} />
+      <Route path="/slide" element={<Slide />} />
 
-        <Route path="/pdf" element={<LectureUpload />} />
-        <Route path="/dashman" element={<DashBoard />} />
-        <Route path="/reco" element={<Recording />} />
+      <Route path="/pdf" element={<LectureUpload />} />
+      <Route path="/dashman" element={<DashBoard />} />
+      <Route path="/reco" element={<Recording />} />
 
-        <Route path="/what" element={<Recording />} />
-        <Route path="/phone" element={<Phone />} />
-
-      </Routes>
-    </>
+      <Route path="/what" element={<Recording />} />
+      <Route path="/phone" element={<Phone />} />
+    </Routes>
   );
 }
