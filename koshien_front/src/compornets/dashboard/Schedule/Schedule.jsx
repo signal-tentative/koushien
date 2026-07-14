@@ -16,8 +16,10 @@ import AddLectureModal from "../modal/AddLectureModal";
 function Schedule(data, user) {
   const [openA, setOpenA] = React.useState(false);
   const handleOpenA = () => setOpenA(true);
-  const handleCloseA = () => setOpenA(false);
-
+  const handleCloseA = () => {
+    setOpenA(false);
+    window.location.reload();
+  };
   const [openC, setOpenC] = React.useState(false);
   const handleOpenC = () => setOpenC(true);
   const handleCloseC = () => setOpenC(false);

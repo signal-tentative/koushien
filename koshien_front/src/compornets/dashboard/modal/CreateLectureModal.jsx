@@ -345,7 +345,7 @@ function CreateLectureModal({ handleClose }) {
           </div>
         </div>
         <div id="borderline"></div>
-        {uploadJotai == "default" ? (
+        {uploadjotai == "default" ? (
           <div>
             <button className="saveBtn" onClick={handleSubmit}>
               作成する
