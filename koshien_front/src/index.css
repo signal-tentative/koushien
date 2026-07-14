@@ -602,13 +602,13 @@ code {
   align-items: flex-start;
   padding: 10px 12px;
 
-  width: 430px;
-  height: 100%;
+  width: 550px;
+  height: 150px;
 
   background: #f8fbfd;
   border: 1px solid rgba(0, 119, 168, 0.15);
   border-radius: 15px;
-  margin-left: 10%;
+  margin-left: 1%;
 
   flex: none;
   order: 0;
