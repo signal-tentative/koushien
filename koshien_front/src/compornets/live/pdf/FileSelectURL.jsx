@@ -10,6 +10,7 @@ function FileSelectURL() {
   const [lecture, setLecture] = useState();
   const [pdfFile, setPdfFile] = useState(null);
   const [error, setError] = useState(null);
+  const [lectureId, setLectureId] = useState();
 
   const uid = localStorage.getItem("user_uid");
 
@@ -20,6 +21,11 @@ function FileSelectURL() {
         setLecture(data);
       });
   }, []);
+
+  const handleSelectLecture = (e) => {
+    console.log(Number(e.target.id));
+    setLectureId(e.target.id);
+  };
 
   const handleDocument = async () => {
     console.log(lecture);
@@ -67,23 +73,23 @@ function FileSelectURL() {
   //     });
   // }, [handleDocument, lectures]);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type === "application/pdf") {
-      const fileUrl = URL.createObjectURL(file);
-      setSelectedPdf(fileUrl);
-      setSelectTestPdfURL(fileUrl);
-      localStorage.setItem("pdfurl", fileUrl);
-    } else {
-      alert("PDFファイルを選択してください。");
-    }
-  };
-  console.log(lectures);
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file && file.type === "application/pdf") {
+  //     const fileUrl = URL.createObjectURL(file);
+  //     setSelectedPdf(fileUrl);
+  //     setSelectTestPdfURL(fileUrl);
+  //     localStorage.setItem("pdfurl", fileUrl);
+  //   } else {
+  //     alert("PDFファイルを選択してください。");
+  //   }
+  // };
+  // console.log(lectures);
 
   return (
     <div>
       <button onClick={handleDocument}>講義資料表示</button>
-      <input type="file" accept=".pdf" onChange={handleFileChange} />
+      {/* <input type="file" accept=".pdf" onChange={handleFileChange} /> */}
       {pdfFile ? <Pdf url={pdfFile} /> : <p>PDFファイル表示場所</p>}
     </div>
   );
