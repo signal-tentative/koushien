@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { atomSettingModal } from "../atoms";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./modal.css";
 
 function SettingModal({ handleClose }) {
@@ -8,36 +8,31 @@ function SettingModal({ handleClose }) {
   // const [pwjotai, setpwjotai] = useState("default");
   const [loginjotai, setloginjotai] = useState("default");
   const [certEmail, setCertEmail] = useState("");
-  const [certName, setCertName] = useState("佐藤健太"); //元の名前を入れておくべき
-  // const [beforeEmailPw, setbeforeEmailPw] = useState("");
+  const [certName, setCertName] = useState("");
 
-  // if (loginjotai == "default") {
-  //   if (certId && certPw) {
-  //     setloginjotai("ready");
-  //   }
-  // }
+  const uid = localStorage.getItem("user_uid");
 
-  // if (loginjotai == "ready") {
-  //   if (!certId || !certPw) {
-  //     setloginjotai("default");
-  //   }
-  // }
-  // if (loginjotai == "error") {
-  //   console.log(beforeEmailPw);
-  //   if (certId + certPw !== beforeEmailPw) {
-  //     setloginjotai("ready");
-  //   }
-  // }
+  useEffect(() => {
+    const user = fetch(`${import.meta.env.VITE_API_URL}/users/${uid}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCertName(data.name); //変更前の表示名が表示されるように
+      });
+  }, []);
+
   function handleCloseBtn() {
     handleClose();
   }
+
   function handleSave() {
     if (!certName || !certEmail) {
       setemailjotai("error");
       setloginjotai("error");
       return;
     }
-    //post
+    //patch?
+
     console.log("save");
   }
 

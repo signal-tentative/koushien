@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAtom } from "jotai";
 import { showRecording } from "../../instructer/atom";
 import { divide } from "firebase/firestore/pipelines";
 function Recording() {
-  let timer = null;
   const silence_duration = 3000;
-
+  const [count, setCount] = useState(0);
   const [recordingStatus, setRecordingStatus] = useAtom(showRecording);
+  useEffect(() => {
+    let timer;
+    if (recordingStatus) {
+      timer = setInterval(() => {
+        setCount((prevCount) => prevCount + 1);
+      }, 1000);
+    }
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [recordingStatus]);
+
   const [page, setPage] = useState(
     () => localStorage.getItem("pageNumber") || "",
   );
@@ -122,6 +135,7 @@ function Recording() {
             録音ストップ
           </button>
         )}
+        <div>{count}</div>
       </>
     );
   }

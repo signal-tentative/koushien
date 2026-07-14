@@ -11,7 +11,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import Q_taRun from "/public/Q_taRun.png";
 
-function SettingModal({ handleClose }) {
+function AddLectureModal({ handleClose }) {
   const [addjotai, setaddjotai] = useState("default"); //
   const [serchjotai, setserchjotai] = useState(false); //
   const [data, setData] = useState(null); //
@@ -28,37 +28,59 @@ function SettingModal({ handleClose }) {
       console.log("codeがからです");
       return;
     }
+    if (!serchjotai) {
+      console.log("見つかってないよ");
+      return;
+    }
     setaddjotai("ok");
     //post
     console.log("create");
   }
+
+  // const uid = localStorage.getItem("user_uid");
+
   function handleSerch() {
     if (!certLectureCode) {
       //インプットがからなら
       setaddjotai("error");
       console.log("codeがからです");
       return;
-    }
-    const get = async () => {
+    } //students
+
+    const addLecture = async () => {
       try {
-        const response = await fetch("/api/users");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/students`,
+        );
         const json = await response.json();
-        setData(json);
+        console.log(json); //[{},{},{}]で返ってくる？
+
+        if (json == "") {
+          setaddjotai("error");
+          setserchjotai(false);
+          console.log("見つかりませんでした");
+          return;
+        }
+        setaddjotai("active"); //addBtnの活性化
+        setserchjotai(true);
+        //コード
+        console.log("見つかった");
       } catch {
         console.error("error");
       }
     };
-    get();
+    addLecture();
 
-    if ("jotaitoka" == "notfind") {
-      //見つからなかったら
-      setaddjotai("error");
-      console.log("見つかりませんでした");
-      return;
-    }
-    setaddjotai("active");
-    setserchjotai(true);
-    console.log("create");
+    // const get = async () => {
+    //   try {
+    //     const response = await fetch("/api/users");
+    //     const json = await response.json();
+    //     setData(json);
+    //   } catch {
+    //     console.error("error");
+    //   }
+    // };
+    // get();
   }
 
   return (
@@ -158,4 +180,4 @@ function SettingModal({ handleClose }) {
     </>
   );
 }
-export default SettingModal;
+export default AddLectureModal;
