@@ -1,6 +1,7 @@
 .PhoneFrame {
-  max-width: 375px;
-  height: 667px;
+  /* max-width: 375px; */
+  max-width: 100%;
+  /* height: 667px; */
   background-color: #e8f6fb;
   display: flex;
   flex-direction: column;
@@ -15,7 +16,8 @@
   align-items: center;
   padding: 12px 24px;
 
-  width: 375px;
+  /* width: 375px; */
+  width: 100%;
   height: 76px;
 
   background-color: #204b7b;
