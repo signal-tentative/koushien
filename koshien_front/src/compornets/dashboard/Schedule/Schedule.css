@@ -3,7 +3,7 @@
 
   position: absolute;
   width: 665px;
-  height: 600px;
+  height: 510px;
   left: 64px;
   top: 250px;
 
@@ -49,13 +49,18 @@
 .nameS {
   box-sizing: border-box;
 
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
   align-items: center;
-  padding-left: 130px;
-  width: 600px;
-  gap: 130px;
+  /* padding-left: 10px; */
   margin-left: 32.5px;
+  margin-right: 32.5px;
+  width: 100% - 65px;
+  /* gap: 130px; */
+  /* margin-left: 32.5px; */
+
+  display: grid;
+  grid-template-columns: 5fr 2fr;
 
   border-bottom: 1px solid #0077a8;
 }
@@ -63,7 +68,7 @@
 .classTitleS {
   /* 講義タイトル */
 
-  margin-left: 32.5px;
+  /* margin-left: 32.5px; */
 
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
@@ -71,7 +76,7 @@
   font-size: 16px;
   line-height: 25px;
 
-  text-align: right;
+  /* text-align: right; */
 
   color: #000000;
 
@@ -82,45 +87,43 @@
 }
 
 .classDateS {
-  display: flex;
+  /* display: flex; */
 
   padding-top: 10px;
-  flex-direction: row;
+  /* flex-direction: row; */
+  padding-left: 31.72px;
 
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
-  line-height: 25px;
-  margin-left: 32.5px;
+  /* line-height: 25px; */
+  /* margin-left: 32.5px; */
   /* ボックスの高さと同一、または156% */
-  text-align: right;
+  /* text-align: right; */
 
   color: #000000;
 
   /* オートレイアウト内部 */
-  flex: none;
+  /* flex: none; */
   order: 0;
   flex-grow: 0;
 }
 #CreateLectureBtn {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 16px 24px;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  padding: 16px 50px;
   gap: 6px;
-
   position: absolute;
   left: 470px;
-  top: 530px;
-
+  top: 445px;
   width: 172px;
   height: 50px;
 
   border: 0px;
 
-  align-items: center;
-  text-align: center;
+  /* align-items: center; */
 
   background: #ffc765;
   box-shadow: 0px 0px 8px #dbbc85;
