@@ -11,6 +11,7 @@ import { atomSettingModal } from "../atoms";
 
 import SettingModal from "../modal/SettingModal";
 import * as React from "react";
+import { useNavigate } from "react-router";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -22,6 +23,8 @@ export function Header() {
 
   const [userMode, setUserMode] = useAtom(atomUserMode);
   // userMode如何でCSSの適応を変更する
+
+  const nav = useNavigate();
 
   const handleSettingModal = () => {
     handleOpenS();
@@ -35,6 +38,7 @@ export function Header() {
           <AutorenewIcon
             d="switchImage"
             className={`${!userMode ? "instructer" : "student"}`}
+            style={{ width: "30px", height: "79px", paddingRight: "5px" }}
             onClick={() => {
               // モーダルを表示する必要があ
             }}
@@ -60,7 +64,8 @@ export function Header() {
           id="logoutBtn"
           className={`${!userMode ? "instructer" : "student"}`}
           onClick={() => {
-            //ログアウトのfecth
+            localStorage.clear();
+            nav("/");
           }}
         ></LogoutIcon>
       </div>

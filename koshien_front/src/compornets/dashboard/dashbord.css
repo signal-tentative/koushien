@@ -5,8 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 30px;
-  width: 370px;
+  padding-left: 60px;
+  padding-top: 30px;
+  width: 450px;
 }
 
 #greet {
@@ -28,18 +29,18 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+  text-align: left;
 }
 
 #fight {
-  /* 今日も学びを楽しみましょう！ */
-
-  width: 250px;
+  width: 100%;
   height: 24px;
+  padding-top: 10px;
 
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   /* ボックスの高さと同一、または150% */
 
@@ -49,9 +50,11 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+  padding-left: 5px;
+  text-align: left;
 }
 .between {
-  justify-content: space-between;
+  /* justify-content: space-between; */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
