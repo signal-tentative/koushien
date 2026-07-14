@@ -1,6 +1,6 @@
 .List {
   width: 600px;
-  height: 390px;
+  height: 295px;
   margin-top: 10px;
   margin-left: 32.5px;
 
@@ -21,13 +21,15 @@
   border-radius: 12px;
 }
 .ListContainer {
-  width: 96%;
+  width: 100%;
   height: 70px;
   padding: 5px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: center; */
 }
 .ScriptListContainer {
   width: 98%;
@@ -44,11 +46,14 @@
 }
 .ListTitle {
   color: #0d2d3a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ListDateAndTime {
   width: 155px;
   height: 50px;
-  padding-left: 50px;
+  /* padding-left: 50px; */
 
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;

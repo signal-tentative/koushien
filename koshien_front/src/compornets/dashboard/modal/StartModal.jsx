@@ -58,6 +58,39 @@ function StartModal({ handleClose, SelectLecture }) {
     console.log("create");
   }
 
+  const data = SelectData;
+
+  //講義タイトル
+  const title = data.lecture.title;
+  //講義コード
+  const code = data.lecture.code;
+  //説明
+  const discription = data.lecture.discription;
+  //開始時刻
+  const startTimes = data.startDate.split("T")[1];
+
+  const startparts = startTimes.split(":");
+
+  const startTime = `${startparts[0]}:${startparts[1]}`;
+
+  //終了時刻
+  const timePart = data.endDate.split("T")[1];
+
+  const endparts = timePart.split(":");
+
+  const endTime = `${endparts[0]}:${endparts[1]}`;
+
+  //年
+  const year = data.startDate.slice(0, 3);
+  //月
+  if (data.startDate[5] == "0") {
+    const month = data.startDate[6];
+  } else {
+    const month = data.startDate[5] + data.startDate[6];
+  }
+  //日
+  const day = data.startDate[8] + data.startDate[9];
+
   return (
     <>
       <div className="board StartModal">

@@ -75,7 +75,7 @@ function Schedule(data, user) {
               handleAddLectureModal();
             }}
           >
-            <p>講義を追加</p>
+            講義を追加
           </button>
         ) : (
           <button

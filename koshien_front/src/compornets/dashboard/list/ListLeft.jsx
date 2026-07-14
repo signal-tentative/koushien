@@ -15,17 +15,13 @@ import { data } from "react-router";
 //whichには右側か左側かが入ってくる
 function ListLeft() {
   const [UserMode, setUserMode] = useAtom(atomUserMode);
+  const [SelectData, setSelectData] = useState("");
+
   const uid = localStorage.getItem("user_uid");
 
   const [openLL, setOpenLL] = React.useState(false);
   const [openSM, setOpenSM] = React.useState(false);
-  const [data, setData] = useState([
-    {
-      title: "ゴラア",
-      startDate: "2026-02-12T12:22:22",
-      endDate: "2026-02-12T14:22:22",
-    },
-  ]);
+  const [lecData, setLecData] = useState([]);
 
   const handleOpenLL = () => setOpenLL(true);
   const handleCloseLL = () => setOpenLL(false);
@@ -33,45 +29,70 @@ function ListLeft() {
   const handleOpenSM = () => setOpenSM(true);
   const handleCloseSM = () => setOpenSM(false);
 
-  const handleListModal = () => {
+  function handleListModal(ele) {
+    setSelectData(ele);
     handleOpenLL();
-  };
-  const handleListModalSM = () => {
+  }
+  function handleListModalSM(ele) {
+    setSelectData(ele);
     handleOpenSM();
-  };
+  }
 
   useEffect(() => {
-    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
-      .then((response) => response.json())
-      .then((datas) => {
-        console.log(datas);
-        setData(datas);
-      });
-  }, []);
+    if (!UserMode) {
+      const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
+        .then((response) => response.json())
+        .then((instructerData) => {
+          setLecData(instructerData);
+        });
+    } else {
+      const user = fetch(`${import.meta.env.VITE_API_URL}/students/uid/${uid}`)
+        .then((response) => response.json())
+        .then((jsonData) => {
+          return Promise.all(
+            jsonData.map((firstData) =>
+              fetch(
+                `${import.meta.env.VITE_API_URL}/lectures/${firstData.id}`,
+              ).then((response) => response.json()),
+            ),
+          );
+        })
+        .then((setData) => {
+          setLecData(setData);
+        });
+    }
+  }, [UserMode]);
 
+  const [aaa, setAaa] = useState("");
   return (
     <>
       <div className="List">
-        {data.map((data) => {
-          if (data.execute === true) {
+        {lecData.map((mapData, ind) => {
+          if (mapData.execute === true) {
             return;
           }
-          // //日付
-          const datePart = data.startDate.split("T")[0];
+
+          // data3.then((resolve) => {
+          //   console.log("res", resolve);
+          //   setAaa(resolve.id);
+          // });
+          //日付
+
+          const datePart = mapData.startDate.split("T")[0];
 
           const parts = datePart.split("-");
 
           const result = `${parts[1]}/${parts[2]}`;
 
           //開始時刻
-          const startTimes = data.startDate.split("T")[1];
+          const startTimes = mapData.startDate.split("T")[1];
 
           const startparts = startTimes.split(":");
 
           const startTime = `${startparts[0]}:${startparts[1]}`;
 
           //終了時刻
-          const timePart = data.endDate.split("T")[1];
+          const timePart = mapData.endDate.split("T")[1];
 
           const endparts = timePart.split(":");
 
@@ -96,12 +117,11 @@ function ListLeft() {
             <div
               className="ListContainer"
               onClick={() => {
-                UserMode ? handleListModal() : handleListModalSM();
+                UserMode ? handleListModal(data) : handleListModalSM(data);
               }}
             >
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
-
-              <p className="ListTitle">{data.title}</p>
+              <p className="ListTitle">{mapData.title}</p>
               <div className="ListDateAndTime">
                 <p className="ListDate">{result}</p>
                 <p className="ListTime">
@@ -119,7 +139,7 @@ function ListLeft() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <JoinModal handleClose={handleCloseLL} setOpen={setOpenLL} />
+        <JoinModal handleClose={handleCloseLL} SelectData={SelectData} />
       </Modal>
 
       <Modal
@@ -128,7 +148,7 @@ function ListLeft() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <StartModal handleClose={handleCloseSM} setOpen={setOpenSM} />
+        <StartModal handleClose={handleCloseSM} SelectData={SelectData} />
       </Modal>
     </>
   );
