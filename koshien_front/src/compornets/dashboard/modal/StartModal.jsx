@@ -58,14 +58,15 @@ function StartModal({ handleClose, SelectLecture }) {
     console.log("create");
   }
 
-  const data = SelectData;
+  console.log("startmodal", SelectLecture);
+  const data = SelectLecture;
 
   //講義タイトル
-  const title = data.lecture.title;
+  const title = data.title;
   //講義コード
-  const code = data.lecture.code;
+  const code = data.code;
   //説明
-  const discription = data.lecture.discription;
+  const description = data.description;
   //開始時刻
   const startTimes = data.startDate.split("T")[1];
 
@@ -96,7 +97,7 @@ function StartModal({ handleClose, SelectLecture }) {
       <div className="board StartModal">
         <div>
           <div className="JoinTitle">
-            <p>講義名:{SelectLecture.title}</p>
+            <p>講義名:{title}</p>
             <EditIcon
               style={{
                 paddingLeft: "30%",
@@ -164,7 +165,7 @@ function StartModal({ handleClose, SelectLecture }) {
               <p className="SMTitle" style={{ marginRight: "20px" }}>
                 講義コード
               </p>
-              <p id="SMCode">{SelectLecture.code}</p>
+              <p id="SMCode">{code}</p>
               <p id="coppy" onClick={handleCopyBtn}>
                 📁
               </p>
@@ -174,7 +175,7 @@ function StartModal({ handleClose, SelectLecture }) {
           <div id="explanationFrame">
             <p className="SMTitle">説明</p>
             <p className="SMtext" style={{ textAlign: "left" }}>
-              {SelectLecture.description}
+              {description}
             </p>
           </div>
 

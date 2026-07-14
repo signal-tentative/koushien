@@ -92,10 +92,7 @@ function ListRight() {
             //     </p>
             //   </div>
             // </div>
-            <div className="ListContainer"
-            onClick={() => {
-                UserMode ? handleListModal(data) : handleListModal(data);
-              }}>
+            <div className="ListContainer" key={mapData.id}>
               {/* <img className="thumbnail" src={data.img} alt="サムネ"></img> */}
 
               <p className="ListTitle">{mapData.title}</p>
