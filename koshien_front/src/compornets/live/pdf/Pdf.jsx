@@ -15,16 +15,20 @@ const Pdf = ({ url }) => {
   const goToPrevPage = () => {
     setPageNumber((prev) => Math.max(prev - 1, 1));
   };
+
   useEffect(() => {
     localStorage.setItem("pageNumber", pageNumber);
   }, [goToPrevPage]);
+
   const goToNextPage = () => {
     setPageNumber((prev) => Math.min(prev + 1, numPages));
     localStorage.setItem("pageNumber", pageNumber);
   };
+
   useEffect(() => {
     localStorage.setItem("pageNumber", pageNumber);
   }, [goToNextPage]);
+
   console.log(url);
   return (
     <div>

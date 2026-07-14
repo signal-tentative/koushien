@@ -83,7 +83,7 @@ function FileSelectURL() {
   return (
     <div>
       <button onClick={handleDocument}>講義資料表示</button>
-      {/* <input type="file" accept=".pdf" onChange={handleFileChange} /> */}
+      <input type="file" accept=".pdf" onChange={handleFileChange} />
       {pdfFile ? <Pdf url={pdfFile} /> : <p>PDFファイル表示場所</p>}
     </div>
   );
