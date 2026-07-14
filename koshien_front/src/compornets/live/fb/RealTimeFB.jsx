@@ -1,67 +1,102 @@
-import { useState } from "react";
-// import * as React from "react";
-// import {
-//   DataGridPro,
-//   useGridApiRef,
-//   gridVisibleColumnDefinitionsSelector,
-//   gridExpandedSortedRowIdsSelector,
-// } from "@mui/x-data-grid-pro";
-// import { useDemoData } from "@mui/x-data-grid-generator";
+import { useEffect, useState } from "react";
+import dayjs from "dayjs";
 
 function RealTimeFB() {
-  //   const apiRef = useGridApiRef();
+  const uid = localStorage.getItem("user_uid");
+  const [lecture, setLecture] = useState();
+  const [document, setDocument] = useState();
+  const [insightText, setInsightText] = useState([]);
 
-  //   const [coordinates, setCoordinates] = React.useState({
-  //     rowIndex: 0,
-  //     colIndex: 0,
-  //   });
+  useEffect(() => {
+    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
+      .then((response) => response.json())
+      .then((datas) => {
+        console.log(datas);
+        setLecture(datas[0]?.id);
+      });
+  }, []);
 
-  //   const { data, loading } = useDemoData({
-  //     dataSet: "Commodity",
-  //     rowLength: 100,
-  //   });
+  useEffect(() => {
+    const document = fetch(
+      `${import.meta.env.VITE_API_URL}/documents/${lecture}`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setDocument(data?.id);
+      });
+  }, [lecture]);
 
-  //   React.useEffect(() => {
-  //     const { rowIndex, colIndex } = coordinates;
-  //     apiRef.current?.scrollToIndexes(coordinates);
-  //     const id = gridExpandedSortedRowIdsSelector(apiRef)[rowIndex];
-  //     const column = gridVisibleColumnDefinitionsSelector(apiRef)[colIndex];
-  //     apiRef.current?.setCellFocus(id, column.field);
-  //   }, [apiRef, coordinates]);
+  const [page, setPage] = useState(
+    () => localStorage.getItem("pageNumber") || "",
+  );
+  useEffect(() => {
+    const handleStorageChange_page = (event) => {
+      if (event.key === "pageNumber") {
+        setPage(event.newValue || "");
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_page);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_page);
+    };
+  }, []);
 
-  //   const handleCellClick = (params) => {
-  //     const rowIndex = gridExpandedSortedRowIdsSelector(apiRef).findIndex(
-  //       (id) => id === params.id,
-  //     );
-  //     const colIndex = gridVisibleColumnDefinitionsSelector(apiRef).findIndex(
-  //       (column) => column.field === params.field,
-  //     );
-  //     setCoordinates({ rowIndex, colIndex });
-  //   };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const currentFormattedTime = dayjs().format("YYYY-MM-DD[T]HH:mm:ss");
+      console.log("定期送信:", currentFormattedTime);
+
+      const formData = new FormData();
+      formData.append("lecture_id", lecture);
+      formData.append("time", currentFormattedTime);
+      formData.append("insight", "");
+      formData.append("rate", "0.0");
+      formData.append("checked", "false");
+
+      const res = fetch(`${import.meta.env.VITE_API_URL}/insights`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("サーバーからのレスポンス:", data);
+          setInsightText((prev) => {
+            const currentList = Array.isArray(prev) ? prev : [];
+            return [...currentList, data];
+          });
+        })
+        .catch((error) => console.error("送信エラー:", error));
+    }, 5000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [lecture]);
+
+  console.log(insightText);
 
   return (
     <>
-      <div className="FBboard FBframe">
-        <div className="FBtime">
-          <p className="FBTimeText">10:00</p>
-        </div>
-        <div className="FBcontener">
-          <div className="FBtext">
-            …トヨタのマルチパスウェイ戦略とは、複数の技a術を並行開発していく戦略です。
-          </div>
-        </div>
-      </div>
-      {/* <DataGridPro
-        apiRef={apiRef}
-        onCellClick={handleCellClick}
-        hideFooter
-        loading={loading}
-        {...data}
-        initialState={{
-          ...data.initialState,
-          scroll: { top: 1000, left: 1000 },
+      <div
+        className="FBContainer"
+        style={{
+          height: "700px",
+          overflowY: "auto",
+          border: "1px solid #ccc",
+          padding: "10px",
+          borderRadius: "4px",
+          backgroundColor: "#f9f9f9",
+          marginTop: "-50px",
         }}
-      /> */}
+      >
+        <div>リアルタイムフィードバック</div>
+        {insightText.map((data) => (
+          <div className="FBContener">
+            <div className="FBheader">{data.time}</div>
+            <div>{data.insight}</div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import { showRecording } from "../../instructer/atom";
 import { divide } from "firebase/firestore/pipelines";
 import { useState, useEffect, useRef } from "react";
+import dayjs from "dayjs";
 
 function Recording() {
   const silence_duration = 3000;
@@ -12,27 +13,45 @@ function Recording() {
   const speakingResultRef = useRef([]);
   const silenceTimerRef = useRef(null);
   const uid = localStorage.getItem("user_uid");
-  const [lecture, setLecture] = useState();
-  const [document, setDocument] = useState();
+
+  const [lecture, setLecture] = useState(0);
+  const [document, setDocument] = useState(0);
+  const [page, setPage] = useState(
+    () => localStorage.getItem("pageNumber") || "",
+  );
+  const [numPages, setNumPages] = useState(
+    () => localStorage.getItem("numPages") || "",
+  );
+
+  const latestParamsRef = useRef({ lecture: 0, document: 0 });
 
   useEffect(() => {
-    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
+    latestParamsRef.current = { lecture, document };
+  }, [lecture, document]);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
       .then((response) => response.json())
       .then((datas) => {
-        console.log(datas);
-        setLecture(datas[0]?.id);
-      });
-  }, []);
+        console.log("講義データ:", datas);
+        if (datas && datas[0]) {
+          setLecture(datas[0].id);
+        }
+      })
+      .catch((err) => console.error("講義取得エラー:", err));
+  }, [uid]);
 
   useEffect(() => {
-    const document = fetch(
-      `${import.meta.env.VITE_API_URL}/documents/${lecture}`,
-    )
+    if (lecture === 0) return;
+    fetch(`${import.meta.env.VITE_API_URL}/documents/${lecture}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setDocument(data?.id);
-      });
+        console.log("ドキュメントデータ:", data);
+        if (data) {
+          setDocument(data.id);
+        }
+      })
+      .catch((err) => console.error("ドキュメント取得エラー:", err));
   }, [lecture]);
 
   useEffect(() => {
@@ -49,9 +68,6 @@ function Recording() {
     };
   }, [recordingStatus]);
 
-  const [page, setPage] = useState(
-    () => localStorage.getItem("pageNumber") || "",
-  );
   useEffect(() => {
     const handleStorageChange_page = (event) => {
       if (event.key === "pageNumber") {
@@ -62,11 +78,22 @@ function Recording() {
     return () => {
       window.removeEventListener("storage", handleStorageChange_page);
     };
-  }, []);
+  }, [page, setPage]);
+  useEffect(() => {
+    const handleStorageChange_numPage = (event) => {
+      if (event.key === "numPages") {
+        setNumPages((numPages) => (numPages = event.newValue || ""));
+      }
+    };
+    window.addEventListener("storage", handleStorageChange_numPage);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange_numPage);
+    };
+    console.log(numPages);
+  }, [numPages, setNumPages]);
 
-  console.log(lecture);
-  console.log(document);
-  console.log(page);
+  console.log("現在のステート確認:", { lecture, document });
+  console.log("page", page);
 
   useEffect(() => {
     const SpeechRecognition =
@@ -85,10 +112,6 @@ function Recording() {
       console.log("録音中");
     };
 
-    recognition.onend = () => {
-      console.log("onendイベント発生");
-    };
-
     recognition.onresult = async (event) => {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         const transcript = event.results[i][0].transcript.trim();
@@ -96,33 +119,36 @@ function Recording() {
           if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
 
           if (event.results[i].isFinal) {
-            const date = new Date();
-            const timeData =
-              date.getFullYear() +
-              ("00" + (date.getMonth() + 1)).slice(-2) +
-              ("00" + date.getDate()).slice(-2) +
-              ("00" + date.getHours()).slice(-2) +
-              ("00" + date.getMinutes()).slice(-2) +
-              ("00" + date.getSeconds()).slice(-2);
-
+            const currentFormattedTime = dayjs().format(
+              "YYYY-MM-DD[T]HH:mm:ss",
+            );
+            console.log("定期送信:", currentFormattedTime);
             speakingResultRef.current.push({
               text: transcript,
-              time: timeData,
+              time: currentFormattedTime,
             });
-            console.log(speakingResultRef.current);
+
+            const { lecture: currentLecture, document: currentDocument } =
+              latestParamsRef.current;
+
+            console.log("API送信パラメータ確認:", {
+              currentLecture,
+              currentDocument,
+            });
 
             const formData = new FormData();
-            formData.append("lecture_id", lecture);
-            formData.append("document_id", document);
-            formData.append("page", Number(page));
+            formData.append("lecture_id", Number(currentLecture));
+            formData.append("document_id", Number(currentDocument));
+            formData.append("page", localStorage.getItem("pageNumber"));
             formData.append("transcript", transcript);
-            formData.append("time", "2026-07-14T01:00:00");
+            formData.append("time", currentFormattedTime);
 
             try {
               await fetch(`${import.meta.env.VITE_API_URL}/transcriptions`, {
                 method: "POST",
                 body: formData,
               });
+              console.log("送信成功");
             } catch (e) {
               console.error("送信失敗:", e);
             }
@@ -144,7 +170,7 @@ function Recording() {
         recognitionRef.current.stop();
       }
     };
-  }, [page]);
+  }, []);
 
   if (recognitionRef.current) {
     recognitionRef.current.onend = () => {
@@ -152,7 +178,7 @@ function Recording() {
         console.log("自動再起動します...");
         setTimeout(() => {
           try {
-            recognitionRef.current.start();
+            if (recognitionRef.current) recognitionRef.current.start();
           } catch (e) {
             console.error("再起動失敗:", e);
           }
