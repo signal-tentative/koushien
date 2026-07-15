@@ -7,9 +7,13 @@ import Script from "./script/Script";
 import LiveHeader from "./LiveHeader";
 import Recording from "./recording/Recording";
 import "./live.css";
-
+import { useNavigate } from "react-router";
 function Live() {
+  const navigate = useNavigate();
+
   function handleEnd() {
+    const endJudge = window.confirm("講義を終了しますか？");
+    if (endJudge) navigate("/dashman");
     console.log("End");
   }
 
@@ -19,8 +23,10 @@ function Live() {
       <div className="Screen">
         <div id="ScreenLeft">
           <FileSelectURL />
+          <div>
+            <Recording />
+          </div>
           <Script />
-          <Recording />
         </div>
         <div id="ScreenRight">
           <button className="endBtn" onClick={handleEnd}>
