@@ -7,7 +7,7 @@ import Script from "./script/Script";
 import LiveHeader from "./LiveHeader";
 import Recording from "./recording/Recording";
 import "./live.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 function Live() {
   const navigate = useNavigate();
 
@@ -16,6 +16,10 @@ function Live() {
     if (endJudge) navigate("/dashman");
     console.log("End");
   }
+  const location = useLocation();
+
+  const { lecture_id } = location?.state || {};
+  console.log(lecture_id);
 
   return (
     <>
