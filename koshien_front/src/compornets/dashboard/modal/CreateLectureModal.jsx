@@ -4,6 +4,7 @@ import { atomUploadJotai } from "./atoms";
 
 import { useState, useEffect, useRef } from "react";
 import "./modal.css";
+import "./createModal.css";
 
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -39,9 +40,9 @@ function CreateLectureModal({ handleClose }) {
   //script
   const [scripts, setScripts] = useState([]);
 
-  const [date, setDate] = useState("");
-  const [time1, setTime1] = useState("");
-  const [time2, setTime2] = useState("");
+  const [date, setDate] = useState("日付");
+  const [time1, setTime1] = useState("開始時刻");
+  const [time2, setTime2] = useState("終了時刻");
 
   useEffect(() => {
     console.log(files);
@@ -176,21 +177,45 @@ function CreateLectureModal({ handleClose }) {
     fileReader.readAsArrayBuffer(file);
   };
 
+  const [showDay, setShowDay] = useState("例：2026年04月01日");
+  const [showStartTime, setShowStartTime] = useState("例：8:00");
+  const [showEndTime, setShowEndTime] = useState("例：9:30");
+
+  function handleDay(ele) {
+    setShowDay(
+      ele.slice(0, 4) + "年" + ele.slice(5, 7) + "月" + ele.slice(8, 10) + "日",
+    );
+  }
+  function handleStartTime(ele) {
+    if (ele[1] == "0") {
+      setShowStartTime(ele.slice(-4));
+      return;
+    }
+    setShowStartTime(ele.slice(-5));
+  }
+  function handleEndTime(ele) {
+    if (ele[1] == "0") {
+      setShowEndTime(ele.slice(-4));
+      return;
+    }
+    setShowEndTime(ele.slice(-5));
+  }
+
   return (
     <>
       <div className="board CreateLectureModal">
         <div id="CLTitle">
-          <p>講義作成</p>
+          講義作成
           <p id="CLbatten" onClick={handleCloseBtn}>
             ×
           </p>
         </div>
         <div id="borderline"></div>
         <div className="CLyoko">
-          <div id="LCLeft">
+          <div id="CLLeft">
             {titlejotai == "default" ? (
               <div className="inputAdress">
-                <div className="inputTitle">講義タイトル</div>
+                <div className="inputTitle">講義タイトル *</div>
                 <input
                   className="inputBox"
                   type="text"
@@ -210,38 +235,40 @@ function CreateLectureModal({ handleClose }) {
                   onChange={(e) => setCertTitle(e.target.value)}
                 />
               </div>
-            )}
+            )}{" "}
+            <div className="timerRow">
+              <div className="TimerTitle">実施日 *</div>
+              <div className="TimerTitle">開始時刻 *</div>
+              <div className="TimerTitle">終了時刻 *</div>
+            </div>
             <div className="inputDateContainer">
-              <LocalizationProvider
-                className="inputDateContainer"
-                dateAdapter={AdapterDayjs}
-              >
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
-                  className="DatePicker"
-                  defaultValue={dayjs("2026-07-17")}
-                  style={{ width: "100px" }}
+                  // defaultValue={dayjs("2026-07-17")}
+                  label="日付"
                   onChange={(e) => {
                     setDate(dayjs(e["$d"]).format("YYYY-MM-DD"));
+                    handleDay(dayjs(e["$d"]).format("YYYY-MM-DD"));
                   }}
                 />
 
                 <TimePicker
-                  className="TimePicker"
-                  label="16:30"
+                  label="開始時間"
                   onChange={(e) => {
-                    setTime1(dayjs(e["$d"]).format("Thh:mm:ss"));
+                    setTime1(dayjs(e["$d"]).format("THH:mm:ss"));
+                    handleStartTime(dayjs(e["$d"]).format("THH:mm"));
                   }}
                 />
                 <TimePicker
-                  className="TimePicker"
-                  label="17:30"
+                  label="終了時間"
                   onChange={(e) => {
-                    setTime2(dayjs(e["$d"]).format("Thh:mm:ss"));
+                    setTime2(dayjs(e["$d"]).format("THH:mm:ss"));
+                    // console.log(e["$d"]);
+                    handleEndTime(dayjs(e["$d"]).format("THH:mm"));
                   }}
                 />
               </LocalizationProvider>
             </div>
-
             {explanationjotai == "default" ? (
               <div className="inputAdress">
                 <div className="inputTitle">説明</div>
@@ -265,37 +292,68 @@ function CreateLectureModal({ handleClose }) {
                 />
               </div>
             )}
-
             {explanationjotai == "default" ? (
               <div>
                 {/* <DriveFolderUploadIcon /> */}
                 <div className="inputTitle">講義資料をアップロード</div>
-                <input
-                  className="inputBox"
-                  type="file"
-                  placeholder="この講義についての説明"
-                  onChange={(e) => {
-                    handleFileChange(e);
-                    setFiles(e.target.files);
-                  }}
-                />
+                <div className="inputBox4">
+                  <input
+                    className="inputBox4"
+                    type="file"
+                    placeholder="この講義についての説明"
+                    onChange={(e) => {
+                      handleFileChange(e);
+                      setFiles(e.target.files);
+                    }}
+                    style={{ opacity: "0" }}
+                  />
+                  <p className="UploadText">
+                    ファイルをドロップ、またはクリックしてファイルをアップロード
+                  </p>
+                  <p className="UploadText2">PDF, PPTXに対応</p>
+                </div>
               </div>
             ) : (
               <div className="inputContener">
                 <div className="inputTitle" style={{ color: "red" }}>
                   講義資料をアップロード
                 </div>
-                <input
-                  className="errorinput"
-                  type="file"
-                  placeholder="この講義についての説明"
-                  onChange={(e) => {
-                    handleFileChange(e);
-                    setFiles(e.target.files);
-                  }}
-                />
+                <div className="inputBox4">
+                  <input
+                    className="errorinput4"
+                    type="file"
+                    placeholder="この講義についての説明"
+                    onChange={(e) => {
+                      handleFileChange(e);
+                      setFiles(e.target.files);
+                    }}
+                  />
+                </div>
               </div>
             )}
+            <div className="inputDateContainer2">
+              <div className="inputBox2">
+                {showDay == "例：2026年04月01日" ? (
+                  <p className="inputBox2TextE">{showDay}</p>
+                ) : (
+                  <p className="inputBox2Text">{showDay}</p>
+                )}
+              </div>
+              <div className="inputBox2">
+                {showStartTime == "例：8:00" ? (
+                  <p className="inputBox2TextE">{showStartTime}</p>
+                ) : (
+                  <p className="inputBox2Text">{showStartTime}</p>
+                )}
+              </div>
+              <div className="inputBox2">
+                {showEndTime == "例：9:30" ? (
+                  <p className="inputBox2TextE">{showEndTime}</p>
+                ) : (
+                  <p className="inputBox2Text">{showEndTime}</p>
+                )}
+              </div>
+            </div>
           </div>
           <div id="CLRight">
             <div id="inputTitle">講義資料</div>
@@ -345,15 +403,15 @@ function CreateLectureModal({ handleClose }) {
           </div>
         </div>
         <div id="borderline"></div>
-        {uploadJotai == "default" ? (
+        {uploadjotai == "default" ? (
           <div>
-            <button className="saveBtn" onClick={handleSubmit}>
+            <button className="createBtn" onClick={handleSubmit}>
               作成する
             </button>
           </div>
         ) : (
           <div className="errorloginBox">
-            <button className="saveBtn" onClick={handleSubmit}>
+            <button className="createBtn" onClick={handleSubmit}>
               作成する
             </button>
             <div className="redText" style={{ fontWeight: 300 }}>
