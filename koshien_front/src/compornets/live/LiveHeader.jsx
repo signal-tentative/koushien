@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import q_ta from "/public/Signal-2.png";
 
-function LiveHeader() {
+function LiveHeader({ lecture_id }) {
   const uid = localStorage.getItem("user_uid");
   const [lecture, setLecture] = useState();
 
   useEffect(() => {
-    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/uid/${uid}`)
+    const user = fetch(`${import.meta.env.VITE_API_URL}/lectures/${lecture_id}`)
       .then((response) => response.json())
       .then((datas) => {
         console.log(datas);
-        setLecture(datas[0]);
+        setLecture(datas);
       });
   }, []);
   console.log(lecture);
@@ -23,7 +23,6 @@ function LiveHeader() {
         </div>
         <div id="headertag">
           <p id="livenow">⚫︎</p>
-          <p id="livetimer">00:00</p>
           <p id="livetitle">-{lecture?.title}</p>
         </div>
       </div>

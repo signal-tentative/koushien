@@ -61,6 +61,8 @@ function RealTimeFB() {
         .then((response) => response.json())
         .then((data) => {
           console.log("サーバーからのレスポンス:", data);
+          if (data.status === 400 || data.status === 500 || data.insight === "")
+            return;
           setInsightText((prev) => {
             const currentList = Array.isArray(prev) ? prev : [];
             return [...currentList, data];
@@ -80,7 +82,7 @@ function RealTimeFB() {
       <div
         className="FBContainer"
         style={{
-          height: "700px",
+          height: "500px",
           overflowY: "auto",
           border: "1px solid #ccc",
           padding: "10px",
@@ -93,6 +95,7 @@ function RealTimeFB() {
         {insightText.map((data) => (
           <div className="FBContener">
             <div className="FBheader">{data.time}</div>
+            <div className="FBbody">未捕捉</div>
             <div>{data.insight}</div>
           </div>
         ))}
