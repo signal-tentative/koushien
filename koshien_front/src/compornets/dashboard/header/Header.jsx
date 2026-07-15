@@ -32,7 +32,7 @@ export function Header() {
 
   return (
     <div className={`dashmanheader ${!userMode ? "instructer" : "student"}`}>
-      <Theme />
+      <Theme userMode={userMode} />
       <div className={`headerBtn ${!userMode ? "instructer" : "student"}`}>
         <div className="switchBtn">
           <AutorenewIcon

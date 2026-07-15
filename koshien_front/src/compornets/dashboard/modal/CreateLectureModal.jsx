@@ -17,6 +17,7 @@ import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import * as pdfjsLib from "pdfjs-dist";
+import { Button } from "@mui/material";
 
 import pdfWorker from "pdfjs-dist/build/pdf.worker.mjs?url";
 // pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cloudflare.com";
@@ -361,7 +362,7 @@ function CreateLectureModal({ handleClose }) {
               <div id="inputTitleName">
                 {files.length === 0 ? "資料がありません" : files[0].name}
               </div>
-              {/* <DeleteIcon className="CLRdelete" onClick={() => {}} /> */}
+              <DeleteIcon className="CLRdelete" onClick={() => {}} />
             </div>
             <p id="scriptTitle">スクリプト</p>
             <div id="CLscriptframe">
