@@ -13,6 +13,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ScriptList from "../list/ScriptList";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router";
 
 function StartModal({ handleClose, SelectLecture }) {
   const [titlejotai, settitlejotai] = useState("default");
@@ -23,6 +24,7 @@ function StartModal({ handleClose, SelectLecture }) {
 
   const [certTitle, setCertTitle] = useState("");
   const [certExplanation, setCertExplanation] = useState(""); //元の名前を入れておくべき
+  const navigate = useNavigate();
 
   function handleCloseBtn() {
     handleClose();
@@ -44,16 +46,18 @@ function StartModal({ handleClose, SelectLecture }) {
   }
 
   function handleStart() {
-    if (!certTitle || !certExplanation) {
-      if (!certTitle) {
-        settitlejotai("error");
-      }
-      if (!certExplanation) {
-        setexplanationjotai("error");
-      }
-      setuploadjotai("error");
-      return;
-    }
+    // if (!certTitle || !certExplanation) {
+    //   if (!certTitle) {
+    //     settitlejotai("error");
+    //   }
+    //   if (!certExplanation) {
+    //     setexplanationjotai("error");
+    //   }
+    //   setuploadjotai("error");
+    //   return;
+    // }
+    window.open(`http://localhost:5173/slide`, "_blank");
+    navigate("/live");
     //post
     console.log("create");
   }
