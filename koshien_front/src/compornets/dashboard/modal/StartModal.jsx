@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { atomSettingModal } from "../atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./modal.css";
 
 import dayjs from "dayjs";
@@ -58,8 +58,15 @@ function StartModal({ handleClose, SelectLecture }) {
     console.log("create");
   }
 
-  console.log("startmodal", SelectLecture);
   const data = SelectLecture;
+  // useEffect(() => {
+  //   const response = fetch(
+  //     `${import.meta.env.VITE_API_URL}/lectures/code/${data.id}`,
+  //   ).then((resData) => {
+  //     const json = resData.json();
+  //     console.log(json);
+  //   });
+  // }, []);
 
   //講義タイトル
   const title = data.title;
@@ -82,12 +89,13 @@ function StartModal({ handleClose, SelectLecture }) {
   const endTime = `${endparts[0]}:${endparts[1]}`;
 
   //年
-  const year = data.startDate.slice(0, 3);
+  const year = data.startDate.slice(0, 4);
   //月
+  let month;
   if (data.startDate[5] == "0") {
-    const month = data.startDate[6];
+    month = data.startDate[6];
   } else {
-    const month = data.startDate[5] + data.startDate[6];
+    month = data.startDate[5] + data.startDate[6];
   }
   //日
   const day = data.startDate[8] + data.startDate[9];
@@ -150,7 +158,9 @@ function StartModal({ handleClose, SelectLecture }) {
               <div id="between-left-left">
                 <p className="SMTitle"> 講義情報</p>
                 <p className="SMtext">講師</p>
-                <p className="SMtext">実施時間</p>
+                <p className="SMtext">
+                  実施時間 {year}年{month}月{day}日 {startTime}~{endTime}
+                </p>
               </div>
               <div id="between-left-right">
                 <p></p>
@@ -158,7 +168,7 @@ function StartModal({ handleClose, SelectLecture }) {
                   {SelectLecture.name}
                 </p>
                 {/* </p>これは講師名だからuidから再度取得する必要がある？ */}
-                <p className="SMtext ">2026年7月10日（金）11:00~12:00</p>
+                <p className="SMtext "></p>
               </div>
             </div>
             <div id="between-right">
