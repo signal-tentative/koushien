@@ -29,9 +29,7 @@ function StartModal({ handleClose, SelectLecture }) {
   function handleCloseBtn() {
     handleClose();
   }
-  function handleCopyBtn() {
-    console.log("Copy完了");
-  }
+
   function handleEditBtn() {
     console.log("edit");
   }
@@ -96,12 +94,25 @@ function StartModal({ handleClose, SelectLecture }) {
   //日
   const day = data.startDate[8] + data.startDate[9];
 
+  const [copyState, setCopyState] = useState(false); //3秒だけ表示される「コピーされました」の表示
+
+  async function handleCopyBtn() {
+    await navigator.clipboard.writeText(data.code);
+    console.log("コピー完了");
+    setCopyState(true);
+    setTimeout(() => {
+      setCopyState(false);
+      console.log("コピー完了の表示を消しました");
+    }, 3000);
+  }
+
   return (
     <>
       <div className="board StartModal">
         <div>
           <div className="JoinTitle">
             <p>講義名:{title}</p>
+
             <EditIcon
               style={{
                 paddingLeft: "30%",

@@ -37,7 +37,7 @@
   display: flex;
   position: absolute;
 
-  bottom: 33%;
+  bottom: 27%;
   left: 35%;
   width: 500px;
 
@@ -88,37 +88,18 @@
   order: 0;
   flex-grow: 0;
 }
-
-.createBtn {
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px 0px;
-  width: 450px;
-  height: 50px;
-
-  background: #ffca75;
-  border: 1px solid #ffc765;
-  border-radius: 10px;
-
-  font-family: "Zen Kaku Gothic New";
-  font-style: normal;
-  font-weight: 550;
-  font-size: 15px;
-  line-height: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+.saveBtn:active {
+  background-color: #e1af59;
+  transition: none;
 }
+
+#column2 {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  flex-direction: row;
+}
+
 .addBtn {
   box-sizing: border-box;
 
@@ -149,6 +130,10 @@
   order: 0;
   flex-grow: 0;
 }
+.addBtn:active {
+  background-color: #e1af59;
+  transition: none;
+}
 .StartBtn {
   box-sizing: border-box;
 
@@ -178,6 +163,10 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+.StartBtn:active {
+  background-color: #e1af59;
+  transition: none;
 }
 .NoaddBtn {
   box-sizing: border-box;
@@ -382,6 +371,10 @@
   order: 0;
   flex-grow: 0;
 }
+#SerchBtn:active {
+  background-color: #e1af59;
+  transition: none;
+}
 #inputAndSerch {
   /* Button */
 
@@ -517,8 +510,9 @@
   flex-direction: row;
 
   align-items: center;
+  text-align: center;
   padding-bottom: 3px;
-  margin-left: 330px;
+  margin-left: 30px;
   width: 470px;
   height: 28px;
 
@@ -736,10 +730,26 @@
   align-items: flex-start;
   padding: 16px 0px;
 
-  width: 100%;
+  width: 93%;
   height: 100%;
 }
 .SMTitle {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.SMTitle2 {
+  text-align: left;
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
   font-weight: 700;
@@ -768,6 +778,37 @@
   flex: none;
   order: 0;
   align-self: stretch;
+  flex-grow: 0;
+}
+.SMtext2 {
+  /* 田中 誠一 */
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  /* ボックスの高さと同一、または125% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.SMtext3 {
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #2a5568;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  text-align: left;
   flex-grow: 0;
 }
 #SMCode {
@@ -803,6 +844,44 @@
 
   height: 75px;
 
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#between-left2 {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#between-left {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+
+  height: 75px;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+#joinFrame1 {
+  display: flex;
+
+  text-align: left;
+  align-items: left;
+  justify-content: column;
+  gap: 10px;
   flex: none;
   order: 0;
   align-self: stretch;

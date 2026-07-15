@@ -275,6 +275,10 @@
   border-radius: 20px;
   background: #fb2c36;
 }
+.endBtn:active {
+  background-color: #c72830;
+  transition: none;
+}
 #livetimer {
   /* 00:00 */
 

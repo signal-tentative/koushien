@@ -39,29 +39,25 @@ function JoinModal({ handleClose, SelectLecture }) {
   }
   console.log("selectLecture", SelectLecture);
   const data = SelectLecture;
-  console.log(data);
+  console.log("これでーた", data);
   let month;
 
   //講義タイトル
   const title = data?.title;
   //講義コード
   const code = data?.code;
+  //講師名
+  const teacher = data.user.name;
   //説明
-  const discription = data?.discription;
+  const discription = data?.description;
   //開始時刻
   const startTimes = data?.startDate?.split("T")[1];
-
   const startparts = startTimes?.split(":");
-
   const startTime = `${startparts[0]}:${startparts[1]}`;
-
   //終了時刻
   const timePart = data?.endDate?.split("T")[1];
-
   const endparts = timePart?.split(":");
-
   const endTime = `${endparts[0]}:${endparts[1]}`;
-
   //年
   const year = data?.startDate?.slice(0, 4);
   //月
@@ -78,31 +74,38 @@ function JoinModal({ handleClose, SelectLecture }) {
       <div className="board JoinModal">
         <div className="">
           <div className="JoinTitle">
-            <p>講義名:{title}</p>{" "}
-            <DeleteIcon style={{ paddingLeft: "10px", color: "#006693" }} />
+            <p style={{ paddingLeft: "30%" }}>講義名:{title}</p>{" "}
+            <DeleteIcon style={{ marginLeft: "20px", color: "#006693" }} />
+            <p
+              onClick={handleCloseBtn}
+              style={{ marginLeft: "auto", paddingRight: "40px" }}
+            >
+              ×
+            </p>
           </div>
           <p className="JoinCode">講義コード:{code}</p>
-          <p onClick={handleCloseBtn}>×</p>
         </div>
 
         <div id="borderline"></div>
 
-        <div id="between-left">
-          <div id="between-left-left">
-            <p lassName="SMtext">講師</p>
-            <p lassName="SMtext">実施日付</p>
+        <div id="column" style={{ width: "94%", height: "60px" }}>
+          <div className="SMTitle2">講義情報</div>
+          <div id="between-left2">
+            <div id="between-left-left">
+              <p className="SMtext">講師</p>
+              <p className="SMtext">実施日付</p>
+            </div>
+            <div id="between-left-right">
+              <p className="SMtext2">{teacher}</p>
+              <p className="SMtext2">
+                {year}年{month}月{day}日 {startTime}-{endTime}
+              </p>
+            </div>
           </div>
-          <div id="between-left-right">
-            <p lassName="SMtext">田中 誠一</p>
-            <p lassName="SMtext">
-              {year}年{month}月{day}日 {startTime}-{endTime}
-            </p>
-          </div>
-          <div className="SMTitle">講義情報</div>
         </div>
         <div id="explanationFrame">
           <p className="SMTitle">説明</p>
-          <p className="SMtext">{discription} </p>
+          <p className="SMtext3">{discription} </p>
         </div>
         <div id="borderline"></div>
 
