@@ -55,14 +55,14 @@ export function Header() {
 
         <SettingsIcon
           id="settingBtn"
-          className={`${!userMode ? "instructer" : "student"}`}
+          className={`${!userMode ? "instructer" : "student"} point`}
           onClick={() => {
             handleSettingModal();
           }}
         ></SettingsIcon>
         <LogoutIcon
           id="logoutBtn"
-          className={`${!userMode ? "instructer" : "student"}`}
+          className={`${!userMode ? "instructer" : "student"} point`}
           onClick={() => {
             localStorage.clear();
             nav("/");

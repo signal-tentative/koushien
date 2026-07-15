@@ -60,6 +60,7 @@
   text-align: center;
   width: 160px;
   gap: 0px;
+  cursor: pointer;
 }
 #settingBtn {
   display: flex;
@@ -84,4 +85,8 @@
 .instructer {
   background-color: #006a98;
   color: #fff;
+}
+
+.point {
+  cursor: pointer;
 }
