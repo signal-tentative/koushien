@@ -1,8 +1,13 @@
 import Logo from "/public/Logo.png";
-export function Theme() {
+import Logo3 from "/public/Logo3.png";
+export function Theme({ userMode }) {
   return (
     <div id="theme">
-      <img id="header-img" src={Logo} style={{ height: "90%" }} />
+      {!userMode ? (
+        <img id="header-img" src={Logo3} style={{ height: "90%" }} />
+      ) : (
+        <img id="header-img" src={Logo} style={{ height: "90%" }} />
+      )}
     </div>
   );
 }
