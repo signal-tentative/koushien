@@ -86,11 +86,6 @@ function ListLeft() {
           if (mapData.execute === true) {
             return;
           }
-
-          // data3.then((resolve) => {
-          //   console.log("res", resolve);
-          //   setAaa(resolve.id);
-          // });
           //日付
 
           const datePart = mapData.startDate.split("T")[0];

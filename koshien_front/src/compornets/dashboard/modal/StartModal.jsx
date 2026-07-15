@@ -13,7 +13,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ScriptList from "../list/ScriptList";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router";
+import { href, useNavigate } from "react-router";
+import { useLocation } from "react-router";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { blue } from "@mui/material/colors";
 
 function StartModal({ handleClose, SelectLecture }) {
   const [titlejotai, settitlejotai] = useState("default");
@@ -21,17 +24,32 @@ function StartModal({ handleClose, SelectLecture }) {
   const [uploadjotai, setuploadjotai] = useState("default");
   const [DeleteScreen, setDeleteScreen] = useState(false);
   const [CopyState, setCopyScreen] = useState(false);
+  const [url, setUrl] = useState("");
+  const [docId, setDocId] = useState("");
 
   const [certTitle, setCertTitle] = useState("");
   const [certExplanation, setCertExplanation] = useState(""); //元の名前を入れておくべき
   const navigate = useNavigate();
+  const [copyState, setCopyState] = useState(false); //3秒だけ表示される「コピーされました」の表示
+  async function handleCopyBtn() {
+    await navigator.clipboard.writeText(data.code);
+    console.log("コピー完了");
+    setCopyState(true);
+    setTimeout(() => {
+      setCopyState(false);
+      console.log("コピー完了の表示を消しました");
+    }, 3000);
+  } //return内,falseはなくていい
+  {
+    copyState ? <div>「コピーされました」true</div> : <div>false</div>;
+  }
 
   function handleCloseBtn() {
     handleClose();
   }
-  function handleCopyBtn() {
-    console.log("Copy完了");
-  }
+  // function handleCopyBtn() {
+  //   console.log("Copy完了");
+  // }
   function handleEditBtn() {
     console.log("edit");
   }
@@ -64,13 +82,36 @@ function StartModal({ handleClose, SelectLecture }) {
 
   const data = SelectLecture;
   // useEffect(() => {
-  //   const response = fetch(
-  //     `${import.meta.env.VITE_API_URL}/lectures/code/${data.id}`,
-  //   ).then((resData) => {
-  //     const json = resData.json();
-  //     console.log(json);
+  //   return Promise.all(
+  //     fetch(`${import.meta.env.VITE_API_URL}/lectures/code/${data.id}`).then(
+  //       (resData) => {
+  //         const json = resData.json();
+  //         console.log(json);
+  //       },
+  //     ),
+  //   ).then((data) => {
+  //     console.log(data);
   //   });
   // }, []);
+
+  useEffect(() => {
+    Promise.all([
+      fetch(`${import.meta.env.VITE_API_URL}/documents/${data.id}`).then(
+        (resData) => {
+          return resData.json();
+        },
+      ),
+    ])
+      .then((results) => {
+        const jsonData = results[0];
+        console.log("Promise.all での取得成功:", jsonData);
+        setUrl(jsonData.link);
+        setDocId(jsonData.id);
+      })
+      .catch((error) => {
+        console.error("通信エラー:", error);
+      });
+  }, [data.id]);
 
   //レクチャーid
   const lecId = data.id;
@@ -116,7 +157,7 @@ function StartModal({ handleClose, SelectLecture }) {
             <p>講義名:{title}</p>
             <EditIcon
               style={{
-                paddingLeft: "30%",
+                paddingLeft: "10%",
                 paddingRight: "10%",
                 color: "#006693",
                 cursor: "pointer",
@@ -188,10 +229,12 @@ function StartModal({ handleClose, SelectLecture }) {
               <p className="SMTitle" style={{ marginRight: "20px" }}>
                 講義コード
               </p>
-              <p id="SMCode">{code}</p>
-              <p id="coppy" onClick={handleCopyBtn}>
-                📁
-              </p>
+              <div id="between-right-inside">
+                <p id="SMCode">{code}</p>
+                <p id="coppy" onClick={handleCopyBtn}>
+                  <ContentCopyIcon sx={{ color: "blue" }}></ContentCopyIcon>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -205,13 +248,15 @@ function StartModal({ handleClose, SelectLecture }) {
           <div id="materialsFrame">
             <p className="SMTitle">資料</p>
             <p className="SMtext" style={{ textDecorationLine: "underline" }}>
-              資料
+              <a href={url} target="_blank" rel="noopener noreferre">
+                資料
+              </a>
             </p>
           </div>
 
           <div id="scriptFrame">
             <p className="SMTitle">スクリプト</p>
-            <ScriptList />
+            <ScriptList documentId={docId} />
           </div>
         </div>
         <div id="borderline"></div>

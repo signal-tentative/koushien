@@ -338,6 +338,7 @@
   border: 1px solid rgba(0, 119, 168, 0.2);
   border-radius: 10px;
 }
+
 .AddTitleHeader {
   display: flex;
   align-items: center;
@@ -525,8 +526,9 @@
   flex-direction: row;
 
   align-items: center;
+  left: 30px;
   padding-bottom: 3px;
-  margin-left: 330px;
+  margin-left: 230px;
   width: 470px;
   height: 28px;
 
@@ -725,9 +727,12 @@
 
 #coppy {
   float: left;
-
-  width: 95px;
+  top: 10px;
+  left: 100px;
+  width: 30px;
   height: 28px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 .InfoAndCode {
   display: flex;
@@ -938,4 +943,10 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+#between-right-inside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
