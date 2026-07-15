@@ -57,7 +57,7 @@ function StartModal({ handleClose, SelectLecture }) {
     //   return;
     // }
     window.open(`http://localhost:5173/slide`, "_blank");
-    navigate("/live");
+    navigate("/live", { state: { lecture_id: lecId } });
     //post
     console.log("create");
   }
@@ -71,6 +71,10 @@ function StartModal({ handleClose, SelectLecture }) {
   //     console.log(json);
   //   });
   // }, []);
+
+  //レクチャーid
+  const lecId = data.id;
+  console.log(lecId);
 
   //講義タイトル
   const title = data.title;
