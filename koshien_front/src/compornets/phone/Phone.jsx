@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
+import { useRef } from "react";
 import "./phone.css";
 
 // const handleButton = () => {
@@ -27,6 +28,7 @@ import "./phone.css";
 // });
 import q_ta from "/public/Signal-2.png";
 import dayjs from "dayjs";
+import Logo from "/public/Logo2.png";
 
 function Phone() {
   const [array, setArray] = useState([]);
@@ -39,10 +41,15 @@ function Phone() {
   //     setMowa(false);
   //   }, 3000);
   // }
+  const scrollContainerRef = useRef(null);
   function handleWhat() {
     const now = new Date();
     setArray([...array, dayjs(now).format("HH:mm")]);
     console.log(array);
+    const container = scrollContainerRef.current;
+    container.scrollTop = container.scrollHeight;
+    // const target = document.getElementsByClassName("TalkFrame");
+    // target.scrollIntoView(false);
   }
   let time1 = "10:01";
   let time2 = "10:01";
@@ -57,9 +64,11 @@ function Phone() {
   return (
     <>
       <div className="PhoneFrame">
-        <div className="PhoneHeader">学びのシグナル</div>
+        <div className="PhoneHeader">
+          <img id="Logo" src={Logo} alt="" />
+        </div>
         <div>
-          <div className="TalkFrame">
+          <div className="TalkFrame" ref={scrollContainerRef}>
             <div className="talk">
               <img className="talk_Q_ta" src={q_ta} alt="bookIcon" />
               <p className="board PhoneText">

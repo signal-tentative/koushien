@@ -6,7 +6,7 @@
 }
 path {
   width: 150px;
-  color: #a8c4e0;
+  /* color: #a8c4e0; */
   padding-right: 30px;
 }
 .css-1ysp02-MuiButtonBase-root-MuiIconButton-root {
@@ -34,90 +34,12 @@ path {
   padding-bottom: 20px;
   margin-left: -20px;
 }
-/* .MuiPickersInputBase-root {
-  width: 180px;
-  height: 50px;
-  box-sizing: border-box;
-  color: #d9ebf2;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px;
-
-  background: #f5fbfe;
-  border: 1px solid rgba(0, 119, 168, 0.2);
-  border-radius: 10px;
-}
-.inputDateContainer::placeholder {
-  color: #d9ebf2;
-}
-.MuiPickersInputBase-root::placeholder {
-  color: #d9ebf2;
-}
-.MuiMuiPickersInputBase-sectionsContainer::placeholder {
-  color: #d9ebf2;
-}
-.MuiPickersInputBase-sectionsContainer {
-  width: 180px;
-  height: 50px;
-  box-sizing: border-box;
-  padding: 0px;
-  color: #d9ebf2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-
-  border-radius: 10px;
-}
-.MuiFormControl-root::placeholder {
-  color: #d9ebf2;
-  width: 200px;
-  height: 50px;
-  box-sizing: border-box;
-  padding: 0px;
-  font-size: 10px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-
-  background: #f5fbfe;
-  border: 1px solid rgba(0, 119, 168, 0.2);
-  border-radius: 10px;
-}
-.MuiFormControl-root {
-  width: 180px;
-  height: 50px;
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0px;
-
-  background: #f5fbfe;
-  border: 1px solid rgba(0, 119, 168, 0.25);
-  border-radius: 10px;
-}
-.MuiPickersOutlinedInput-root {
-  color: #006693;
-}
-.MuiPickersInputBase-root:hover {
-  color: #006693;
-} */
-
 .MuiPickersInputBase-root {
   opacity: 0;
   width: 180px;
   height: 50px;
   box-sizing: border-box;
-  color: #d9ebf2;
+  /* color: #d9ebf2; */
 
   display: flex;
   flex-direction: row;
@@ -134,10 +56,12 @@ path {
 .MuiPickersInputBase-root::placeholder {
   color: #d9ebf2;
 }
-.MuiFormControl-root {
-}
+
 .css-113d811-MuiFormLabel-root-MuiInputLabel-root {
   opacity: 0;
+}
+.createBtn:active {
+  background-color: #ff0000; /* さらに濃い青に変更 */
 }
 .inputBox2 {
   box-sizing: border-box;
@@ -240,12 +164,47 @@ path {
   order: 0;
   flex-grow: 0;
 }
+.CLRdelete {
+  color: #006693;
+  padding-left: 20px;
+}
+#CLTitle {
+  width: 100px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+
+  margin-left: 10%;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  width: 185px;
+
+  color: #0d2d3a;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+#CLbatten {
+  width: 20px;
+  flex: none;
+  margin-left: -100px;
+  position: relative;
+
+  bottom: 0px;
+  left: 235%;
+}
 .UploadText2 {
   width: 550px;
   height: 30px;
 
   position: absolute;
-  bottom: 128px;
+  bottom: 160px;
   font-family: "Zen Kaku Gothic Antique";
   font-style: normal;
   font-weight: 400;

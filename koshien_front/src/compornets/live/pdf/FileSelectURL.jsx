@@ -3,7 +3,7 @@ import Pdf from "./Pdf";
 import { useAtom } from "jotai";
 import { showTestPdfURL } from "../atom";
 
-function FileSelectURL() {
+function FileSelectURL({ lecture_id }) {
   const [selectedPdf, setSelectedPdf] = useState(null);
   const [testPdfURL, setSelectTestPdfURL] = useAtom(showTestPdfURL);
   const [lectures, setLectures] = useState();
@@ -28,10 +28,10 @@ function FileSelectURL() {
   };
 
   const handleDocument = async () => {
-    console.log(lecture);
+    console.log(lecture_id);
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/documents/${lecture[0].id}`,
+        `${import.meta.env.VITE_API_URL}/documents/${lecture_id}`,
       );
       if (!res.ok) throw new Error("バックエンドの通信に失敗しました");
 

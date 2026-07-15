@@ -32,7 +32,7 @@ export function Header() {
 
   return (
     <div className={`dashmanheader ${!userMode ? "instructer" : "student"}`}>
-      <Theme />
+      <Theme userMode={userMode} />
       <div className={`headerBtn ${!userMode ? "instructer" : "student"}`}>
         <div className="switchBtn">
           <AutorenewIcon
@@ -55,14 +55,14 @@ export function Header() {
 
         <SettingsIcon
           id="settingBtn"
-          className={`${!userMode ? "instructer" : "student"}`}
+          className={`${!userMode ? "instructer" : "student"} point`}
           onClick={() => {
             handleSettingModal();
           }}
         ></SettingsIcon>
         <LogoutIcon
           id="logoutBtn"
-          className={`${!userMode ? "instructer" : "student"}`}
+          className={`${!userMode ? "instructer" : "student"} point`}
           onClick={() => {
             localStorage.clear();
             nav("/");

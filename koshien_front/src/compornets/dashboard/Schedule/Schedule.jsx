@@ -34,20 +34,6 @@ function Schedule(data, user) {
   const [userSide, setSide] = useState("受講予定の講義一覧");
   const [userMode, setUserMode] = useAtom(atomUserMode);
 
-  async function list() {
-    const classList = data.map(({ img, title, date, start_time, end_time }) => {
-      <li className="class">
-        <img src={img} alt="イメージ"></img>
-        <p>{title}</p>
-        <div className="date">
-          <p>{data}</p>
-          <p>
-            {start_time} - {end_time}
-          </p>
-        </div>
-      </li>;
-    });
-  }
   useEffect(() => {
     if (userMode === false) {
       setSide("実施予定の講義一覧");

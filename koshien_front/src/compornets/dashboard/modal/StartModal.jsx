@@ -160,13 +160,14 @@ function StartModal({ handleClose, SelectLecture }) {
                 paddingLeft: "10%",
                 paddingRight: "10%",
                 color: "#006693",
+                cursor: "pointer",
               }}
               onClick={handleEditBtn}
             />
             {DeleteScreen ? (
               <div id="deleteFrame">
                 <DeleteIcon
-                  style={{ color: "#006693" }}
+                  style={{ color: "#006693", cursor: "pointer" }}
                   onClick={handleDeleteIconBtn}
                 />
                 <div className="board deleteScreen">
@@ -187,13 +188,17 @@ function StartModal({ handleClose, SelectLecture }) {
             ) : (
               <div id="deleteFrame">
                 <DeleteIcon
-                  style={{ color: "#006693" }}
+                  style={{ color: "#006693", cursor: "pointer" }}
                   onClick={handleDeleteIconBtn}
                 />
               </div>
             )}
 
-            <p id="StartBatten" onClick={handleCloseBtn}>
+            <p
+              id="StartBatten"
+              style={{ cursor: "pointer" }}
+              onClick={handleCloseBtn}
+            >
               ×
             </p>
           </div>

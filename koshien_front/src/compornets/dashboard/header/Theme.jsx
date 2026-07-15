@@ -1,8 +1,13 @@
-export function Theme() {
+import Logo from "/public/Logo.png";
+import Logo3 from "/public/Logo3.png";
+export function Theme({ userMode }) {
   return (
     <div id="theme">
-      <img id="header-img" src="Q_ta.png" style={{ width: "80px" }} />
-      <p className="header-text">まなびのシグナル</p>
+      {!userMode ? (
+        <img id="header-img" src={Logo3} style={{ height: "90%" }} />
+      ) : (
+        <img id="header-img" src={Logo} style={{ height: "90%" }} />
+      )}
     </div>
   );
 }

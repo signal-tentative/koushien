@@ -1,36 +1,41 @@
 .PhoneFrame {
   /* max-width: 375px; */
   max-width: 100%;
-  /* height: 667px; */
+  height: 100%;
   background-color: #e8f6fb;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
 }
 .PhoneHeader {
   box-sizing: border-box;
 
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: end;
+  justify-content: center;
+
   padding: 12px 24px;
 
   /* width: 375px; */
   width: 100%;
   height: 76px;
 
-  background-color: #204b7b;
+  background-color: #ffffff;
 
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+  margin-bottom: 5px;
+}
+#Logo {
+  height: 90%;
 }
 .PhoneText {
   width: 265px;
   height: auto;
-  font-family: "Zen Kaku Gothic Antique";
+  font-family: monospace;
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -40,7 +45,6 @@
   align-items: center;
   text-align: left;
   letter-spacing: 0.46px;
-  text-transform: uppercase;
 
   color: #204b7b;
 
@@ -55,7 +59,7 @@
 .SendText {
   width: 280px;
   height: 40px;
-  font-family: "Zen Kaku Gothic Antique";
+  /* font-family: "Zen Kaku Gothic Antique"; */
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -81,7 +85,7 @@
 
   text-align: right;
 
-  font-family: "Zen Kaku Gothic Antique";
+  /* font-family: "Zen Kaku Gothic Antique"; */
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -91,7 +95,7 @@
 
   text-align: right;
 
-  font-family: "Zen Kaku Gothic Antique";
+  /* font-family: "Zen Kaku Gothic Antique"; */
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -114,7 +118,7 @@
   border-radius: 10px;
 
   color: #204b7b;
-  font-family: "Zen Kaku Gothic Antique";
+  /* font-family: "Zen Kaku Gothic Antique"; */
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
@@ -134,7 +138,7 @@
 }
 .TalkFrame {
   width: 375px;
-  height: 500px;
+  height: 530px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -148,7 +152,8 @@
   width: 60px;
 }
 .PhoneBtnFrame {
-  width: 375px;
+  margin-top: 10px;
+  height: 100px;
   display: flex;
   background-color: #e8f6fb;
   justify-content: center;
