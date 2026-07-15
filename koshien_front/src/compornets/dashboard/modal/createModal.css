@@ -1,0 +1,303 @@
+.MuiPickersSectionList-sectionContent {
+  color: #a8c4e0;
+}
+.MuiPickersInputBase-sectionAfter {
+  color: #a8c4e0;
+}
+path {
+  width: 150px;
+  color: #a8c4e0;
+  padding-right: 30px;
+}
+.css-1ysp02-MuiButtonBase-root-MuiIconButton-root {
+  position: relative;
+  z-index: 9000;
+
+  opacity: 1;
+  width: 180px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: aqua;
+
+  border-radius: 10px;
+}
+.inputDateContainer {
+  position: relative;
+  z-index: 9000;
+  opacity: 0;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+  margin-left: -20px;
+}
+/* .MuiPickersInputBase-root {
+  width: 180px;
+  height: 50px;
+  box-sizing: border-box;
+  color: #d9ebf2;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.2);
+  border-radius: 10px;
+}
+.inputDateContainer::placeholder {
+  color: #d9ebf2;
+}
+.MuiPickersInputBase-root::placeholder {
+  color: #d9ebf2;
+}
+.MuiMuiPickersInputBase-sectionsContainer::placeholder {
+  color: #d9ebf2;
+}
+.MuiPickersInputBase-sectionsContainer {
+  width: 180px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0px;
+  color: #d9ebf2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  border-radius: 10px;
+}
+.MuiFormControl-root::placeholder {
+  color: #d9ebf2;
+  width: 200px;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 0px;
+  font-size: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.2);
+  border-radius: 10px;
+}
+.MuiFormControl-root {
+  width: 180px;
+  height: 50px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.25);
+  border-radius: 10px;
+}
+.MuiPickersOutlinedInput-root {
+  color: #006693;
+}
+.MuiPickersInputBase-root:hover {
+  color: #006693;
+} */
+
+.MuiPickersInputBase-root {
+  opacity: 0;
+  width: 180px;
+  height: 50px;
+  box-sizing: border-box;
+  color: #d9ebf2;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.2);
+  border-radius: 10px;
+  background-color: aqua;
+}
+
+.MuiPickersInputBase-root::placeholder {
+  color: #d9ebf2;
+}
+.MuiFormControl-root {
+}
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root {
+  opacity: 0;
+}
+.inputBox2 {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  padding: 12px 16px;
+  width: 181px;
+  height: 50px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.25);
+  border-radius: 10px;
+}
+.inputBox2Text {
+  /* 例：マルチパスウェイ戦略入門 */
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #0d2d3a;
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.inputBox2TextE {
+  /* 例：マルチパスウェイ戦略入門 */
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #d9ebf2;
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.inputBox3 {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 16px;
+  width: 550px;
+  height: 50px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.25);
+  border-radius: 10px;
+}
+
+.inputBox4 {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 16px;
+  width: 550px;
+  height: 140px;
+
+  background: #f5fbfe;
+  border: 1px solid rgba(0, 119, 168, 0.25);
+  border-radius: 10px;
+}
+.UploadText {
+  /* ファイルをドロップ、またはクリックしてファイルをアップロード */
+
+  width: 550px;
+  height: 30px;
+
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  position: absolute;
+  margin-top: 30px;
+  margin-left: -15px;
+
+  text-align: center;
+
+  color: #006693;
+  margin-right: 20px;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.UploadText2 {
+  width: 550px;
+  height: 30px;
+
+  position: absolute;
+  bottom: 128px;
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  /* ボックスの高さと同一、または133% */
+  text-align: center;
+
+  color: #d9ebf2;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.inputDateContainer2 {
+  position: relative;
+  z-index: 8000;
+
+  position: absolute;
+
+  top: 179px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 0px;
+}
+.timerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: -10px;
+}
+.TimerTitle {
+  width: 183px;
+  font-family: "Zen Kaku Gothic Antique";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 5px 0px;
+  text-align: left;
+
+  /* ボックスの高さと同一、または143% */
+
+  color: #0d2d3a;
+
+  /* オートレイアウト内部 */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
