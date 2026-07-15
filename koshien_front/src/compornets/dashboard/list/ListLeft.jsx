@@ -22,6 +22,7 @@ function ListLeft() {
   const [openLL, setOpenLL] = React.useState(false);
   const [openSM, setOpenSM] = React.useState(false);
   const [lecData, setLecData] = useState([]);
+  const [url, setUrl] = useState("");
 
   const handleOpenLL = () => setOpenLL(true);
   const handleCloseLL = () => setOpenLL(false);
@@ -63,8 +64,20 @@ function ListLeft() {
         });
     }
   }, [UserMode]);
-
-  const [aaa, setAaa] = useState("");
+  useEffect(() => {
+    const response = fetch(
+      `${import.meta.env.VITE_API_URL}/lectures/code/${data.id}`,
+    )
+      .then((data) => {
+        data.json();
+      })
+      .then((jsonData) => {
+        console.log("jsonデータ確認", jsonData);
+        setUrl(jsonData);
+      });
+  }, []);
+  console.log(data.id);
+  console.log(url);
   return (
     <>
       <div className="List">
