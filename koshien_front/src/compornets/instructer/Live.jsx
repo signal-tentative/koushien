@@ -7,12 +7,18 @@ import Script from "./Script";
 import sikaku from "/public/sikaku.png";
 import LiveHeader from "./LiveHeader";
 import Recording from "../live/recording/Recording";
+import { useLocation } from "react-router";
 
 function Live() {
   function handleEnd() {
     console.log("End");
   }
 
+  const location = useLocation();
+
+  const lecture_id = location.state || {};
+
+  console.log("これはれくちゃーidですよ", lecture_id);
   return (
     <>
       <LiveHeader />
@@ -20,6 +26,7 @@ function Live() {
         <div id="liveleft">
           <FileSelectURL />
           <Script />
+          <p>これを確認したい{lecture_id}</p>
         </div>
         <div id="liveright">
           <WhatGraph />
