@@ -59,6 +59,7 @@
 }
 
 .saveBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -90,6 +91,7 @@
 }
 
 .createBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -120,6 +122,7 @@
   flex-grow: 0;
 }
 .addBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -150,6 +153,7 @@
   flex-grow: 0;
 }
 .StartBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -180,6 +184,7 @@
   flex-grow: 0;
 }
 .NoaddBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -355,6 +360,7 @@
   color: #0d2d3a;
 }
 #SerchBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -460,6 +466,7 @@
   flex-grow: 0;
 }
 #batten {
+  cursor: pointer;
   flex: none;
   margin-left: 100px;
   position: relative;
@@ -468,6 +475,7 @@
   left: 100px;
 }
 #batten2 {
+  cursor: pointer;
   flex: none;
   margin-left: 100px;
   position: relative;
@@ -877,6 +885,7 @@
   top: 65px;
 }
 #redDeleteBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -908,6 +917,7 @@
   flex-grow: 0;
 }
 #grayNotDeleteBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -940,6 +950,7 @@
 }
 
 #deleteScreenBtn {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   gap: 20px;
