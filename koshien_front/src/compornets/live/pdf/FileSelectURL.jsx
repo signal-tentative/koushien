@@ -88,7 +88,9 @@ function FileSelectURL({ lecture_id }) {
 
   return (
     <div>
-      <button onClick={handleDocument}>講義資料表示</button>
+      <button id="kougisiryou" onClick={handleDocument}>
+        講義資料表示
+      </button>
       {/* <input type="file" accept=".pdf" onChange={handleFileChange} /> */}
       {pdfFile ? <Pdf url={pdfFile} /> : <p>PDFファイル表示場所</p>}
     </div>

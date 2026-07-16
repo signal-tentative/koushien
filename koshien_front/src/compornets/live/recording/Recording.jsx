@@ -212,13 +212,23 @@ function Recording() {
   return (
     <>
       <p>音声ステータス: {recordingStatus ? "録音中" : "停止中"}</p>
-      <button onClick={handleStart} disabled={recordingStatus}>
-        録音スタート
-      </button>
-      <button onClick={handleStop} disabled={!recordingStatus}>
-        録音ストップ
-      </button>
-      <div>経過時間: {count}秒</div>
+      <div style={{ display: "flex" }}>
+        <button
+          id="rokuonkaishi"
+          onClick={handleStart}
+          disabled={recordingStatus}
+        >
+          録音スタート
+        </button>
+        <button
+          id="rokuonteishi"
+          onClick={handleStop}
+          disabled={!recordingStatus}
+        >
+          録音ストップ
+        </button>
+        <div>経過時間: {count}秒</div>
+      </div>
     </>
   );
 }

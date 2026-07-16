@@ -45,7 +45,7 @@ const Pdf = ({ url }) => {
           key={`${pageNumber}_${scale}`}
           pageNumber={pageNumber}
           scale={scale}
-          width={600}
+          width={635}
           renderTextLayer={false}
           renderAnnotationLayer={false}
         />
