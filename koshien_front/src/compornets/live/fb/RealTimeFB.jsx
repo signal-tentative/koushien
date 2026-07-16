@@ -89,28 +89,30 @@ function RealTimeFB() {
         }}
       >
         <div>リアルタイムフィードバック</div>
-        {insightText.map((data) => {
-          const json = JSON.parse(data.insight);
-          console.log(json);
-          const formattedDate = new Intl.DateTimeFormat("ja-JP", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false, // 24時間表記にする
-          }).format(new Date(data.time));
-          return (
-            <div className="FBContener">
-              <div className="FBheader">{formattedDate}</div>
-              <div className="FBbody">未捕捉</div>
-              <div style={{ position: "relative", bottom: 10, fontSize: 16 }}>
-                <div>【AI回答】 : {json.context}。</div>
-                <div>【理由】 : {json.reason}</div>
+        {insightText
+          .sort((a, b) => b.id - a.id)
+          .map((data) => {
+            const json = JSON.parse(data.insight);
+            console.log(json);
+            const formattedDate = new Intl.DateTimeFormat("ja-JP", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false, // 24時間表記にする
+            }).format(new Date(data.time));
+            return (
+              <div className="FBContener">
+                <div className="FBheader">{formattedDate}</div>
+                <div className="FBbody">未捕捉</div>
+                <div style={{ position: "relative", bottom: 10, fontSize: 16 }}>
+                  <div>【AI回答】 : {json.context}。</div>
+                  <div>【理由】 : {json.reason}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </>
   );

@@ -71,7 +71,10 @@ function StartModal({ handleClose, SelectLecture }) {
     //   setuploadjotai("error");
     //   return;
     // }
-    window.open(`http://localhost:5173/slide`, "_blank");
+    window.open(
+      `http://ec2-52-45-28-109.compute-1.amazonaws.com:5173/slide`,
+      "_blank",
+    );
     navigate("/live", { state: { lecture_id: lecId } });
     //post
     console.log("create");
