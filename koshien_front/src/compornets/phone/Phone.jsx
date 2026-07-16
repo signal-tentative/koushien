@@ -32,15 +32,7 @@ import Logo from "/public/Logo2.png";
 
 function Phone() {
   const [array, setArray] = useState([]);
-  // const [mowa, setMowa] = useState(false);
 
-  // function handleWhat() {
-  //   setMowa(true);
-  //   console.log("push");
-  //   setTimeout(() => {
-  //     setMowa(false);
-  //   }, 3000);
-  // }
   const scrollContainerRef = useRef(null);
   function handleWhat() {
     const now = new Date();
@@ -48,9 +40,8 @@ function Phone() {
     console.log(array);
     const container = scrollContainerRef.current;
     container.scrollTop = container.scrollHeight;
-    // const target = document.getElementsByClassName("TalkFrame");
-    // target.scrollIntoView(false);
   }
+
   let time1 = "10:01";
   let time2 = "10:01";
   let time3 = "10:01";

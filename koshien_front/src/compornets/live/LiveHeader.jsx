@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import q_ta from "/public/Signal-2.png";
+import Logo from "/public/Logo3.png";
 
 function LiveHeader({ lecture_id }) {
   const uid = localStorage.getItem("user_uid");
@@ -18,8 +18,7 @@ function LiveHeader({ lecture_id }) {
     <>
       <div className="liveheader">
         <div className="headerTitle">
-          <img id="LiveQ_ta" src={q_ta} alt="bookIcon" />
-          <p id="headerTitle">まなびのシグナル</p>
+          <img src={Logo} style={{ height: "100%" }} alt="bookIcon" />
         </div>
         <div id="headertag">
           <p id="livenow">⚫︎</p>

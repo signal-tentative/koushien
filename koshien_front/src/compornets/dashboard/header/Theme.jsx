@@ -4,9 +4,9 @@ export function Theme({ userMode }) {
   return (
     <div id="theme">
       {!userMode ? (
-        <img id="header-img" src={Logo3} style={{ height: "90%" }} />
+        <img id="header-img" src={Logo3} style={{ height: "95%" }} />
       ) : (
-        <img id="header-img" src={Logo} style={{ height: "90%" }} />
+        <img id="header-img" src={Logo} style={{ height: "95%" }} />
       )}
     </div>
   );

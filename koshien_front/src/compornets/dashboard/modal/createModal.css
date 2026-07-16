@@ -60,8 +60,40 @@ path {
 .css-113d811-MuiFormLabel-root-MuiInputLabel-root {
   opacity: 0;
 }
+
+.createBtn {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 0px;
+  width: 450px;
+  height: 50px;
+
+  background: #ffca75;
+  border: 1px solid #efba5e;
+  border-radius: 10px;
+
+  font-family: "Zen Kaku Gothic New";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 15px;
+  line-height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
 .createBtn:active {
-  background-color: #ff0000; /* さらに濃い青に変更 */
+  background-color: #e1af59;
+  transition: none;
 }
 .inputBox2 {
   box-sizing: border-box;

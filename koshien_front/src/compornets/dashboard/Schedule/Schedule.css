@@ -134,6 +134,10 @@
   left: 540px;
   top: 465px; */
 }
+#CreateLectureBtn:active {
+  background-color: #e1af59;
+  transition: none;
+}
 #SyncAltIcon {
   transform: rotate(90deg);
   float: left;
