@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-function Script() {
+function Script({ lecture_id }) {
   const [script, setScript] = useState([]);
-
+  const document_id = Number(lecture_id);
   useEffect(() => {
-    const res = fetch(`${import.meta.env.VITE_API_URL}/scripts`)
+    const res = fetch(`${import.meta.env.VITE_API_URL}/scripts/${document_id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
