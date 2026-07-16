@@ -38,8 +38,8 @@
   padding: 10px;
   padding-top: 30px;
   gap: 50px;
-
-  width: 30%;
+  margin-left: -33px;
+  width: 40%;
   height: 100%;
 
   background: #ffffff;
@@ -52,7 +52,7 @@
 }
 #ScriptBoard {
   display: flex;
-  width: 350%;
+  width: 300%;
   height: 68px;
 
   padding: 24px;

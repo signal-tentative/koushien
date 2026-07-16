@@ -143,3 +143,70 @@
   display: flex;
   flex-direction: row;
 }
+
+#kougisiryou {
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  padding: 4px 10px;
+  gap: 6px;
+  width: 100px;
+  height: 28px;
+  cursor: pointer;
+  border: 0px;
+
+  /* align-items: center; */
+
+  background: #ffc765;
+  box-shadow: 0px 0px 8px #dbbc85;
+  border-radius: 10px;
+
+  /* position: relative;
+  width: 100px;
+  left: 540px;
+  top: 465px; */
+}
+#rokuonkaishi {
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  padding: 4px 10px;
+  gap: 6px;
+  width: 100px;
+  height: 28px;
+  cursor: pointer;
+  border: 0px;
+
+  /* align-items: center; */
+
+  background: #36f202;
+  box-shadow: 0px 0px 8px #dbbc85;
+  border-radius: 1px;
+
+  /* position: relative;
+  width: 100px;
+  left: 540px;
+  top: 465px; */
+}
+#rokuonteishi {
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center; */
+  padding: 4px 10px;
+  gap: 6px;
+  width: 100px;
+  height: 28px;
+  cursor: pointer;
+  border: 0px;
+
+  /* align-items: center; */
+
+  background: #36f202;
+  box-shadow: 0px 0px 8px #dbbc85;
+  border-radius: 1px;
+
+  /* position: relative;
+  width: 100px;
+  left: 540px;
+  top: 465px; */
+}
