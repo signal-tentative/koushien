@@ -12,8 +12,8 @@ function PointTitle() {
             color: "#0d2d3a",
             width: "40px",
             position: "relative",
-            top: "3px",
-            left: "85px",
+            top: "-23px",
+            left: "140px",
           }}
         />
         <p id="siritaiText">受講生のもっと知りたいポイント</p>

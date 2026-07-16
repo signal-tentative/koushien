@@ -13,8 +13,11 @@ import StartModal from "../modal/StartModal";
 
 import { data } from "react-router";
 //whichには右側か左側かが入ってくる
-function ScriptList() {
+function ScriptList(documentId) {
   const [UserMode, setUserMode] = useAtom(atomUserMode);
+  const scriptData = [];
+  const [scriptList, setScriptList] = useState([]);
+  const [num, setNum] = useState("");
 
   const [openLL, setOpenLL] = React.useState(false);
   const [openSM, setOpenSM] = React.useState(false);
@@ -32,22 +35,36 @@ function ScriptList() {
     handleOpenSM();
   };
 
-  const data = [
-    {
-      script: "こんち",
-    },
-    { script: "こんにちは" },
-    { script: "こんにちは" },
-    {
-      script:
-        "こんにちはああああああああああああああああああああああああああああああああああああああああああ",
-    },
-    { script: "こんにちは" },
-    { script: "こんにちは" },
-    { script: "こんにちは" },
-    { script: "こんにちは" },
-    { script: "こんにちは" },
-  ];
+  console.log(documentId.documentId);
+  // setNum(documentId);
+  useEffect(() => {
+    if (!documentId || !documentId.documentId) {
+      console.warn("documentId が存在しないため、リクエストをスキップしました");
+      return;
+    }
+    const response = fetch(
+      `${import.meta.env.VITE_API_URL}/scripts/${documentId.documentId}`,
+    )
+      .then((data) => data.json())
+      .then((jsondata) => {
+        console.log(jsondata);
+        return jsondata;
+      })
+      .then((scriptArray) => {
+        const sortedArray = [...scriptArray].sort((a, b) => {
+          return (a.page || 0) - (b.page || 0);
+        });
+
+        sortedArray.map((scr) => {
+          console.log(scr.script);
+          scriptData.push({ script: scr.script });
+          console.log(scriptData);
+        });
+        return scriptData;
+      })
+      .then((data) => setScriptList(data));
+  }, [documentId]);
+
   function list() {
     data.map(({ img, title, date, start_time, end_time }) => {
       <>
@@ -68,10 +85,10 @@ function ScriptList() {
   return (
     <>
       <div className="ScriptList">
-        {data.map((data, index) => {
+        {scriptList.map((data, index) => {
           return (
             <div className="ScriptListContainer">
-              <p className="ScriptNumber">{index}</p>
+              <p className="ScriptNumber">{index + 1}</p>
               <p className="ListTitle">{data.script}</p>
             </div>
           );

@@ -61,26 +61,25 @@ function RealTimeFB() {
         .then((response) => response.json())
         .then((data) => {
           console.log("サーバーからのレスポンス:", data);
+          if (data.status === 400 || data.status === 500 || data.insight === "")
+            return;
           setInsightText((prev) => {
             const currentList = Array.isArray(prev) ? prev : [];
             return [...currentList, data];
           });
         })
         .catch((error) => console.error("送信エラー:", error));
-    }, 5000);
+    }, 30000);
     return () => {
       clearInterval(intervalId);
     };
   }, [lecture]);
-
-  console.log(insightText);
-
   return (
     <>
       <div
         className="FBContainer"
         style={{
-          height: "700px",
+          height: "500px",
           overflowY: "auto",
           border: "1px solid #ccc",
           padding: "10px",
@@ -90,12 +89,28 @@ function RealTimeFB() {
         }}
       >
         <div>リアルタイムフィードバック</div>
-        {insightText.map((data) => (
-          <div className="FBContener">
-            <div className="FBheader">{data.time}</div>
-            <div>{data.insight}</div>
-          </div>
-        ))}
+        {insightText.map((data) => {
+          const json = JSON.parse(data.insight);
+          console.log(json);
+          const formattedDate = new Intl.DateTimeFormat("ja-JP", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false, // 24時間表記にする
+          }).format(new Date(data.time));
+          return (
+            <div className="FBContener">
+              <div className="FBheader">{formattedDate}</div>
+              <div className="FBbody">未捕捉</div>
+              <div style={{ position: "relative", bottom: 10, fontSize: 16 }}>
+                <div>【AI回答】 : {json.context}。</div>
+                <div>【理由】 : {json.reason}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

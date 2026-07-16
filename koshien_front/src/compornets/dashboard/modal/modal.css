@@ -59,6 +59,7 @@
 }
 
 .saveBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -93,7 +94,29 @@
   transition: none;
 }
 
-#column2 {
+
+.createBtn {
+  cursor: pointer;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px 0px;
+  width: 450px;
+  height: 50px;
+
+  background: #ffca75;
+  border: 1px solid #ffc765;
+  border-radius: 10px;
+
+  font-family: "Zen Kaku Gothic New";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 15px;
+  line-height: 20px;
+
   display: flex;
   width: 100%;
   gap: 8px;
@@ -101,6 +124,7 @@
 }
 
 .addBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -135,6 +159,7 @@
   transition: none;
 }
 .StartBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -169,6 +194,7 @@
   transition: none;
 }
 .NoaddBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -322,6 +348,7 @@
   border: 1px solid rgba(0, 119, 168, 0.2);
   border-radius: 10px;
 }
+
 .AddTitleHeader {
   display: flex;
   align-items: center;
@@ -341,6 +368,7 @@
   color: #0d2d3a;
 }
 #SerchBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -450,6 +478,7 @@
   flex-grow: 0;
 }
 #batten {
+  cursor: pointer;
   flex: none;
   margin-left: 100px;
   position: relative;
@@ -458,6 +487,7 @@
   left: 100px;
 }
 #batten2 {
+  cursor: pointer;
   flex: none;
   margin-left: 100px;
   position: relative;
@@ -513,6 +543,7 @@
   text-align: center;
   padding-bottom: 3px;
   margin-left: 30px;
+
   width: 470px;
   height: 28px;
 
@@ -711,9 +742,12 @@
 
 #coppy {
   float: left;
-
-  width: 95px;
+  top: 10px;
+  left: 100px;
+  width: 30px;
   height: 28px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 .InfoAndCode {
   display: flex;
@@ -921,6 +955,7 @@
   top: 65px;
 }
 #redDeleteBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -952,6 +987,7 @@
   flex-grow: 0;
 }
 #grayNotDeleteBtn {
+  cursor: pointer;
   box-sizing: border-box;
 
   display: flex;
@@ -984,6 +1020,7 @@
 }
 
 #deleteScreenBtn {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -1006,4 +1043,10 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+}
+
+#between-right-inside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

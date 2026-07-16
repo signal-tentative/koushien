@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import Recording from "../recording/Recording";
+import "../live.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -33,7 +34,7 @@ const Pdf = ({ url }) => {
   return (
     <div>
       <Document
-        className="PDFmain"
+        id="PDFmain"
         file={url}
         onLoadSuccess={({ numPages }) => {
           setNumPages(numPages);
@@ -44,6 +45,7 @@ const Pdf = ({ url }) => {
           key={`${pageNumber}_${scale}`}
           pageNumber={pageNumber}
           scale={scale}
+          width={635}
           renderTextLayer={false}
           renderAnnotationLayer={false}
         />

@@ -75,10 +75,10 @@ function JoinModal({ handleClose, SelectLecture }) {
         <div className="">
           <div className="JoinTitle">
             <p style={{ paddingLeft: "30%" }}>講義名:{title}</p>{" "}
-            <DeleteIcon style={{ marginLeft: "20px", color: "#006693" }} />
+            <DeleteIcon style={{ marginLeft: "20px", color: "#006693" ,cursor: "pointer", }} />
             <p
               onClick={handleCloseBtn}
-              style={{ marginLeft: "auto", paddingRight: "40px" }}
+              style={{ marginLeft: "auto", paddingRight: "40px",cursor: "pointer" }}
             >
               ×
             </p>

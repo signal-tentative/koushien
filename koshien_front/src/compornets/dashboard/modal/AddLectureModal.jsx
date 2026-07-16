@@ -22,6 +22,7 @@ function AddLectureModal({ handleClose }) {
   const [lecResult, setLecResult] = useState("");
   const [lecId, setLecId] = useState("");
   const [afterLec, setAfterLec] = useState([]);
+  const [title, setTitle] = useState("");
   let date;
   let startTime;
   let endTime;
@@ -99,6 +100,9 @@ function AddLectureModal({ handleClose }) {
           console.log("もう追加しています");
           return;
         }
+
+        setTitle(jsonData.title);
+
         //日付
 
         const datePart = jsonData.startDate.split("T")[0];
@@ -149,7 +153,7 @@ function AddLectureModal({ handleClose }) {
             <img id="Q_taRun" src={Q_taRun} alt="image" />
             <div id="AddTitle">講義を追加しました!</div>
             <div style={{ fontSize: "16px", paddingBottom: "30px" }}>
-              講義名:XXXXXXXX
+              講義名:{title}
             </div>
             <button className="saveBtn" onClick={handleClose}>
               メイン画面に戻る

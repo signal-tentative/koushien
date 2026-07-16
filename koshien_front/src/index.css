@@ -87,6 +87,7 @@ body {
   order: 0;
   align-self: stretch;
   flex-grow: 0;
+  cursor: pointer;
 }
 .readyloginBtn {
   /* Button */
@@ -544,7 +545,7 @@ code {
 
 .ScriptBoard {
   display: flex;
-  width: 93%;
+  width: 90%;
   height: 930%;
   padding: 24px;
   flex-direction: column;
@@ -600,14 +601,15 @@ code {
   flex-direction: column;
   align-items: flex-start;
   padding: 10px 12px;
+  margin-top: 4px;
 
   width: 550px;
-  height: 150px;
-
+  height: 130px;
+  font-size: 12px;
   background: #f8fbfd;
   border: 1px solid rgba(0, 119, 168, 0.15);
   border-radius: 15px;
-  margin-left: 1%;
+  margin-right: 10px;
 
   flex: none;
   order: 0;
@@ -615,18 +617,29 @@ code {
 }
 .FBheader {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  padding: 1px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #000000;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.FBbody {
+  display: flex;
+  width: 48px;
+  height: 12px;
+  position: relative;
+  left: 300px;
+  bottom: 17px;
+  padding: 1px 2px 2px;
   align-items: center;
-  padding: 0px;
-
-  width: auto;
-  height: 19px;
-
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: #bdbdbd;
+  font-size: 10px;
 }
 
 .header {
@@ -735,6 +748,7 @@ code {
   /* アカウント新規作成ボタン */
 
   box-sizing: border-box;
+  cursor: pointer;
 
   /* オートレイアウト */
   display: flex;
@@ -779,7 +793,7 @@ code {
 }
 .errorloginBtn {
   /* Button */
-
+  cursor: pointer;
   box-sizing: border-box;
 
   /* オートレイアウト */

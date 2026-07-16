@@ -8,6 +8,8 @@ import { app } from "../../firebase/firebase.config";
 import "./sign-up.css";
 import qtaImage from "/public/Signal-2.png";
 import { useNavigate } from "react-router";
+import { Icon } from "@mui/material";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -73,6 +75,15 @@ const SignUp = () => {
       </div>
       <div style={{ flex: "column" }}>
         <form className="board-signup" onSubmit={handleRegister}>
+          <div
+            onClick={() => {
+              nav(-1);
+            }}
+            className="back-div"
+          >
+            <ArrowBackIosIcon className="back-icon" />
+            <b className="back-text">戻る</b>
+          </div>
           <div className="createboad">
             <b style={{ color: "black", fontSize: 23 }}>新規作成</b>
             <br />

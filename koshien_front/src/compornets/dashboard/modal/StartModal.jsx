@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { atomSettingModal } from "../atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./modal.css";
 
 import dayjs from "dayjs";
@@ -13,7 +13,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ScriptList from "../list/ScriptList";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router";
+import { href, useNavigate } from "react-router";
+import { useLocation } from "react-router";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { blue } from "@mui/material/colors";
 
 function StartModal({ handleClose, SelectLecture }) {
   const [titlejotai, settitlejotai] = useState("default");
@@ -21,15 +24,29 @@ function StartModal({ handleClose, SelectLecture }) {
   const [uploadjotai, setuploadjotai] = useState("default");
   const [DeleteScreen, setDeleteScreen] = useState(false);
   const [CopyState, setCopyScreen] = useState(false);
+  const [url, setUrl] = useState("");
+  const [docId, setDocId] = useState("");
 
   const [certTitle, setCertTitle] = useState("");
   const [certExplanation, setCertExplanation] = useState(""); //元の名前を入れておくべき
   const navigate = useNavigate();
+  const [copyState, setCopyState] = useState(false); //3秒だけ表示される「コピーされました」の表示
+  async function handleCopyBtn() {
+    await navigator.clipboard.writeText(data.code);
+    console.log("コピー完了");
+    setCopyState(true);
+    setTimeout(() => {
+      setCopyState(false);
+      console.log("コピー完了の表示を消しました");
+    }, 3000);
+  } //return内,falseはなくていい
+  {
+    copyState ? <div>「コピーされました」true</div> : <div>false</div>;
+  }
 
   function handleCloseBtn() {
     handleClose();
   }
-
   function handleEditBtn() {
     console.log("edit");
   }
@@ -55,13 +72,47 @@ function StartModal({ handleClose, SelectLecture }) {
     //   return;
     // }
     window.open(`http://localhost:5173/slide`, "_blank");
-    navigate("/live");
+    navigate("/live", { state: { lecture_id: lecId } });
     //post
     console.log("create");
   }
 
-  console.log("startmodal", SelectLecture);
   const data = SelectLecture;
+  // useEffect(() => {
+  //   return Promise.all(
+  //     fetch(`${import.meta.env.VITE_API_URL}/lectures/code/${data.id}`).then(
+  //       (resData) => {
+  //         const json = resData.json();
+  //         console.log(json);
+  //       },
+  //     ),
+  //   ).then((data) => {
+  //     console.log(data);
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    Promise.all([
+      fetch(`${import.meta.env.VITE_API_URL}/documents/${data.id}`).then(
+        (resData) => {
+          return resData.json();
+        },
+      ),
+    ])
+      .then((results) => {
+        const jsonData = results[0];
+        console.log("Promise.all での取得成功:", jsonData);
+        setUrl(jsonData.link);
+        setDocId(jsonData.id);
+      })
+      .catch((error) => {
+        console.error("通信エラー:", error);
+      });
+  }, [data.id]);
+
+  //レクチャーid
+  const lecId = data.id;
+  console.log(lecId);
 
   //講義タイトル
   const title = data.title;
@@ -84,12 +135,13 @@ function StartModal({ handleClose, SelectLecture }) {
   const endTime = `${endparts[0]}:${endparts[1]}`;
 
   //年
-  const year = data.startDate.slice(0, 3);
+  const year = data.startDate.slice(0, 4);
   //月
+  let month;
   if (data.startDate[5] == "0") {
-    const month = data.startDate[6];
+    month = data.startDate[6];
   } else {
-    const month = data.startDate[5] + data.startDate[6];
+    month = data.startDate[5] + data.startDate[6];
   }
   //日
   const day = data.startDate[8] + data.startDate[9];
@@ -115,16 +167,17 @@ function StartModal({ handleClose, SelectLecture }) {
 
             <EditIcon
               style={{
-                paddingLeft: "30%",
+                paddingLeft: "10%",
                 paddingRight: "10%",
                 color: "#006693",
+                cursor: "pointer",
               }}
               onClick={handleEditBtn}
             />
             {DeleteScreen ? (
               <div id="deleteFrame">
                 <DeleteIcon
-                  style={{ color: "#006693" }}
+                  style={{ color: "#006693", cursor: "pointer" }}
                   onClick={handleDeleteIconBtn}
                 />
                 <div className="board deleteScreen">
@@ -145,13 +198,17 @@ function StartModal({ handleClose, SelectLecture }) {
             ) : (
               <div id="deleteFrame">
                 <DeleteIcon
-                  style={{ color: "#006693" }}
+                  style={{ color: "#006693", cursor: "pointer" }}
                   onClick={handleDeleteIconBtn}
                 />
               </div>
             )}
 
-            <p id="StartBatten" onClick={handleCloseBtn}>
+            <p
+              id="StartBatten"
+              style={{ cursor: "pointer" }}
+              onClick={handleCloseBtn}
+            >
               ×
             </p>
           </div>
@@ -165,7 +222,9 @@ function StartModal({ handleClose, SelectLecture }) {
               <div id="between-left-left">
                 <p className="SMTitle"> 講義情報</p>
                 <p className="SMtext">講師</p>
-                <p className="SMtext">実施時間</p>
+                <p className="SMtext">
+                  実施時間 {year}年{month}月{day}日 {startTime}~{endTime}
+                </p>
               </div>
               <div id="between-left-right">
                 <p></p>
@@ -173,17 +232,19 @@ function StartModal({ handleClose, SelectLecture }) {
                   {SelectLecture.name}
                 </p>
                 {/* </p>これは講師名だからuidから再度取得する必要がある？ */}
-                <p className="SMtext ">2026年7月10日（金）11:00~12:00</p>
+                <p className="SMtext "></p>
               </div>
             </div>
             <div id="between-right">
               <p className="SMTitle" style={{ marginRight: "20px" }}>
                 講義コード
               </p>
-              <p id="SMCode">{code}</p>
-              <p id="coppy" onClick={handleCopyBtn}>
-                📁
-              </p>
+              <div id="between-right-inside">
+                <p id="SMCode">{code}</p>
+                <p id="coppy" onClick={handleCopyBtn}>
+                  <ContentCopyIcon sx={{ color: "blue" }}></ContentCopyIcon>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -197,13 +258,15 @@ function StartModal({ handleClose, SelectLecture }) {
           <div id="materialsFrame">
             <p className="SMTitle">資料</p>
             <p className="SMtext" style={{ textDecorationLine: "underline" }}>
-              資料
+              <a href={url} target="_blank" rel="noopener noreferre">
+                資料
+              </a>
             </p>
           </div>
 
           <div id="scriptFrame">
             <p className="SMTitle">スクリプト</p>
-            <ScriptList />
+            <ScriptList documentId={docId} />
           </div>
         </div>
         <div id="borderline"></div>
