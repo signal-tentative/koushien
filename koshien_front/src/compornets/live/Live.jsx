@@ -63,7 +63,7 @@ function Live() {
           <div>
             <Recording />
           </div>
-          <Script />
+          <Script lecture_id={lecture_id} />
         </div>
         <div id="ScreenRight">
           <button className="endBtn" onClick={handleEnd}>
